@@ -21,8 +21,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>DP</tag>
         <tag>图论</tag>
+        <tag>DP</tag>
         <tag>组合计数</tag>
       </tags>
   </entry>
@@ -34,10 +34,10 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>DP</tag>
         <tag>图论</tag>
         <tag>Tarjan</tag>
         <tag>字符串</tag>
+        <tag>DP</tag>
         <tag>树形DP</tag>
       </tags>
   </entry>
@@ -65,9 +65,9 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>DP</tag>
         <tag>图论</tag>
         <tag>Tarjan</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
