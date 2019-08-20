@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>表达式树及三序表达 学习报告 - zgjjj&#39;s Blog</title>
+<title>分类: 写着van - zgjjj&#39;s Blog</title>
 
 
 
@@ -78,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://i.loli.net/2019/08/16/wDaVAypZ4U3JreH.jpg" alt="表达式树及三序表达 学习报告" height="28">
+                <img src="https://i.loli.net/2019/08/16/wDaVAypZ4U3JreH.jpg" alt="zgjjj&#39;s Blog" height="28">
             
             </a>
         </div>
@@ -115,10 +115,6 @@
                     
                 
                 
-                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -133,22 +129,34 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">分类</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">写着van</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-13T06:59:30.000Z">2019-02-13</time>
+                <time class="level-item has-text-grey" datetime="2019-01-19T04:58:08.000Z">2019-01-19</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/学习报告/">学习报告</a>
+                <a class="has-link-grey -link" href="/categories/写着van/">写着van</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 555 个字)
+                    几秒 读完 (大约 94 个字)
                 </span>
                 
                 
@@ -157,80 +165,23 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                表达式树及三序表达 学习报告
+                <a class="has-link-black-ter" href="/2019/01/19/小闹钟/">小闹钟</a>
             
         </h1>
         <div class="content">
-            <h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><p>需要了解树的先序、中序、后序遍历</p>
-<a id="more"></a>
-
-<h1 id="先来看一道题目"><a href="#先来看一道题目" class="headerlink" title="先来看一道题目"></a>先来看一道题目</h1><p><img src="https://i.loli.net/2019/02/13/5c63c1b262992.jpg" alt></p>
-<p>（源自洛谷有题）</p>
-<p>这是2017年TG初赛试题，这篇文章主要讲述如何<strong>快速有效</strong>地解这一类题。</p>
-<h1 id="关于表达式的三序表达"><a href="#关于表达式的三序表达" class="headerlink" title="关于表达式的三序表达"></a>关于表达式的三序表达</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>我们用一个例子来说明：</p>
-<table>
-<thead>
-<tr>
-<th align="center">名称</th>
-<th align="center">表达式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">中序表达式</td>
-<td align="center">$2\times 3/(2-1)+3\times(4-1)$</td>
-</tr>
-<tr>
-<td align="center">前序表达式</td>
-<td align="center">$+/\times23-21*3-41$</td>
-</tr>
-<tr>
-<td align="center">后序表达式</td>
-<td align="center">$23\times21-/341-\times+$</td>
-</tr>
-</tbody></table>
-<p>大致明白是什么了叭？</p>
-<h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><p>有人问：</p>
-<blockquote>
-<p>中序表达式这么方便，为什么还要开发<del>看不懂的</del>前序和后序表达式呢？</p>
-</blockquote>
-<p>原因很简单：<br><strong>中序表达式会使用括号</strong></p>
-<p>这将极大程度影响（机器）运算的效率。</p>
-<p>那么，对于前序和后序表达式，即使是同样的式子与操作符，不同的优先级都将导致其表达式的不同。也就不存在引用括号的情况。</p>
-<h1 id="已知一个式子的中序表达，如何求它的前序和后序表达呢？"><a href="#已知一个式子的中序表达，如何求它的前序和后序表达呢？" class="headerlink" title="已知一个式子的中序表达，如何求它的前序和后序表达呢？"></a>已知一个式子的中序表达，如何求它的前序和后序表达呢？</h1><p>也很简单。</p>
-<h2 id="引入一个概念：-表达式树"><a href="#引入一个概念：-表达式树" class="headerlink" title="引入一个概念： 表达式树"></a>引入一个概念： <strong>表达式树</strong></h2><p>我们来它长什么样：</p>
-<p><img src="https://i.loli.net/2019/02/13/5c63c68026d33.png" alt></p>
-<p>这是表达式${(1+2)-(3\times 4)}$的表达式树。</p>
-<h2 id="规定"><a href="#规定" class="headerlink" title="规定"></a>规定</h2><ul>
-<li><p>表达式树的叶节点<strong>能且仅能</strong>为运算数</p>
-</li>
-<li><p>除叶节点外的节点<strong>全部</strong>为操作符</p>
-</li>
-<li><p>节点的深度与运算的优先级正相关</p>
-<p>根据以上三点，可以得到一个中序表达式的表达式树。</p>
-</li>
-</ul>
-<h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2><p>通过这颗表达式树，我们很容易将中序表达式转化为<strong>等价</strong>的前序，后序表达式</p>
-<p>如何转换？</p>
-<p>得到一个中序表达式后，我们先将它转化为一颗表达式树。</p>
-<p>例如上面的$(1+2)-(3\times 4)$</p>
-<p><img src="https://i.loli.net/2019/02/13/5c63c68026d33.png" alt></p>
-<p>转化后，对这棵树<strong>先序遍历</strong>，可以得到等价的前序表达式。</p>
-<p>同样，对其<strong>后序遍历</strong>，可以得到等价的后序表达式。</p>
-<p>这棵树的<strong>中序遍历</strong>，则是我们常用的中序表达式。</p>
-
+            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><strong>你从来没有玩过的船新版本</strong></p>
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/技巧/">技巧</a>
+                <a class="button is-size-7 is-light" href="/2019/01/19/小闹钟/#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
     </div>
 </div>
 
@@ -238,26 +189,7 @@
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/13/裴蜀定理-学习报告/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">裴蜀定理 学习报告</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/13/组合数问题/">
-                <span class="level-item">Luogu P2822 组合数问题 解题报告</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
+
 
 
 </div>
@@ -572,53 +504,6 @@
 </div>
         
             
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#预备知识">
-        <span class="has-mr-6">1</span>
-        <span>预备知识</span>
-        </a></li><li>
-        <a class="is-flex" href="#先来看一道题目">
-        <span class="has-mr-6">2</span>
-        <span>先来看一道题目</span>
-        </a></li><li>
-        <a class="is-flex" href="#关于表达式的三序表达">
-        <span class="has-mr-6">3</span>
-        <span>关于表达式的三序表达</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#定义">
-        <span class="has-mr-6">3.1</span>
-        <span>定义</span>
-        </a></li><li>
-        <a class="is-flex" href="#意义">
-        <span class="has-mr-6">3.2</span>
-        <span>意义</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#已知一个式子的中序表达，如何求它的前序和后序表达呢？">
-        <span class="has-mr-6">4</span>
-        <span>已知一个式子的中序表达，如何求它的前序和后序表达呢？</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#引入一个概念：-表达式树">
-        <span class="has-mr-6">4.1</span>
-        <span>引入一个概念： 表达式树</span>
-        </a></li><li>
-        <a class="is-flex" href="#规定">
-        <span class="has-mr-6">4.2</span>
-        <span>规定</span>
-        </a></li><li>
-        <a class="is-flex" href="#转换">
-        <span class="has-mr-6">4.3</span>
-        <span>转换</span>
-        </a></li></ul></li></ul>
-        </div>
-    </div>
-</div>
-
         
             
 
@@ -1321,53 +1206,6 @@
 </div>
     
         
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#预备知识">
-        <span class="has-mr-6">1</span>
-        <span>预备知识</span>
-        </a></li><li>
-        <a class="is-flex" href="#先来看一道题目">
-        <span class="has-mr-6">2</span>
-        <span>先来看一道题目</span>
-        </a></li><li>
-        <a class="is-flex" href="#关于表达式的三序表达">
-        <span class="has-mr-6">3</span>
-        <span>关于表达式的三序表达</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#定义">
-        <span class="has-mr-6">3.1</span>
-        <span>定义</span>
-        </a></li><li>
-        <a class="is-flex" href="#意义">
-        <span class="has-mr-6">3.2</span>
-        <span>意义</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#已知一个式子的中序表达，如何求它的前序和后序表达呢？">
-        <span class="has-mr-6">4</span>
-        <span>已知一个式子的中序表达，如何求它的前序和后序表达呢？</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#引入一个概念：-表达式树">
-        <span class="has-mr-6">4.1</span>
-        <span>引入一个概念： 表达式树</span>
-        </a></li><li>
-        <a class="is-flex" href="#规定">
-        <span class="has-mr-6">4.2</span>
-        <span>规定</span>
-        </a></li><li>
-        <a class="is-flex" href="#转换">
-        <span class="has-mr-6">4.3</span>
-        <span>转换</span>
-        </a></li></ul></li></ul>
-        </div>
-    </div>
-</div>
-
     
         
 
@@ -1988,7 +1826,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://i.loli.net/2019/08/16/wDaVAypZ4U3JreH.jpg" alt="表达式树及三序表达 学习报告" height="28">
+                    <img src="https://i.loli.net/2019/08/16/wDaVAypZ4U3JreH.jpg" alt="zgjjj&#39;s Blog" height="28">
                 
                 </a>
                 <p class="is-size-7">
