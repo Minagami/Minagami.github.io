@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CF1039D You Are Given a Tree 解题报告]]></title>
+    <url>%2F2019%2F08%2F26%2FCF1039D-You-Are-Given-a-Tree-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[神仙题，写了一上午 题目链接CF1039D You Are Given a Tree 题意简述给你一棵树，分别求出划分成包含点数$k\in[1,n]$的链时最大的链的个数。 解题思想感谢小粉兔教我这道题QwQ OwenOwl说要整体二分，那是啥 首先考虑暴力怎么打，对于每一个$k$，可以贪心地去做，一直找能连接的点，直到长度第一次$\geq k$，这时链数++，继续找下一段。时间复杂度为$O(n ^ 2)$ 然后分析一波样例，我们发现对于$k\in(\sqrt n, n]$，答案是单减的，并且与整除分块相似，中间的某一段答案是一样的，所以我们可以二分找到一个段的右端点，然后暴力check()，更新整段的答案。这里的复杂度是$O(n\sqrt n \log n)$（log二分，根号区间，O(n)check）。 所以我们对于剩下的区间$[1, \sqrt n]$，直接暴力做，复杂度也是$O(n\sqrt n)$的，不会拖后腿。 总复杂度为$O(n\sqrt n\log n)$ 这个复杂度已经可以过了 但是我们发现分治的两个区间复杂度并不均衡，所以考虑通过分配不同的分治范围来均衡掉两个不同的操作时间。 我们发现，对于大段区间，二分的复杂度是$O(\log n)$的，而暴力部分区间是$O(n)$的，于是我们可以通过设置区块分界点为$O(\sqrt{(n \times \log n)}) = O(\sqrt{n \log n})$来均衡两个复杂度。 60个点一共快了10s。。。 根号nlogn断点 根号n断点 参考代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;cmath&gt;namespace FastIO&#123;4inline int read() &#123;44char ch = getchar(); int r = 0, w = 1;44while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125;44while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125;44return r * w;4&#125;44void _write(int x) &#123;44if(x &lt; 0) putchar('-'), x = -x;44if(x &gt; 9) _write(x / 10);44putchar(x % 10 + '0');4&#125;44inline void write(int x) &#123;44_write(x);44puts("");4&#125;&#125;using namespace FastIO;const int N = 100010;const int M = N &lt;&lt; 1;template &lt;typename T&gt; inline T max(T a, T b) &#123;return a &gt; b ? a : b;&#125;int n, size;int head[N], ver[M], nxt[M], cnt;int fa[N], ptn[N], idx;int d[N], ans[N];inline void add(int x, int y) &#123;4ver[++cnt] = y, nxt[cnt] = head[x], head[x] = cnt;4ver[++cnt] = x, nxt[cnt] = head[y], head[y] = cnt;&#125;void dfs(int x) &#123;4for(register int i = head[x]; i; i = nxt[i]) &#123;44int y = ver[i];44if(y == fa[x]) continue;44fa[y] = x;44dfs(y);4&#125;4ptn[++idx] = x;&#125;inline int find(int k) &#123;4int ans = 0;4for(register int i = 1; i &lt;= n; i++) d[i] = 1;4for(register int i = 1; i &lt;= n; i++) &#123;44int x = ptn[i];44if(fa[x] &amp;&amp; (~d[fa[x]]) &amp;&amp; (~d[x])) &#123;444if(d[x] + d[fa[x]] &gt;= k) &#123;4444ans++;4444d[fa[x]] = -1;444&#125;444else &#123;4444d[fa[x]] = max(d[fa[x]], d[x] + 1);444&#125;44&#125;4&#125;4return ans;&#125;int main() &#123;4n = read();4size = sqrt(n * (log(n) / log(2)));4for(register int i = 1; i &lt; n; i++) &#123;44int x = read(), y = read();44add(x, y);4&#125;4dfs(1);4ans[1] = n;4for(register int i = 2; i &lt;= size; i++) &#123;44ans[i] = find(i);4&#125;4for(register int i = size + 1, l, r, k; i &lt;= n; i = l + 1) &#123;44l = i, r = n, k = find(i);44while(l + 1 &lt; r) &#123;444int mid = (l + r) &gt;&gt; 1;444if(find(mid) == k) l = mid;444else r = mid;44&#125;44for(register int j = i; j &lt;= l; j++) ans[j] = k;4&#125;4for(register int i = 1; i &lt;= n; i++) &#123;44write(ans[i]);4&#125;4return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+      <tags>
+        <tag>树上问题</tag>
+        <tag>根号分治</tag>
+        <tag>贪心</tag>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Luogu P3396 哈希冲突 解题报告]]></title>
     <url>%2F2019%2F08%2F26%2FLuogu-P3396-%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[根号分治入门题 题目链接P3396 哈希冲突 题意简述给你一个序列，每次查询模p意义下某数总和，或者更改某一个数。 解题思想先考虑暴力怎么打，显然有两种操作：一是先$O(n ^ 2)$预处理出模$i$意义下余数为$j$的答案，然后可以做到$O(1)$查询，$O(n)$修改。 二是对于每一次询问，暴力$O(n)$统计，修改是$O(1)$的。 两种做法的总复杂度都是$O(n ^ 2)$的，且第一种做法空间也会炸。 观察到两种做法查询修改互补，我们可以考虑结合一下：对于模数较小的情况，我们可以预处理出来，这样空间不会炸，修改范围也会变小。 对于模数较大的情况，我们暴力统计，这样结果不会过多，查询不会炸。 这个较大较小的界，我们可以定为$O(\sqrt n)$，所以总复杂度为$O(n\sqrt n)$ 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;cmath&gt;namespace FastIO &#123; inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w; &#125; void _write(int x) &#123; if(x &lt; 0) putchar('-'), x = -x; if(x &gt; 9) _write(x / 10); putchar(x % 10 + '0'); &#125; inline void write(int x) &#123; _write(x); puts(""); &#125;&#125;using namespace FastIO;const int N = 150010;const int SIZE = 400;int n, m;int a[N];int f[SIZE][SIZE];int main() &#123; n = read(), m = read(); int size = sqrt(n); for(register int i = 1; i &lt;= n; i++) &#123; a[i] = read(); for(register int j = 1; j &lt;= size; j++) &#123; f[j][i % j] += a[i]; &#125; &#125; while(m--) &#123; char s[3]; scanf("%s", s); int x = read(), y = read(); if(s[0] == 'A') &#123; if(x &lt;= size) write(f[x][y]); else &#123; int ans = 0; for(register int i = y; i &lt;= n; i += x) &#123; ans += a[i]; &#125; write(ans); &#125; &#125; else &#123; for(register int i = 1; i &lt;= size; i++) &#123; f[i][x % i] += y - a[x]; &#125; a[x] = y; &#125; &#125; return 0;&#125;]]></content>
@@ -98,8 +112,8 @@
       </categories>
       <tags>
         <tag>图论</tag>
-        <tag>Tarjan</tag>
         <tag>Floyd</tag>
+        <tag>Tarjan</tag>
         <tag>强连通分量</tag>
         <tag>传递闭包</tag>
         <tag>拓扑排序</tag>
@@ -139,8 +153,8 @@
       <tags>
         <tag>树上问题</tag>
         <tag>树链剖分</tag>
-        <tag>分类讨论</tag>
         <tag>线段树</tag>
+        <tag>分类讨论</tag>
       </tags>
   </entry>
   <entry>
@@ -152,8 +166,8 @@
       </categories>
       <tags>
         <tag>树上问题</tag>
-        <tag>树上差分</tag>
         <tag>树链剖分</tag>
+        <tag>树上差分</tag>
       </tags>
   </entry>
   <entry>
@@ -258,9 +272,9 @@
       </categories>
       <tags>
         <tag>树上问题</tag>
+        <tag>分类讨论</tag>
         <tag>dfs</tag>
         <tag>树的直径</tag>
-        <tag>分类讨论</tag>
         <tag>树上dp</tag>
       </tags>
   </entry>
@@ -272,8 +286,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>树上问题</tag>
+        <tag>贪心</tag>
         <tag>树的直径</tag>
       </tags>
   </entry>
