@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>ToDoList - zgjjj&#39;s Blog</title>
+<title>Luogu P3396 哈希冲突 解题报告 - zgjjj&#39;s Blog</title>
 
 
 
@@ -79,7 +79,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://i.loli.net/2019/08/16/wDaVAypZ4U3JreH.jpg" alt="ToDoList" height="28">
+                <img src="https://i.loli.net/2019/08/16/wDaVAypZ4U3JreH.jpg" alt="Luogu P3396 哈希冲突 解题报告" height="28">
             
             </a>
         </div>
@@ -138,21 +138,27 @@
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/08/26/4KhpnH65UmMNErg.jpg" alt="Luogu P3396 哈希冲突 解题报告">
+        </span>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-02T03:16:14.000Z">2019-05-02</time>
+                <time class="level-item has-text-grey" datetime="2019-08-26T00:35:24.000Z">2019-08-26</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/置顶/">置顶</a>
+                <a class="has-link-grey -link" href="/categories/解题报告/">解题报告</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 445 个字)
+                    3 分钟 读完 (大约 460 个字)
                 </span>
                 
                 
@@ -161,118 +167,23 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                ToDoList
+                Luogu P3396 哈希冲突 解题报告
             
         </h1>
         <div class="content">
-            <blockquote>
-<p> 犹豫，就会败北；果断，也是白给。 放弃，亦无宽慰；坚持，终于崩溃。</p>
-</blockquote>
+            <p>根号分治入门题</p>
+<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://www.luogu.org/problem/P3396" target="_blank" rel="noopener">P3396 哈希冲突</a></p>
+<h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>给你一个序列，每次查询模<code>p</code>意义下某数总和，或者更改某一个数。</p>
 <a id="more"></a>
 
-<p>吨吨吨往下灌。</p>
-<h1 id="要学的芝士"><a href="#要学的芝士" class="headerlink" title="要学的芝士"></a>要学的芝士</h1><h2 id="OI"><a href="#OI" class="headerlink" title="OI"></a>OI</h2><p>您可以下载<strong><a href="https://zgjjj.github.io/OI.xmind" target="_blank" rel="noopener">OI知识树（Made By Zgjjj With Xmind）</a></strong>，但是您需要先安装<strong>Xmind</strong>。</p>
-<ul>
-<li><p>字符串</p>
-<ul>
-<li><del>KMP（拖了多久了qaq）</del></li>
-<li><del>AC自动机</del></li>
-<li>后缀数组</li>
-<li>后缀自动机</li>
-</ul>
-</li>
-<li><p>DP</p>
-<ul>
-<li>树上背包优化</li>
-<li><del>状压DP</del></li>
-<li><del>斜率优化</del></li>
-<li><del>数据结构优化</del></li>
-<li><del>数位统计DP</del></li>
-<li><del>计数DP</del></li>
-<li><del>DDP</del>（大概会了）</li>
-</ul>
-</li>
-<li><p>图论</p>
-<ul>
-<li><del>2-SAT</del></li>
-<li>基环树</li>
-<li>差分约束</li>
-<li>二分图<ul>
-<li>带权匹配</li>
-<li>最小点覆盖</li>
-<li>最大独立集</li>
-<li>DAG最小点覆盖</li>
-</ul>
-</li>
-<li>网络流<ul>
-<li><del>Dinic</del></li>
-<li>ISAP</li>
-<li>HLPP</li>
-<li>上下界网络流</li>
-<li>最大权闭合子图</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>离线分治</p>
-<ul>
-<li>整体二分</li>
-<li>带权二分</li>
-<li><del>CDQ分治</del></li>
-</ul>
-</li>
-<li><p>数学</p>
-<ul>
-<li><del>Pollard’s Rho</del></li>
-<li>Polya定理</li>
-<li><del>Miller-Rabin素数鉴定</del></li>
-<li><del>高斯消元</del>博弈</li>
-<li><del>博弈</del></li>
-<li><del>莫比乌斯反演</del></li>
-<li>01分规</li>
-<li>群论</li>
-</ul>
-</li>
-<li><p>搜索</p>
-<ul>
-<li><del>啥都不会，啥都要学</del></li>
-</ul>
-</li>
-<li><p>数据结构</p>
-<ul>
-<li><del>Splay</del></li>
-<li><del>LCT</del></li>
-<li>fhq Treap</li>
-<li>莫队</li>
-<li>可持久化Trie</li>
-<li><del>可持久化线段树</del></li>
-<li>动态图</li>
-<li><del>树套树</del></li>
-</ul>
-</li>
-</ul>
-<h2 id="休闲"><a href="#休闲" class="headerlink" title="休闲"></a><del>休闲</del></h2><ul>
-<li>CSS</li>
-<li>Node.js</li>
-<li>搭OJ</li>
-</ul>
-<h1 id="咕掉的事情"><a href="#咕掉的事情" class="headerlink" title="咕掉的事情"></a>咕掉的事情</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://www.luogu.org/problemnew/show/P1432" target="_blank" rel="noopener"><strong>P1432</strong> 倒水问题</a>（弃了，不想写）</p>
-<p><del><a href="https://www.luogu.org/problemnew/show/P3803" target="_blank" rel="noopener"><strong>P3803</strong> 【模板】多项式乘法（FFT）</a></del></p>
-<p><a href="https://www.luogu.org/problemnew/show/P2713" target="_blank" rel="noopener"><strong>P2713</strong> 罗马游戏</a>（咕咕咕）</p>
-<p><del><a href="https://www.luogu.org/problemnew/show/P2774" target="_blank" rel="noopener"><strong>P2774</strong> 方格取数问题</a></del></p>
-<p><a href="https://www.luogu.org/problemnew/show/P4593" target="_blank" rel="noopener"><strong>P4593</strong>教科书般的亵渎</a></p>
-<p><del><a href="https://www.luogu.org/problemnew/show/P3834" target="_blank" rel="noopener"><strong>P3834</strong> 【模板】可持久化线段树 1（主席树）</a></del></p>
-<p><a href="https://www.luogu.org/fe/problem/P1099" target="_blank" rel="noopener"><strong>P1099</strong> 树网的核</a> </p>
-<h2 id="Things"><a href="#Things" class="headerlink" title="Things"></a>Things</h2><ul>
-<li><p>多项式学习报告补锅</p>
-</li>
-<li><p><del><a href="https://www.luogu.org/problemnew/show/P3119" target="_blank" rel="noopener"><strong>P3119</strong> 草鉴定Grass Cownoisseur</a>写题解</del>（完成啦！）</p>
-</li>
-<li><p>LCT学习报告</p>
-</li>
-<li><p>DarkBZOJ3583 杰杰的女性朋友</p>
-</li>
-</ul>
+<h1 id="解题思想"><a href="#解题思想" class="headerlink" title="解题思想"></a>解题思想</h1><p>先考虑暴力怎么打，显然有两种操作：<br>一是先$O(n ^ 2)$预处理出模$i$意义下余数为$j$的答案，然后可以做到$O(1)$查询，$O(n)$修改。</p>
+<p>二是对于每一次询问，暴力$O(n)$统计，修改是$O(1)$的。</p>
+<p>两种做法的总复杂度都是$O(n ^ 2)$的，且第一种做法空间也会炸。</p>
+<p>观察到两种做法查询修改互补，我们可以考虑结合一下：<br>对于模数较小的情况，我们可以预处理出来，这样空间不会炸，修改范围也会变小。</p>
+<p>对于模数较大的情况，我们暴力统计，这样结果不会过多，查询不会炸。</p>
+<p>这个较大较小的界，我们可以定为$O(\sqrt n)$，所以总复杂度为$O(n\sqrt n)$</p>
+<h1 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h1><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">namespace</span> FastIO &#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">char</span> ch = getchar(); <span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>, w = <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch)) &#123;<span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'-'</span>) w = <span class="hljs-number">-1</span>; ch = getchar();&#125;</span><br><span class="line">        <span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch)) &#123;r = r * <span class="hljs-number">10</span> + ch - <span class="hljs-string">'0'</span>, ch = getchar();&#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> r * w;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">void</span> _write(<span class="hljs-keyword">int</span> x) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(x &lt; <span class="hljs-number">0</span>) <span class="hljs-built_in">putchar</span>(<span class="hljs-string">'-'</span>), x = -x;</span><br><span class="line">        <span class="hljs-keyword">if</span>(x &gt; <span class="hljs-number">9</span>) _write(x / <span class="hljs-number">10</span>);</span><br><span class="line">        <span class="hljs-built_in">putchar</span>(x % <span class="hljs-number">10</span> + <span class="hljs-string">'0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        _write(x);</span><br><span class="line">        <span class="hljs-built_in">puts</span>(<span class="hljs-string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> FastIO;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">150010</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> SIZE = <span class="hljs-number">400</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, m;</span><br><span class="line"><span class="hljs-keyword">int</span> a[N];</span><br><span class="line"><span class="hljs-keyword">int</span> f[SIZE][SIZE];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    n = read(), m = read();</span><br><span class="line">    <span class="hljs-keyword">int</span> size = <span class="hljs-built_in">sqrt</span>(n);</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        a[i] = read();</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= size; j++) &#123;</span><br><span class="line">            f[j][i % j] += a[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">while</span>(m--) &#123;</span><br><span class="line">        <span class="hljs-keyword">char</span> s[<span class="hljs-number">3</span>];</span><br><span class="line">        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, s);</span><br><span class="line">        <span class="hljs-keyword">int</span> x = read(), y = read();</span><br><span class="line">        <span class="hljs-keyword">if</span>(s[<span class="hljs-number">0</span>] == <span class="hljs-string">'A'</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(x &lt;= size) write(f[x][y]);</span><br><span class="line">            <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;</span><br><span class="line">                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = y; i &lt;= n; i += x) &#123;</span><br><span class="line">                    ans += a[i];</span><br><span class="line">                &#125;</span><br><span class="line">                write(ans);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= size; i++) &#123;</span><br><span class="line">                f[i][x % i] += y - a[x];</span><br><span class="line">            &#125;</span><br><span class="line">            a[x] = y;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -280,7 +191,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/ToDoList/">ToDoList</a>
+                    <a class="has-link-grey -link" href="/tags/根号分治/">根号分治</a>
                 </div>
             </div>
         </div>
@@ -297,17 +208,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/02/Luogu-P1726-上白泽慧音-解题报告/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Luogu P1726 上白泽慧音 解题报告</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/04/30/Luogu-P2746-USACO5-3-校园网Network-of-Schools-解题报告/">
-                <span class="level-item">Luogu P2746 [USACO5.3]校园网Network of Schools 解题报告</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/25/CF1207B-Square-Filling-解题报告/">
+                <span class="level-item">CF1207B Square Filling 解题报告</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -415,30 +319,22 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#要学的芝士">
+        <a class="is-flex" href="#题目链接">
         <span class="has-mr-6">1</span>
-        <span>要学的芝士</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#OI">
-        <span class="has-mr-6">1.1</span>
-        <span>OI</span>
+        <span>题目链接</span>
         </a></li><li>
-        <a class="is-flex" href="#休闲">
-        <span class="has-mr-6">1.2</span>
-        <span>休闲</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#咕掉的事情">
+        <a class="is-flex" href="#题意简述">
         <span class="has-mr-6">2</span>
-        <span>咕掉的事情</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#题目">
-        <span class="has-mr-6">2.1</span>
-        <span>题目</span>
+        <span>题意简述</span>
         </a></li><li>
-        <a class="is-flex" href="#Things">
-        <span class="has-mr-6">2.2</span>
-        <span>Things</span>
-        </a></li></ul></li></ul>
+        <a class="is-flex" href="#解题思想">
+        <span class="has-mr-6">3</span>
+        <span>解题思想</span>
+        </a></li><li>
+        <a class="is-flex" href="#参考代码">
+        <span class="has-mr-6">4</span>
+        <span>参考代码</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
@@ -461,7 +357,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://i.loli.net/2019/08/16/wDaVAypZ4U3JreH.jpg" alt="ToDoList" height="28">
+                    <img src="https://i.loli.net/2019/08/16/wDaVAypZ4U3JreH.jpg" alt="Luogu P3396 哈希冲突 解题报告" height="28">
                 
                 </a>
                 <p class="is-size-7">
