@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CF1207E XOR Guessing 解题报告]]></title>
+    <url>%2F2019%2F08%2F28%2FCF1207E-XOR-Guessing-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[交互太好van了，可惜辣鸡样例欺诈 题目链接(Luogu)CF1207E XOR Guessing 题意简述这是一道交互题 询问两次，每次询问100个$[0, 2^{14} - 1]$的数，输出答案与其中一个数的异或值。 求出答案 解题思想考虑异或的性质，本质上是不进位加法，所以每一位仅对当前位有影响。于是我们可以七位七位地确定这个数，先询问一次，前七位都是1，再询问一次，后七位都是1，这样就可以唯一确定这个数了。 交互题一定要记得fflush(stdout);！！！ 参考代码123456789101112131415161718192021222324252627282930313233343536#include &lt;cstdio&gt;#include &lt;cctype&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 110;int a[N], b[N], ans, tmp;int main() &#123; for(register int i = 1; i &lt;= 100; i++) &#123; a[i] = i; b[i] = i &lt;&lt; 7; &#125; printf("?"); for(register int i = 1; i &lt;= 100; i++) &#123; printf(" %d", a[i]); &#125; puts(""); fflush(stdout); ans = read(); printf("?"); for(register int i = 1; i &lt;= 100; i++) &#123; printf(" %d", b[i]); &#125; puts(""); fflush(stdout); ans = (ans ^ (tmp = read())) &gt;&gt; 7; printf("! %d\n", (ans &lt;&lt; 7) ^ tmp); return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[CF1039D You Are Given a Tree 解题报告]]></title>
     <url>%2F2019%2F08%2F26%2FCF1039D-You-Are-Given-a-Tree-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
-    <content type="text"><![CDATA[神仙题，写了一上午 题目链接CF1039D You Are Given a Tree 题意简述给你一棵树，分别求出划分成包含点数$k\in[1,n]$的链时最大的链的个数。 解题思想感谢小粉兔教我这道题QwQ OwenOwl说要整体二分，那是啥 首先考虑暴力怎么打，对于每一个$k$，可以贪心地去做，一直找能连接的点，直到长度第一次$\geq k$，这时链数++，继续找下一段。时间复杂度为$O(n ^ 2)$ 然后分析一波样例，我们发现对于$k\in(\sqrt n, n]$，答案是单减的，并且与整除分块相似，中间的某一段答案是一样的，所以我们可以二分找到一个段的右端点，然后暴力check()，更新整段的答案。这里的复杂度是$O(n\sqrt n \log n)$（log二分，根号区间，O(n)check）。 所以我们对于剩下的区间$[1, \sqrt n]$，直接暴力做，复杂度也是$O(n\sqrt n)$的，不会拖后腿。 总复杂度为$O(n\sqrt n\log n)$ 这个复杂度已经可以过了 但是我们发现分治的两个区间复杂度并不均衡，所以考虑通过分配不同的分治范围来均衡掉两个不同的操作时间。 我们发现，对于大段区间，二分的复杂度是$O(\log n)$的，而暴力部分区间是$O(n)$的，于是我们可以通过设置区块分界点为$O(\sqrt{(n \times \log n)}) = O(\sqrt{n \log n})$来均衡两个复杂度。 60个点一共快了10s。。。 根号nlogn断点 根号n断点 参考代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;cmath&gt;namespace FastIO&#123; inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w; &#125; void _write(int x) &#123; if(x &lt; 0) putchar('-'), x = -x; if(x &gt; 9) _write(x / 10); putchar(x % 10 + '0'); &#125; inline void write(int x) &#123; _write(x); puts(""); &#125;&#125;using namespace FastIO;const int N = 100010;const int M = N &lt;&lt; 1;template &lt;typename T&gt; inline T max(T a, T b) &#123;return a &gt; b ? a : b;&#125;int n, size;int head[N], ver[M], nxt[M], cnt;int fa[N], ptn[N], idx;int d[N], ans[N];inline void add(int x, int y) &#123; ver[++cnt] = y, nxt[cnt] = head[x], head[x] = cnt; ver[++cnt] = x, nxt[cnt] = head[y], head[y] = cnt;&#125;void dfs(int x) &#123; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i]; if(y == fa[x]) continue; fa[y] = x; dfs(y); &#125; ptn[++idx] = x;&#125;inline int find(int k) &#123; int ans = 0; for(register int i = 1; i &lt;= n; i++) d[i] = 1; for(register int i = 1; i &lt;= n; i++) &#123; int x = ptn[i]; if(fa[x] &amp;&amp; (~d[fa[x]]) &amp;&amp; (~d[x])) &#123; if(d[x] + d[fa[x]] &gt;= k) &#123; ans++; d[fa[x]] = -1; &#125; else &#123; d[fa[x]] = max(d[fa[x]], d[x] + 1); &#125; &#125; &#125; return ans;&#125;int main() &#123; n = read(); size = sqrt(n * (log(n) / log(2))); for(register int i = 1; i &lt; n; i++) &#123; int x = read(), y = read(); add(x, y); &#125; dfs(1); ans[1] = n; for(register int i = 2; i &lt;= size; i++) &#123; ans[i] = find(i); &#125; for(register int i = size + 1, l, r, k; i &lt;= n; i = l + 1) &#123; l = i, r = n, k = find(i); while(l + 1 &lt; r) &#123; int mid = (l + r) &gt;&gt; 1; if(find(mid) == k) l = mid; else r = mid; &#125; for(register int j = i; j &lt;= l; j++) ans[j] = k; &#125; for(register int i = 1; i &lt;= n; i++) &#123; write(ans[i]); &#125; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[神仙题，写了一上午 题目链接(Luogu)CF1039D You Are Given a Tree 题意简述给你一棵树，分别求出划分成包含点数$k\in[1,n]$的链时最大的链的个数。 解题思想感谢小粉兔教我这道题QwQ OwenOwl说要整体二分，那是啥 首先考虑暴力怎么打，对于每一个$k$，可以贪心地去做，一直找能连接的点，直到长度第一次$\geq k$，这时链数++，继续找下一段。时间复杂度为$O(n ^ 2)$ 然后分析一波样例，我们发现对于$k\in(\sqrt n, n]$，答案是单减的，并且与整除分块相似，中间的某一段答案是一样的，所以我们可以二分找到一个段的右端点，然后暴力check()，更新整段的答案。这里的复杂度是$O(n\sqrt n \log n)$（log二分，根号区间，O(n)check）。 所以我们对于剩下的区间$[1, \sqrt n]$，直接暴力做，复杂度也是$O(n\sqrt n)$的，不会拖后腿。 总复杂度为$O(n\sqrt n\log n)$ 这个复杂度已经可以过了 但是我们发现分治的两个区间复杂度并不均衡，所以考虑通过分配不同的分治范围来均衡掉两个不同的操作时间。 我们发现，对于大段区间，二分的复杂度是$O(\log n)$的，而暴力部分区间是$O(n)$的，于是我们可以通过设置区块分界点为$O(\sqrt{(n \times \log n)}) = O(\sqrt{n \log n})$来均衡两个复杂度。 60个点一共快了10s。。。 根号nlogn断点 根号n断点 参考代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;cmath&gt;namespace FastIO&#123; inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w; &#125; void _write(int x) &#123; if(x &lt; 0) putchar('-'), x = -x; if(x &gt; 9) _write(x / 10); putchar(x % 10 + '0'); &#125; inline void write(int x) &#123; _write(x); puts(""); &#125;&#125;using namespace FastIO;const int N = 100010;const int M = N &lt;&lt; 1;template &lt;typename T&gt; inline T max(T a, T b) &#123;return a &gt; b ? a : b;&#125;int n, size;int head[N], ver[M], nxt[M], cnt;int fa[N], ptn[N], idx;int d[N], ans[N];inline void add(int x, int y) &#123; ver[++cnt] = y, nxt[cnt] = head[x], head[x] = cnt; ver[++cnt] = x, nxt[cnt] = head[y], head[y] = cnt;&#125;void dfs(int x) &#123; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i]; if(y == fa[x]) continue; fa[y] = x; dfs(y); &#125; ptn[++idx] = x;&#125;inline int find(int k) &#123; int ans = 0; for(register int i = 1; i &lt;= n; i++) d[i] = 1; for(register int i = 1; i &lt;= n; i++) &#123; int x = ptn[i]; if(fa[x] &amp;&amp; (~d[fa[x]]) &amp;&amp; (~d[x])) &#123; if(d[x] + d[fa[x]] &gt;= k) &#123; ans++; d[fa[x]] = -1; &#125; else &#123; d[fa[x]] = max(d[fa[x]], d[x] + 1); &#125; &#125; &#125; return ans;&#125;int main() &#123; n = read(); size = sqrt(n * (log(n) / log(2))); for(register int i = 1; i &lt; n; i++) &#123; int x = read(), y = read(); add(x, y); &#125; dfs(1); ans[1] = n; for(register int i = 2; i &lt;= size; i++) &#123; ans[i] = find(i); &#125; for(register int i = size + 1, l, r, k; i &lt;= n; i = l + 1) &#123; l = i, r = n, k = find(i); while(l + 1 &lt; r) &#123; int mid = (l + r) &gt;&gt; 1; if(find(mid) == k) l = mid; else r = mid; &#125; for(register int j = i; j &lt;= l; j++) ans[j] = k; &#125; for(register int i = 1; i &lt;= n; i++) &#123; write(ans[i]); &#125; return 0;&#125;]]></content>
       <categories>
         <category>解题报告</category>
       </categories>
@@ -97,9 +105,9 @@
       </categories>
       <tags>
         <tag>图论</tag>
+        <tag>DP</tag>
         <tag>Tarjan</tag>
         <tag>字符串</tag>
-        <tag>DP</tag>
         <tag>树形DP</tag>
       </tags>
   </entry>
@@ -128,8 +136,8 @@
       </categories>
       <tags>
         <tag>图论</tag>
-        <tag>Tarjan</tag>
         <tag>DP</tag>
+        <tag>Tarjan</tag>
       </tags>
   </entry>
   <entry>
@@ -179,8 +187,8 @@
       </categories>
       <tags>
         <tag>图论</tag>
-        <tag>实域二分</tag>
         <tag>dfs</tag>
+        <tag>实域二分</tag>
       </tags>
   </entry>
   <entry>
@@ -273,8 +281,8 @@
       <tags>
         <tag>树上问题</tag>
         <tag>分类讨论</tag>
-        <tag>dfs</tag>
         <tag>树的直径</tag>
+        <tag>dfs</tag>
         <tag>树上dp</tag>
       </tags>
   </entry>
@@ -383,7 +391,7 @@
   <entry>
     <title><![CDATA[ToDoList]]></title>
     <url>%2F2019%2F05%2F02%2FToDoList%2F</url>
-    <content type="text"><![CDATA[犹豫，就会败北；果断，也是白给。 放弃，亦无宽慰；坚持，终于崩溃。 吨吨吨往下灌。 要学的芝士OI您可以下载OI知识树（Made By Zgjjj With Xmind），但是您需要先安装Xmind。 字符串 KMP（拖了多久了qaq） AC自动机 后缀数组 后缀自动机 DP 树上背包优化 状压DP 斜率优化 数据结构优化 数位统计DP 计数DP DDP（大概会了） 图论 2-SAT 基环树 差分约束 二分图 带权匹配 最小点覆盖 最大独立集 DAG最小点覆盖 网络流 Dinic ISAP HLPP 上下界网络流 最大权闭合子图 离线分治 整体二分 带权二分 CDQ分治 数学 Pollard’s Rho Polya定理 Miller-Rabin素数鉴定 高斯消元博弈 博弈 莫比乌斯反演 01分规 群论 搜索 啥都不会，啥都要学 数据结构 Splay LCT fhq Treap 莫队 可持久化Trie 可持久化线段树 动态图 树套树 休闲 CSS Node.js 搭OJ 咕掉的事情题目P1432 倒水问题（弃了，不想写） P3803 【模板】多项式乘法（FFT） P2713 罗马游戏（咕咕咕） P2774 方格取数问题 P4593教科书般的亵渎 P3834 【模板】可持久化线段树 1（主席树） P1099 树网的核 Things 多项式学习报告补锅 P3119 草鉴定Grass Cownoisseur写题解（完成啦！） LCT学习报告 DarkBZOJ3583 杰杰的女性朋友]]></content>
+    <content type="text"><![CDATA[犹豫，就会败北；果断，也是白给。 放弃，亦无宽慰；坚持，终于崩溃。 吨吨吨往下灌。 要学的芝士OI您可以下载OI知识树（Made By Yuki With Xmind），但是您需要先安装Xmind。 字符串 KMP（拖了多久了qaq） AC自动机 后缀数组 后缀自动机 DP 树上背包优化 状压DP 斜率优化 数据结构优化 数位统计DP 计数DP DDP（大概会了） 图论 2-SAT 基环树 差分约束 二分图 带权匹配 最小点覆盖 最大独立集 DAG最小点覆盖 网络流 Dinic ISAP HLPP 上下界网络流 最大权闭合子图 离线分治 整体二分 带权二分 CDQ分治 数学 Pollard’s Rho Polya定理 Miller-Rabin素数鉴定 高斯消元博弈 博弈 莫比乌斯反演 01分规 群论 搜索 啥都不会，啥都要学 数据结构 Splay LCT fhq Treap 莫队 可持久化Trie 可持久化线段树 动态图 树套树 休闲 CSS Node.js 搭OJ 咕掉的事情题目P1432 倒水问题（弃了，不想写） P3803 【模板】多项式乘法（FFT） P2713 罗马游戏（咕咕咕） P2774 方格取数问题 P4593教科书般的亵渎 P3834 【模板】可持久化线段树 1（主席树） P1099 树网的核 Things 多项式学习报告补锅 P3119 草鉴定Grass Cownoisseur写题解（完成啦！） LCT学习报告 DarkBZOJ3583 杰杰的女性朋友]]></content>
       <categories>
         <category>置顶</category>
       </categories>
@@ -427,8 +435,8 @@
       </categories>
       <tags>
         <tag>图论</tag>
-        <tag>LCA</tag>
         <tag>MST</tag>
+        <tag>LCA</tag>
       </tags>
   </entry>
   <entry>
