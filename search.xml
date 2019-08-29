@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[数论函数与反演]]></title>
     <url>%2F2019%2F08%2F29%2F%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8F%8D%E6%BC%94%2F</url>
-    <content type="text"><![CDATA[总结了一下数论函数的相关知识。 积性函数若定义在 $N^$ 的函数 $f(x)$ 满足 $\forall x, y\in N^$ 且 $\gcd(x,y) = 1$ 都有 $f(x\times y) = f(x) \times f(y)$ ，则 $f(x)$ 为积性函数 常见积性函数$\mu(x)$ 莫比乌斯函数 $\varphi(x)$ 欧拉函数 $\sigma(x)$ 约数和函数 $d(x)$ 约数个数函数 狄利克雷卷积对于两个积性函数 $f(x), g(x)$ ，其狄利克雷卷积 $h(x) = \sum\limits_{d|x} f(x)g(\frac{x}{d})$ 也是积性函数 计算任意积性函数可通过线性筛 $O(n)$ 求出 筛法素数筛法Eratosthenes 筛法俗称埃氏筛，是针对素数的一种筛法。 考虑素数的性质：对于每个素数，它仅有自己与 $1$ 两个因子，所以素数的倍数定为合数，利用此条性质，我们可以很快速的筛出给定范围的素数。 实现过程遍历范围，对于未被标记的数，我们将其置为素数，枚举其倍数，并标记；当访问到一个被标记过的数时，将其置为合数，并直接跳过。 复杂度为 $\Theta(\sum\limits_{prime \leq n}\frac{n}{p})$ 由素数分布密度 $D = \frac{1}{\ln n}$ 可得，上式 $= \Theta(n\ln\ln n)$ 参考代码12]]></content>
+    <content type="text"><![CDATA[还没更完，先别看辣。 总结了一下数论函数的相关知识。 积性函数若定义在 $N^$ 的函数 $f(x)$ 满足 $\forall x, y\in N^$ 且 $\gcd(x,y) = 1$ 都有 $f(x\times y) = f(x) \times f(y)$ ，则 $f(x)$ 为积性函数。 常见积性函数$\mu(x)$ 莫比乌斯函数 $\varphi(x)$ 欧拉函数 $\sigma(x)$ 约数和函数 $d(x)$ 约数个数函数 狄利克雷卷积对于两个积性函数 $f(x), g(x)$ ，其狄利克雷卷积 $h(x) = \sum\limits_{d|x} f(x)g(\frac{x}{d})$ 也是积性函数。 计算任意积性函数可通过线性筛 $O(n)$ 求出。 筛法素数筛法Eratosthenes 筛法俗称埃氏筛，是针对素数的一种筛法。 考虑素数的性质：对于每个素数，它仅有自己与 $1$ 两个因子，所以素数的倍数定为合数，利用此条性质，我们可以很快速的筛出给定范围的素数。 实现过程遍历范围，对于未被标记的数，我们将其置为素数，枚举其倍数，并标记；当访问到一个被标记过的数时，将其置为合数，并直接跳过。 复杂度为 $\Theta(\sum\limits_{prime \leq n}\frac{n}{p})$ 由素数分布密度 $D = \frac{1}{\ln n}$ 可得，上式 $= \Theta(n\ln\ln n)$ 参考代码1234567for(register int i = 2; i &lt;= n; i++) &#123; if(!v[i]) &#123; p[++tot] = i; for(register int j = 1; i * j &lt;= n; j++) v[i * j] = 1; &#125;&#125;]]></content>
       <categories>
         <category>学习报告</category>
       </categories>

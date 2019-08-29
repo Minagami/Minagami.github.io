@@ -152,7 +152,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 350 个字)
+                    3 分钟 读完 (大约 387 个字)
                 </span>
                 
                 
@@ -165,22 +165,23 @@
             
         </h1>
         <div class="content">
-            <p>总结了一下数论函数的相关知识。</p>
+            <p>还没更完，先别看辣。</p>
+<p>总结了一下数论函数的相关知识。</p>
 <a id="more"></a>
 
-<h1 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h1><p>若定义在 $N^<em>$ 的函数 $f(x)$ 满足 $\forall x, y\in N^</em>$ 且 $\gcd(x,y) = 1$ 都有 $f(x\times y) = f(x) \times f(y)$ ，则 $f(x)$ 为<strong>积性函数</strong></p>
+<h1 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h1><p>若定义在 $N^<em>$ 的函数 $f(x)$ 满足 $\forall x, y\in N^</em>$ 且 $\gcd(x,y) = 1$ 都有 $f(x\times y) = f(x) \times f(y)$ ，则 $f(x)$ 为<strong>积性函数</strong>。</p>
 <h2 id="常见积性函数"><a href="#常见积性函数" class="headerlink" title="常见积性函数"></a>常见积性函数</h2><p>$\mu(x)$ <strong><em>莫比乌斯函数</em></strong></p>
 <p>$\varphi(x)$ <strong><em>欧拉函数</em></strong></p>
 <p>$\sigma(x)$ <strong><em>约数和函数</em></strong></p>
 <p>$d(x)$ <strong><em>约数个数函数</em></strong></p>
-<h2 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h2><p>对于两个积性函数 $f(x), g(x)$ ，其<strong>狄利克雷卷积</strong> $h(x) = \sum\limits_{d|x} f(x)g(\frac{x}{d})$ 也是积性函数</p>
-<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><p><strong>任意积性函数</strong>可通过<strong>线性筛</strong> $O(n)$ 求出</p>
+<h2 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h2><p>对于两个积性函数 $f(x), g(x)$ ，其<strong>狄利克雷卷积</strong> $h(x) = \sum\limits_{d|x} f(x)g(\frac{x}{d})$ 也是积性函数。</p>
+<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><p><strong>任意积性函数</strong>可通过<strong>线性筛</strong> $O(n)$ 求出。</p>
 <h1 id="筛法"><a href="#筛法" class="headerlink" title="筛法"></a>筛法</h1><h2 id="素数筛法"><a href="#素数筛法" class="headerlink" title="素数筛法"></a>素数筛法</h2><h3 id="Eratosthenes-筛法"><a href="#Eratosthenes-筛法" class="headerlink" title="Eratosthenes 筛法"></a>Eratosthenes 筛法</h3><p>俗称<strong>埃氏筛</strong>，是<strong>针对素数</strong>的一种筛法。</p>
 <p>考虑素数的性质：<br>对于每个素数，它仅有自己与 $1$ 两个因子，所以<strong>素数的倍数定为合数</strong>，利用此条性质，我们可以很快速的筛出给定范围的素数。</p>
 <h4 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h4><p>遍历范围，对于未被标记的数，我们将其置为素数，枚举其倍数，并标记；当访问到一个被标记过的数时，将其置为合数，并直接跳过。</p>
 <p>复杂度为 $\Theta(\sum\limits_{prime \leq n}\frac{n}{p})$</p>
 <p>由素数分布密度 $D = \frac{1}{\ln n}$ 可得，上式 $= \Theta(n\ln\ln n)$</p>
-<h4 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h4><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h4><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(!v[i]) &#123;</span><br><span class="line">        p[++tot] = i;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; i * j &lt;= n; j++) </span><br><span class="line">            v[i * j] = <span class="hljs-number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
         </div>
