@@ -142,13 +142,25 @@
             
         </h1>
         <div class="content">
-            <p>这里会放一些zgjjj记的小知识点~</p>
+            <p>这里会放一些Yuki记的小知识点~</p>
+<p>最近更新的会放在最上面</p>
 <hr>
 <p><a href="https://www.luogu.org/blog/IowaBattleship/latex-gong-shi-tai-quan" target="_blank" rel="noopener">$\LaTeX$公式大全</a></p>
 <p><strong>感谢原作者<a href="https://www.luogu.org/space/show?uid=60181" target="_blank" rel="noopener">Iowa_BattleShip</a></strong></p>
 <hr>
 <ol>
-<li><p>数列$&lt;1,  \dbinom{c}{1},  \dbinom{c + 1}{2},  \dbinom{c + 2}{3}, \cdots&gt;$的生成函数为$G(z) = \frac{1}{(1-z) ^ c}$</p>
+<li><p>$\sum\limits_{d|\gcd(i, j)}\mu(d) = [\gcd(i, j) = 1]$</p>
+<p> 证明：</p>
+</li>
+</ol>
+<p>莫比乌斯函数性质得：$\sum\limits_{d|n}{\mu(d)} = [n = 1]$</p>
+<p>将 $n$ 替换为 $\gcd(i, j)$即得证</p>
+<ol start="2">
+<li><p>$\sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m}a_ib_j = \sum\limits_{i = 1} ^ {n} a_i \times \sum\limits_{j = 1}^{m}b_j$</p>
+<p> 证明：</p>
+<p> 拆开后合并同类项。</p>
+</li>
+<li><p>数列 $&lt;1,  \dbinom{c}{1},  \dbinom{c + 1}{2},  \dbinom{c + 2}{3}, \cdots&gt;$ 的生成函数为 $G(z) = \frac{1}{(1-z) ^ c}$</p>
 <p> 证明：<br> 从右边考虑：</p>
 <p> $\frac{1}{(1-z) ^ c} = (1 - z) ^ {-c}$</p>
 <p> 广义二项式定理展开：<br> 原式<br> $= \sum\limits_{k\geq 0}^{\infty}\dbinom{-c}{k}\times (-z) ^ k$</p>
@@ -160,8 +172,8 @@
 <p> 代回原式：<br> 原式<br> $=\sum\limits_{k \geq 0} ^ {\infty}\frac{(-1)^k\times (c + k - 1) ^{\underline{k}}}{k!} \times (-1) ^ k \times z ^ k$</p>
 <p> $= \sum\limits_{k \geq 0} ^ {\infty}\frac{(-1) ^ {2k} \times (c + k - 1) ^ {\underline{k}}}{k!} \times z^k$</p>
 <p> 又因为：<br> $(-1)^{2k} = 1$</p>
-<p> 所以：<br> 原式$=\sum\limits_{k\geq 0}^{\infty}\frac{(c + k - 1) ^ {\underline{k}}}{k!}\times z^k$</p>
-<p> 由组合数推广定义：<br> 原式$=\sum\limits_{k\ge 0} ^ {\infty} \dbinom{c + k - 1}{k} \times z ^ k$</p>
+<p> 所以：<br> 原式 $=\sum\limits_{k\geq 0}^{\infty}\frac{(c + k - 1) ^ {\underline{k}}}{k!}\times z^k$</p>
+<p> 由组合数推广定义：<br> 原式 $=\sum\limits_{k\ge 0} ^ {\infty} \dbinom{c + k - 1}{k} \times z ^ k$</p>
 <p> 是由定义得到的原数列的生成函数。</p>
 </li>
 </ol>
