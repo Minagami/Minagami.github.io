@@ -158,7 +158,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1414 个字)
+                    9 分钟 读完 (大约 1415 个字)
                 </span>
                 
                 
@@ -201,7 +201,7 @@
 <h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><ul>
 <li><p><strong>定义 1（sgn）：</strong>定义 $\text{sgn}(j_1j_2…j_n) = (-1) ^ {\tau(j_1j_2…j_n)}$ </p>
 </li>
-<li><p><strong>定义 2（行列式）：</strong><br>  $$<br>  \begin{align}<br>  \det{(A)} &amp;=<br>  \begin{vmatrix}<br>  a_{11} &amp; \cdots &amp;a_{1n} \\<br>  \vdots &amp; \ddots &amp; \vdots \\<br>  a_{n1} &amp; \cdots &amp; a_{nn}<br>  \end{vmatrix} \<br>  &amp;=\sum\limits_{j_1j_2\cdots j_n} \text{sgn}(j_1j_2\cdots j_n) \prod\limits_{i = 1} ^ {n} a_{ij_i}<br>  \end{align}<br>  $$</p>
+<li><p><strong>定义 2（行列式）：</strong><br>  $$<br>  \begin{align}<br>  \det{(A)} &amp;=<br>  \begin{vmatrix}<br>  a_{11} &amp; \cdots &amp;a_{1n} \\<br>  \vdots &amp; \ddots &amp; \vdots \\<br>  a_{n1} &amp; \cdots &amp; a_{nn}<br>  \end{vmatrix}<br>  \\ &amp;= \sum\limits_{j_1j_2\cdots j_n} \text{sgn}(j_1j_2\cdots j_n) \prod\limits_{i = 1} ^ {n} a_{ij_i}<br>  \end{align}<br>  $$</p>
 </li>
 <li><p><strong>引理 1：</strong>行列交换，值不变</p>
 </li>
@@ -215,10 +215,8 @@
 </li>
 <li><p><strong>引理 6：</strong>把一行的某个倍数加到另一行，行列式的值不变。</p>
 </li>
-<li><p><strong>定义 3（零矩阵）：</strong><br>  $$<br>  \begin{align}<br>  0 =<br>  \begin{bmatrix}<br>  0 &amp; \cdots &amp; 0 \<br>  \vdots &amp; \ddots &amp; \vdots \\<br>  0 &amp; \cdots &amp; 0<br>  \end{bmatrix}<br>  \end{align}<br>  $$</p>
+<li><p><strong>定义 3（零矩阵）：</strong><br>  $$<br>  \begin{align}<br>  0 &amp;=<br>  \begin{bmatrix} 0 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; 0 \end{bmatrix}<br>  \end{align}<br>  $$</p>
 </li>
-</ul>
-<ul>
 <li><p><strong>定义 4（对角矩阵）：</strong>仅对角线上元素不为0的方阵，记作 $\text{diag}(c_1,c_2,c_3,…,c_n)$ 。</p>
 </li>
 <li><p><strong>定义 5（纯量矩阵）：</strong> $\text{diag}(c, c, c, … , c)$ </p>
@@ -256,7 +254,7 @@
 </ul>
 </li>
 <li><p><strong>定理 1 ：</strong>$\det(AB) = \det(A)\times \det(B)$</p>
-<p>  证明：<br>  构造 $\begin{vmatrix}A &amp; 0 \\ -I &amp; \end{vmatrix}$</p>
+<p>  证明：<br>  构造 $\begin{vmatrix}A &amp; 0 \\ -I &amp; B\end{vmatrix}$</p>
 <ul>
 <li><strong>引理 1：</strong>$\det(\prod\limits_{i = 1}^sA_i) = \prod\limits_{i = 1}^s\det(A_i)$</li>
 <li><strong>引理 2：</strong>设 $𝐴$ 为 $𝑛$ 阶方阵， $𝐴𝑋=0$ 有非零解的充分必要条件是 $𝐴$ 奇异</li>
