@@ -152,7 +152,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    15 分钟 读完 (大约 2252 个字)
+                    15 分钟 读完 (大约 2280 个字)
                 </span>
                 
                 
@@ -262,9 +262,11 @@
 <p>$$\because p_i \mid x$$</p>
 <p>$$\text {又} \because p_i \text{为素数}$$</p>
 <p>$$\therefore p_i\text{为}x\text{的素因子}$$</p>
-<p>$$\therefore\varphi(x\times p_i) = x \times p_i \times \prod\limits_{j = 1}^{k}(1-\frac{1}{p_j}) = \varphi(x) \times p_i$$ &emsp;&emsp;</p>
+<p>$$\therefore\varphi(x\times p_i) = x \times p_i \times \prod\limits_{j = 1}^{k}(1-\frac{1}{p_j}) = p_i \times (x \times \prod\limits_{j = 1} ^ k(1 - \frac{1}{p_j}))= \varphi(x) \times p_i$$</p>
 </li>
 </ol>
+<h4 id="参考代码-3"><a href="#参考代码-3" class="headerlink" title="参考代码"></a>参考代码</h4><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(!v[i]) p[++tot] = i, </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]: <a href="https://www.cnblogs.com/henry-1202/p/10246196.html" target="_blank" rel="noopener">(henry_y) 欧拉函数的几个性质及证明</a></p>
 <p>[2]: <a href="https://www.cnblogs.com/zhoushuyu/p/8275530.html" target="_blank" rel="noopener">(租酥雨) 积性函数与线性筛</a></p>
 <p>[3]: <a href="https://www.cnblogs.com/zhoushuyu/p/8275530.html" target="_blank" rel="noopener">(peng-ym) 积性函数与线性筛</a></p>
