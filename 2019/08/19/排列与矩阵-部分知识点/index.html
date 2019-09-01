@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html  lang="zh">
 <head>
-    <meta charset="utf-8" />
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
 
 <meta name="generator" content="Hexo 3.9.0" />
 
@@ -70,10 +70,10 @@
     
 
 
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 <!--<body class="is-2-column">-->
-<body class="is-3-column">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><body class="is-3-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -158,7 +158,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1390 个字)
+                    9 分钟 读完 (大约 1414 个字)
                 </span>
                 
                 
@@ -177,86 +177,91 @@
 <h3 id="排列"><a href="#排列" class="headerlink" title="排列"></a>排列</h3><ul>
 <li><p><strong>定义 1（对换）：</strong>将交换一个排列中的任意两项称为对换</p>
 </li>
-<li><p><strong>定义 2（逆序对数）：</strong>记$\tau(A)$为排列$A$中的逆序对数</p>
+<li><p><strong>定义 2（逆序对数）：</strong>记 $\tau(A)$ 为排列 $A$ 中的逆序对数</p>
 </li>
 <li><p><strong>定义 3（奇偶性）：</strong>排列奇偶性为一个排列中逆序对数的奇偶性。</p>
 </li>
 <li><p><strong>定理 1：</strong>对换导致排列奇偶性改变</p>
 <p>  证明：<br>  对于相邻两项，显然成立。</p>
-<p>  对于任意$i, j$两项$(i &lt; j)$，可通过$2 \times (i - j) - 1$次对换使得原$i, j$两项相邻，其余项相对位置不变。</p>
+<p>  对于任意 $i, j$ 两项 $(i &lt; j)$ ，可通过 $2 \times (i - j) - 1$ 次对换使得原 $i, j$ 两项相邻，其余项相对位置不变。</p>
 </li>
-<li><p><strong>定理 2：</strong>在全部的$n$阶排列中$(n \ge 2)$，奇偶排列数量相同</p>
+<li><p><strong>定理 2：</strong>在全部的 $n$ 阶排列中 $(n \ge 2)$ ，奇偶排列数量相同</p>
 <p>  证明：</p>
 <ul>
 <li><p>法一：数学归纳法。</p>
 </li>
 <li><p>法二：<br>  由<strong>定理 1</strong>：奇排列交换前两项可得偶排列。</p>
 <p>  故偶排列数量 $\ge$ 奇排列数量</p>
-<p>  同理： 奇排列数量$\ge$偶排列数量</p>
+<p>  同理： 奇排列数量 $\ge$ 偶排列数量</p>
 <p>  故奇排列数量=偶排列数量</p>
 </li>
 </ul>
 </li>
 </ul>
 <h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><ul>
-<li><strong>定义 1（sgn）：</strong>定义$\text{sgn}(j_1j_2…j_n) = (-1) ^ {\tau(j_1j_2…j_n)}$</li>
-<li><strong>定义 2（行列式）：</strong></li>
+<li><p><strong>定义 1（sgn）：</strong>定义 $\text{sgn}(j_1j_2…j_n) = (-1) ^ {\tau(j_1j_2…j_n)}$ </p>
+</li>
+<li><p><strong>定义 2（行列式）：</strong><br>  $$<br>  \begin{align}<br>  \det{(A)} &amp;=<br>  \begin{vmatrix}<br>  a_{11} &amp; \cdots &amp;a_{1n} \\<br>  \vdots &amp; \ddots &amp; \vdots \\<br>  a_{n1} &amp; \cdots &amp; a_{nn}<br>  \end{vmatrix} \<br>  &amp;=\sum\limits_{j_1j_2\cdots j_n} \text{sgn}(j_1j_2\cdots j_n) \prod\limits_{i = 1} ^ {n} a_{ij_i}<br>  \end{align}<br>  $$</p>
+</li>
+<li><p><strong>引理 1：</strong>行列交换，值不变</p>
+</li>
+<li><p><strong>引理 2：</strong>用一个数乘行列式的某行等于用这个数乘此行列式</p>
+</li>
+<li><p><strong>引理 3：</strong>如果行列式中某一行是两组数之和，则这个行列式等于两个行列式之和，这两个行列式分别以两组数为该行，而其余各行与原行列式对应各行相同</p>
+</li>
+<li><p><strong>引理 4：</strong>对换行列式中两行的位置，行列式反号</p>
+</li>
+<li><p><strong>引理 5：</strong>如果行列式中有两行成比例，则行列式等于 0 </p>
+</li>
+<li><p><strong>引理 6：</strong>把一行的某个倍数加到另一行，行列式的值不变。</p>
+</li>
+<li><p><strong>定义 3（零矩阵）：</strong><br>  $$<br>  \begin{align}<br>  0 =<br>  \begin{bmatrix}<br>  0 &amp; \cdots &amp; 0 \<br>  \vdots &amp; \ddots &amp; \vdots \\<br>  0 &amp; \cdots &amp; 0<br>  \end{bmatrix}<br>  \end{align}<br>  $$</p>
+</li>
 </ul>
-<p><img src="https://i.loli.net/2019/08/19/Y1rH9WESJeIGqxy.png" alt="辣鸡latex，放图片了"></p>
 <ul>
-<li><strong>引理 1：</strong>行列交换，值不变</li>
-<li><strong>引理 2：</strong>用一个数乘行列式的某行等于用这个数乘此行列式</li>
-<li><strong>引理 3：</strong>如果行列式中某一行是两组数之和，则这个行列式等于两个行列式之和，这两个行列式分别以两组数为该行，而其余各行与原行列式对应各行相同</li>
-<li><strong>引理 4：</strong>对换行列式中两行的位置，行列式反号</li>
-<li><strong>引理 5：</strong>如果行列式中有两行成比例，则行列式等于0</li>
-<li><strong>引理 6：</strong>把一行的某个倍数加到另一行，行列式的值不变。</li>
-<li><strong>定义 3（零矩阵）：</strong> </li>
-</ul>
-<p><img src="https://i.loli.net/2019/08/19/3sST6KcRP5mt4NZ.png" alt="0矩阵"></p>
-<ul>
-<li><p><strong>定义 4（对角矩阵）：</strong>仅对角线上元素不为0的方阵，记作$\text{diag}(c_1,c_2,c_3,…,c_n)$。</p>
+<li><p><strong>定义 4（对角矩阵）：</strong>仅对角线上元素不为0的方阵，记作 $\text{diag}(c_1,c_2,c_3,…,c_n)$ 。</p>
 </li>
-<li><p><strong>定义 5（纯量矩阵）：</strong>$\text{diag}(c, c, c, … , c)$</p>
+<li><p><strong>定义 5（纯量矩阵）：</strong> $\text{diag}(c, c, c, … , c)$ </p>
 </li>
-<li><p><strong>定义 6（单位矩阵）：</strong>$\text{diag}(1, 1, 1, … , 1)$</p>
+<li><p><strong>定义 6（单位矩阵）：</strong> $\text{diag}(1, 1, 1, … , 1)$</p>
 </li>
-<li><p><strong>定义 7（上三角矩阵）：</strong>对角线下元素都为0的方阵</p>
+<li><p><strong>定义 7（上三角矩阵）：</strong>对角线下元素都为 0 的方阵</p>
 </li>
-<li><p><strong>定义 8（下三角矩阵）：</strong>对角线上元素都为0的方阵</p>
+<li><p><strong>定义 8（下三角矩阵）：</strong>对角线上元素都为 0 的方阵</p>
 </li>
 <li><p><strong>定义 9（对称矩阵）：</strong>对角线上下元素对称的方阵</p>
 </li>
 <li><p><strong>定义 10（反对称矩阵）：</strong>对角线上下元素互为相反数的方阵（由定义：对角线上元素都为0）</p>
 </li>
-<li><p><strong>定义 11（逆矩阵）：</strong>设$A$是$n$阶方阵，如果存在$n$阶方阵$B$使得$AB = BA = I$，则称$A$是可逆的（或者非奇异的），$B$是$A$的一个逆矩阵。否则称$A$是不可逆的（或者非奇异的）</p>
+<li><p><strong>定义 11（逆矩阵）：</strong>设 $A$ 是 $n$ 阶方阵，如果存在 $n$ 阶方阵 $B$ 使得 $AB = BA = I$ ，则称 $A$ 是可逆的（或者非奇异的）， $B$ 是 $A$ 的一个逆矩阵。否则称 $A$ 是不可逆的（或者非奇异的）</p>
 </li>
 <li><p><strong>定义 12（初等行（列）变换）：</strong></p>
 <ul>
 <li>以一个非0的数乘以某行</li>
-<li>将某一行的$𝑘$倍加到另一行</li>
+<li>将某一行的 $𝑘$ 倍加到另一行</li>
 <li>互换两行</li>
 </ul>
 </li>
-<li><p><strong>定义 13（初等变换矩阵）：</strong>单位矩阵$I$经过一次初等变换得到的矩阵</p>
+<li><p><strong>定义 13（初等变换矩阵）：</strong>单位矩阵 $I$ 经过一次初等变换得到的矩阵</p>
 </li>
-<li><p><strong>定义 14（矩阵相抵）：</strong>若矩阵$𝐵$可以由矩阵$𝐴$经过一系列初等变换得到，则称$𝐴$与$𝐵$相抵（等价），记做$𝐴≅𝐵$</p>
+<li><p><strong>定义 14（矩阵相抵）：</strong>若矩阵 $𝐵$ 可以由矩阵 $𝐴$ 经过一系列初等变换得到，则称 $𝐴$ 与 $𝐵$ 相抵（等价），记做 $𝐴≅𝐵$</p>
 </li>
-<li><p><strong>定义 15（余子式）：</strong>矩阵$A$任意删去一行及一列后得到的矩阵成为$A$的一个余子式，若删去$i$行$i$列，则得到$A$的一个<strong>主余子式</strong>。</p>
+<li><p><strong>定义 15（余子式）：</strong>矩阵 $A$ 任意删去一行及一列后得到的矩阵成为 $A$ 的一个余子式，若删去 $i$ 行 $i$ 列，则得到 $A$ 的一个<strong>主余子式</strong>。</p>
 </li>
-<li><p><strong>定义 16（基尔霍夫矩阵）：</strong>定义：如果图$G$有总共$N$个点，那么图$G$的基尔霍夫矩阵$D$可以表示为：</p>
+<li><p><strong>定义 16（基尔霍夫矩阵）：</strong>定义：如果图 $G$ 有总共 $N$ 个点，那么图 $G$ 的基尔霍夫矩阵 $D$ 可以表示为：</p>
 <ul>
 <li>$D_{ii} = \deg(i)$</li>
-<li>$D_{ij} = -\text{cnt}(i, j)$，其中$\text{cnt}(i, j)$为点$i$至点$j$的路径数量。<br>即为图$G$的度数矩阵减去邻接矩阵。</li>
+<li>$D_{ij} = -\text{cnt}(i, j)$，其中 $\text{cnt}(i, j)$ 为点 $i$ 至点 $j$ 的路径数量。<br>即为图 $G$ 的度数矩阵减去邻接矩阵。</li>
 <li><strong>引理 1：</strong>$\det(D)= 0$</li>
 </ul>
 </li>
 <li><p><strong>定理 1 ：</strong>$\det(AB) = \det(A)\times \det(B)$</p>
-<p>  证明：<br>  构造<img src="https://i.loli.net/2019/08/19/5IViG8SLFaAuPUT.png" alt="辅助矩阵"></p>
+<p>  证明：<br>  构造 $\begin{vmatrix}A &amp; 0 \\ -I &amp; \end{vmatrix}$</p>
 <ul>
 <li><strong>引理 1：</strong>$\det(\prod\limits_{i = 1}^sA_i) = \prod\limits_{i = 1}^s\det(A_i)$</li>
-<li><strong>引理 2：</strong>设$𝐴$为$𝑛$阶方阵，$𝐴𝑋=0$有非零解的充分必要条件是$𝐴$奇异</li>
-<li><strong>引理 3：</strong>设$𝐴$为$𝑛$阶方阵，若$\exists B$为$𝑛$阶方阵，使得$𝐴𝐵=𝐼$(或$𝐵𝐴=𝐼$)，则$𝐴$可逆且$𝐴^{−1}=𝐵$</li>
-<li><strong>引理 4：</strong>若$\det(A) \neq 0$，则$\det(A^{-1}) = (\det(A))^{-1}$</li>
+<li><strong>引理 2：</strong>设 $𝐴$ 为 $𝑛$ 阶方阵， $𝐴𝑋=0$ 有非零解的充分必要条件是 $𝐴$ 奇异</li>
+<li><strong>引理 3：</strong>设 $𝐴$ 为 $𝑛$ 阶方阵，若 $\exists B$ 为 $𝑛$ 阶方阵，使得 $𝐴𝐵=𝐼$ (或 $𝐵𝐴=𝐼$ )，则 $𝐴$ 可逆且 $𝐴^{−1}=𝐵$ </li>
+<li><strong>引理 4：</strong>若 $\det(A) \neq 0$ ，则 $\det(A^{-1}) = (\det(A))^{-1}$</li>
 <li><strong>引理 5（一些性质）：</strong><ul>
 <li>$(A^{-1})^{-1} = A$</li>
 <li>$(AB)^{-1} = B^{-1}\times A^{-1}$</li>
@@ -265,10 +270,10 @@
 </li>
 </ul>
 </li>
-<li><p><strong>定理 2：</strong>设$A$为$n$阶方阵，若$A$可逆，则线性方程组$AX =B$有唯一解$X = A^{-1}B$</p>
+<li><p><strong>定理 2：</strong>设 $A$ 为 $n$ 阶方阵，若 $A$ 可逆，则线性方程组 $AX =B$ 有唯一解 $X = A^{-1}B$</p>
 <p>  挺显然的，不证了。</p>
 </li>
-<li><p><strong>定理 3：</strong>用初等变换矩阵左（右）乘矩阵$𝐴$，相当于对矩阵$𝐴$实行相应的初等行（列）变换</p>
+<li><p><strong>定理 3：</strong>用初等变换矩阵左（右）乘矩阵 $𝐴$ ，相当于对矩阵 $𝐴$ 实行相应的初等行（列）变换</p>
 <p>  证明：</p>
 <p>  乘上单位矩阵</p>
 </li>
@@ -278,9 +283,9 @@
 <li><p><strong>定理 5：</strong>相抵是一种等价关系</p>
 <p>  证明：略</p>
 </li>
-<li><p><strong>定理 6（初等变换求逆）：</strong>构造$n \times 2n$的矩阵$(AI)$，那么我们对$A$高斯消元，并将使用的初等变换矩阵左乘$(AI)$，这时取出$(AI)’$的右边，即为$A^{-1}$</p>
+<li><p><strong>定理 6（初等变换求逆）：</strong>构造 $n \times 2n$ 的矩阵 $(AI)$ ，那么我们对 $A$ 高斯消元，并将使用的初等变换矩阵左乘 $(AI)$ ，这时取出 $(AI)’$ 的右边，即为 $A^{-1}$</p>
 </li>
-<li><p><strong>定理 7（矩阵树定理）：</strong>给定图$𝐺$，则图$𝐺$的生成树的个数等于其对应的基尔霍夫矩阵的主余子式的行列式。</p>
+<li><p><strong>定理 7（矩阵树定理）：</strong>给定图 $𝐺$，则图 $𝐺$ 的生成树的个数等于其对应的基尔霍夫矩阵的主余子式的行列式。</p>
 </li>
 </ul>
 
@@ -640,6 +645,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <!--背景线条-->
     <!--<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1" count="99" src="dist/canvas-nest.js"></script>-->
-    <!--<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>-->
+    <!--<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

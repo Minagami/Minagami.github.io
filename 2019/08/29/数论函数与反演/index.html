@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html  lang="zh">
 <head>
-    <meta charset="utf-8" />
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
 
 <meta name="generator" content="Hexo 3.9.0" />
 
@@ -70,10 +70,10 @@
     
 
 
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 <!--<body class="is-2-column">-->
-<body class="is-3-column">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><body class="is-3-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -152,7 +152,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 389 个字)
+                    9 分钟 读完 (大约 1298 个字)
                 </span>
                 
                 
@@ -170,19 +170,58 @@
 <a id="more"></a>
 
 <h1 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h1><p>若定义在 $N ^ {\star}$ 的函数 $f(x)$ 满足 $\forall x, y\in N^{\star}$ 且 $\gcd(x,y) = 1$ 都有 $f(x\times y) = f(x) \times f(y)$ ，则 $f(x)$ 为<strong>积性函数</strong>。</p>
-<h2 id="常见积性函数"><a href="#常见积性函数" class="headerlink" title="常见积性函数"></a>常见积性函数</h2><p>$\mu(x)$ <strong><em>莫比乌斯函数</em></strong></p>
-<p>$\varphi(x)$ <strong><em>欧拉函数</em></strong></p>
+<p><strong>定义：（完全积性函数）$\forall x, y \le N^{\star}, f(x \times y) = f(x) \times f(y)$</strong></p>
+<h2 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h2><p>对于两个积性函数 $f(x), g(x)$ ，其<strong>狄利克雷卷积</strong> $h(x) = f * g = \sum\limits_{d|x} f(x)g(\frac{x}{d})$ 也是积性函数。</p>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ul>
+<li><p>交换律： $f*g = g *f$</p>
+</li>
+<li><p>结合律： $(f * g) * h = f * (g * h)$</p>
+</li>
+<li><p>分配律： $(f + g) * h = f * h + g * h$</p>
+</li>
+</ul>
+<h2 id="常见积性函数"><a href="#常见积性函数" class="headerlink" title="常见积性函数"></a>常见积性函数</h2><h3 id="完全积性函数"><a href="#完全积性函数" class="headerlink" title="完全积性函数"></a>完全积性函数</h3><h4 id="e-x-一元函数"><a href="#e-x-一元函数" class="headerlink" title="$e(x)$ 一元函数"></a>$e(x)$ <strong><em>一元函数</em></strong></h4><p>定义： $e(x) = [x = 1]$</p>
+<h4 id="I-x-恒等函数"><a href="#I-x-恒等函数" class="headerlink" title="$I(x)$ 恒等函数"></a>$I(x)$ <strong><em>恒等函数</em></strong></h4><p>定义： $I(x) = 1$</p>
+<h4 id="id-x-单位函数"><a href="#id-x-单位函数" class="headerlink" title="$id(x)$ 单位函数"></a>$id(x)$ <strong><em>单位函数</em></strong></h4><p>定义： $id(x) = x$</p>
+<h3 id="非完全积性函数"><a href="#非完全积性函数" class="headerlink" title="非完全积性函数"></a>非完全积性函数</h3><h4 id="mu-x-莫比乌斯函数"><a href="#mu-x-莫比乌斯函数" class="headerlink" title="$\mu(x)$ 莫比乌斯函数"></a>$\mu(x)$ <strong><em>莫比乌斯函数</em></strong></h4><p>定义： <img src="https://i.loli.net/2019/08/30/JZOm4C3N51VhA29.gif" alt="莫比乌斯函数"></p>
+<p>性质：$\sum\limits_{d|n} \mu(d) = [n = 1]$</p>
+<p>证明：</p>
+<p>&emsp;&emsp;$n = 1$ 时显然成立。</p>
+<p>&emsp;&emsp;$n \neq 1$ 时，将 $n$ 唯一分解：$n = \prod\limits_{i = 1} ^ {k} p_i^{a_i}$</p>
+<p>&emsp;&emsp;在 $n$ 的所有因子中，仅素因子次数都为 $1$ 的因子 $\mu$ 值不为 $0$ ，这种因子共有 $\sum\limits_{i = 0} ^ {k} C_k^i$个，因子 $x$ 的贡献为 $\mu(x) = (-1) ^ x$，所以总和为 $\sum\limits_{i = 0} ^ k C_k^i\times (-1)^i$ ，这个式子可以<strong>二项式定理</strong>合并，得到 $(1 + (-1)) ^ k = 0$</p>
+<p>&emsp;&emsp;性质得证。</p>
+<h3 id="varphi-x-欧拉函数"><a href="#varphi-x-欧拉函数" class="headerlink" title="$\varphi(x)$ 欧拉函数"></a>$\varphi(x)$ <strong><em>欧拉函数</em></strong></h3><p>定义： $\varphi(x) = \sum\limits_{i = 1}^{x - 1}[\gcd(i, x) = 1]$</p>
+<p>通项公式： 对于 $x = \prod\limits_{i = 1} ^ k p_i^{a_i}， \varphi(x) = x\times \prod\limits_{i = 1} ^ {k} (1 - \frac{1}{p_i})$</p>
+<p>证明：<br>&emsp;&emsp;若 $x$ 为素数，显然 $\varphi(x) = x - 1$</p>
+<p>&emsp;&emsp;若 $x$ 不为素数，则将 $x$ 唯一分解为 $\prod\limits_{i = 1}^{k}p_i^{a_i}$ ，那么有：<br>$$<br>\begin{align}<br>\varphi(x) &amp;= \varphi(\prod\limits_{i=1}^{k}p_i^{a_i}) \\ &amp;= \prod\limits_{i=1}^k\varphi(p_i^{a_i})<br>\end{align}<br>$$<br>&emsp;&emsp;而又因为小于 $p^a$ 的数中，仅有 $p ^ m, m\in[0, a)$ 不与其互素，所以：<br>$$<br>\begin{align}<br>\varphi(p^a) &amp;= p ^ a - p ^ {a - 1} \\ &amp;= p ^ a (1 - \frac{1}{p})<br>\end{align}<br>$$<br> &emsp;&emsp;所以：<br>$$<br>\begin{align}<br>\text{原式} &amp;= \prod\limits_{i = 1}^kp_i^{a_i}(1 - \frac{1}{p_i}) \\ &amp;= \prod \limits_{i = 1} ^ k p_i^{a_i} \times \prod\limits_{i = 1} ^ k(1 - \frac{1}{p_i}) \\ &amp;= x \times \prod\limits_{i = 1} ^k (1-\frac{1}{p_i})<br>\end{align}<br>$$<br>性质 $1$：$\sum\limits_{d|n}\varphi(d) = n$</p>
+<p>证明：</p>
+<p>&emsp;&emsp;<strong><em>引理：设 $f(x) = \sum\limits_{d|n}\varphi(d)$ ，那么 $f(x)$ 是一个非完全积性函数</em></strong></p>
+<p>&emsp;&emsp;证明：设 $n, m$ 互素，则有：</p>
+<p>性质 $2$：$\sum\limits_{d|n}\frac{\mu(d)}{d} = \frac{\varphi(n)}{n}$</p>
+<p>&emsp;&emsp;证明：由</p>
 <p>$\sigma(x)$ <strong><em>约数和函数</em></strong></p>
 <p>$d(x)$ <strong><em>约数个数函数</em></strong></p>
-<h2 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h2><p>对于两个积性函数 $f(x), g(x)$ ，其<strong>狄利克雷卷积</strong> $h(x) = \sum\limits_{d|x} f(x)g(\frac{x}{d})$ 也是积性函数。</p>
-<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><p><strong>任意积性函数</strong>可通过<strong>线性筛</strong> $O(n)$ 求出。</p>
+<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><p><strong>任意积性函数</strong>可通过<strong>Euler 筛</strong> $O(n)$ 求出。</p>
 <h1 id="筛法"><a href="#筛法" class="headerlink" title="筛法"></a>筛法</h1><h2 id="素数筛法"><a href="#素数筛法" class="headerlink" title="素数筛法"></a>素数筛法</h2><h3 id="Eratosthenes-筛法"><a href="#Eratosthenes-筛法" class="headerlink" title="Eratosthenes 筛法"></a>Eratosthenes 筛法</h3><p>俗称<strong>埃氏筛</strong>，是<strong>针对素数</strong>的一种筛法。</p>
 <p>考虑素数的性质：<br>对于每个素数，它仅有自己与 $1$ 两个因子，所以<strong>素数的倍数定为合数</strong>，利用此条性质，我们可以很快速的筛出给定范围的素数。</p>
-<h4 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h4><p>遍历范围，对于未被标记的数，我们将其置为素数，枚举其倍数，并标记；当访问到一个被标记过的数时，将其置为合数，并直接跳过。</p>
+<h4 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h4><p>遍历范围，对于未被标记的数，我们将其置为素数，枚举其倍数，并标记；</p>
+<p>当访问到一个被标记过的数时，将其置为合数，并直接跳过。</p>
 <p>复杂度为 $\Theta(\sum\limits_{prime \leq n}\frac{n}{p})$</p>
 <p>由素数分布密度 $D = \frac{1}{\ln n}$ 可得，上式 $= \Theta(n\ln\ln n)$</p>
-<h4 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h4><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(!v[i]) &#123;</span><br><span class="line">        p[++tot] = i;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; i * j &lt;= n; j++) </span><br><span class="line">            v[i * j] = <span class="hljs-number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h4><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(!v[i]) &#123;</span><br><span class="line">        p[++tot] = i;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; i * j &lt;= n; j++) </span><br><span class="line">            v[i * j] = <span class="hljs-number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h3 id="Euler-筛"><a href="#Euler-筛" class="headerlink" title="Euler 筛"></a>Euler 筛</h3><p>又称为线性筛，因为这个筛法是严格 $O(n)$ 的。</p>
+<p>考虑埃氏筛慢在哪里，我们回顾其实现过程，发现部分数会被重复筛去，比如 $6$ 这个数，在遍历到 $2$ 和 $3$ 的时候都会将它筛去， 所以我们考虑一种实现，能够保证每个数仅被筛去一次。</p>
+<h4 id="实现过程-1"><a href="#实现过程-1" class="headerlink" title="实现过程"></a>实现过程</h4><p>我们考虑用每一个数的最小素因子来筛除它，在访问到一个未被筛除的元素 $i$ 时，考虑从小到大枚举质数 $ p[j]$ ，当 <code>i % p[j] == 0</code> 时，说明此时筛到了最小素因子，应当在筛完此元素后 <code>break</code>。</p>
+<h4 id="参考代码-1"><a href="#参考代码-1" class="headerlink" title="参考代码"></a>参考代码</h4><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(!v[i]) p[++tot] = i;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; i * p[j] &lt;= n; j++) &#123;</span><br><span class="line">        v[i * p[j]] = <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span>(i % p[j] == <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="推广-Euler-筛"><a href="#推广-Euler-筛" class="headerlink" title="推广 Euler 筛"></a>推广 Euler 筛</h2><p>实际上，我们可以通过<strong>线性筛</strong>筛出任何积性函数。</p>
+<h3 id="线性筛-mu-x"><a href="#线性筛-mu-x" class="headerlink" title="线性筛 $\mu(x)$"></a>线性筛 $\mu(x)$</h3><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]: <a href="https://www.cnblogs.com/henry-1202/p/10246196.html" target="_blank" rel="noopener">(henry_y) 欧拉函数的几个性质及证明</a></p>
+<p>[2]: <a href="https://www.cnblogs.com/zhoushuyu/p/8275530.html" target="_blank" rel="noopener">(租酥雨) 积性函数与线性筛</a></p>
+<p>[3]: <a href="https://www.cnblogs.com/zhoushuyu/p/8275530.html" target="_blank" rel="noopener">(peng-ym) 积性函数与线性筛</a></p>
+<p>[4]: <a href="https://blog.masterliu.net/algorithm/sieve/" target="_blank" rel="noopener">(Alfred) 数论线性筛总结</a></p>
+<p>[5]: <a href="https://www.luogu.org/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi" target="_blank" rel="noopener">(An_Account) 莫比乌斯反演-让我们从基础开始</a></p>
+<p>对上述作者表示感谢</p>
 
         </div>
         
@@ -322,14 +361,30 @@
         <span class="has-mr-6">1</span>
         <span>积性函数</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#常见积性函数">
-        <span class="has-mr-6">1.1</span>
-        <span>常见积性函数</span>
-        </a></li><li>
         <a class="is-flex" href="#狄利克雷卷积">
-        <span class="has-mr-6">1.2</span>
+        <span class="has-mr-6">1.1</span>
         <span>狄利克雷卷积</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#性质">
+        <span class="has-mr-6">1.1.1</span>
+        <span>性质</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#常见积性函数">
+        <span class="has-mr-6">1.2</span>
+        <span>常见积性函数</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#完全积性函数">
+        <span class="has-mr-6">1.2.1</span>
+        <span>完全积性函数</span>
         </a></li><li>
+        <a class="is-flex" href="#非完全积性函数">
+        <span class="has-mr-6">1.2.2</span>
+        <span>非完全积性函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#varphi-x-欧拉函数">
+        <span class="has-mr-6">1.2.3</span>
+        <span>$\varphi(x)$ 欧拉函数</span>
+        </a></li></ul></li><li>
         <a class="is-flex" href="#计算">
         <span class="has-mr-6">1.3</span>
         <span>计算</span>
@@ -345,7 +400,23 @@
         <a class="is-flex" href="#Eratosthenes-筛法">
         <span class="has-mr-6">2.1.1</span>
         <span>Eratosthenes 筛法</span>
-        </a></li></ul></li></ul></li></ul>
+        </a></li><li>
+        <a class="is-flex" href="#Euler-筛">
+        <span class="has-mr-6">2.1.2</span>
+        <span>Euler 筛</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#推广-Euler-筛">
+        <span class="has-mr-6">2.2</span>
+        <span>推广 Euler 筛</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#线性筛-mu-x">
+        <span class="has-mr-6">2.2.1</span>
+        <span>线性筛 $\mu(x)$</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#参考资料">
+        <span class="has-mr-6">3</span>
+        <span>参考资料</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
@@ -553,6 +624,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <!--背景线条-->
     <!--<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1" count="99" src="dist/canvas-nest.js"></script>-->
-    <!--<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>-->
+    <!--<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
