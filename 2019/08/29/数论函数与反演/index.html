@@ -152,7 +152,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    16 分钟 读完 (大约 2326 个字)
+                    16 分钟 读完 (大约 2325 个字)
                 </span>
                 
                 
@@ -193,7 +193,7 @@
 <p>&emsp;&emsp;性质得证。</p>
 <h3 id="varphi-x-欧拉函数"><a href="#varphi-x-欧拉函数" class="headerlink" title="$\varphi(x)$ 欧拉函数"></a>$\varphi(x)$ <strong><em>欧拉函数</em></strong></h3><p>定义：<br>$$<br>\varphi(x) = \sum\limits_{i = 1}^{x - 1}[\gcd(i, x) = 1]<br>$$<br>通项公式： 对于 $x = \prod\limits_{i = 1} ^ k p_i^{a_i}， \varphi(x) = x\times \prod\limits_{i = 1} ^ {k} (1 - \frac{1}{p_i})$</p>
 <p>证明：<br>&emsp;&emsp;若 $x$ 为素数，显然 $\varphi(x) = x - 1$</p>
-<p>&emsp;&emsp;若 $x$ 不为素数，则将 $x$ 唯一分解为 $\prod\limits_{i = 1}^{k}p_i^{a_i}$ ，那么有：<br>$$<br>\begin{align}<br>\varphi(x) &amp;= \varphi(\prod\limits_{i=1}^{k}p_i^{a_i}) \\ &amp;= \prod\limits_{i=1}^k\varphi(p_i^{a_i})<br>\end{align}<br>$$<br>&emsp;&emsp;而又因为小于 $p^a$ 的数中，仅有 $p ^ m, m\in[0, a)$ 不与其互素，所以：<br>$$<br>\begin{align}<br>\varphi(p^a) &amp;= p ^ a - p ^ {a - 1} \\ &amp;= p ^ a (1 - \frac{1}{p})<br>\end{align}<br>$$<br> &emsp;&emsp;所以：<br>$$<br>\begin{align}<br>\text{原式} &amp;= \prod\limits_{i = 1}^kp_i^{a_i}(1 - \frac{1}{p_i}) \\ &amp;= \prod \limits_{i = 1} ^ k p_i^{a_i} \times \prod\limits_{i = 1} ^ k (1 - \frac{1}{p_i}) \\ &amp;= x \times \prod\limits_{i = 1} ^ k (1-\frac{1}{p_i})<br>\end{align}<br>$$<br>性质 $1$：$\sum\limits_{d|n}\varphi(d) = n$</p>
+<p>&emsp;&emsp;若 $x$ 不为素数，则将 $x$ 唯一分解为 $\prod\limits_{i = 1}^{k}p_i^{a_i}$ ，那么有：<br>$$<br>\begin{align}<br>\varphi(x) &amp;= \varphi(\prod\limits_{i=1}^{k}p_i^{a_i}) \\ &amp;= \prod\limits_{i=1}^k\varphi(p_i^{a_i})<br>\end{align}<br>$$<br>&emsp;&emsp;而又因为小于 $p^a$ 的数中，仅有 $p ^ m, m\in[0, a)$ 不与其互素，所以：<br>$$<br>\begin{align}<br>\varphi(p^a) &amp;= p ^ a - p ^ {a - 1} \\ &amp;= p ^ a (1 - \frac{1}{p})<br>\end{align}<br>$$<br> &emsp;&emsp;所以：<br>$$<br>\begin{align}<br>\text{Ans}  &amp;= \prod\limits_{i = 1}^kp_i^{a_i}(1 - \frac{1}{p_i}) \\ &amp;= \prod \limits_{i = 1} ^ k p_i^{a_i} \times \prod\limits_{i = 1} ^ k (1 - \frac{1}{p_i}) \\ &amp;= x \times \prod\limits_{i = 1} ^ k (1-\frac{1}{p_i})<br>\end{align}<br>$$<br>性质 $1$：$\sum\limits_{d|n}\varphi(d) = n$</p>
 <p>证明：</p>
 <p>&emsp;&emsp;<strong><em>引理：设 $f(x) = \sum\limits_{d|n}\varphi(d)$ ，那么 $f(x)$ 是一个非完全积性函数。</em></strong></p>
 <p>&emsp;&emsp;证明：</p>
