@@ -152,7 +152,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    33 分钟 读完 (大约 4884 个字)
+                    34 分钟 读完 (大约 5044 个字)
                 </span>
                 
                 
@@ -357,16 +357,16 @@
 <p>&emsp;&emsp;对于两个定义在自然数集合上的函数 $f(x), F(x)$，若 $F(x) = \sum\limits_{d|n} f(x)$，那么: $$f(x) = \sum\limits_{d|n} \mu(d)F(\frac{n}{d})$$</p>
 <p>证明：</p>
 <p>&emsp;&emsp;我所了解的有两种证明方法，这里只给出第一种。<br>$$<br>\begin{align}<br>F(x) &amp;= \sum\limits_{d | n} f(x) \\ F &amp;= f * I \\ F * \mu &amp;= f * I * \mu \\ F * \mu &amp;= f * (I * \mu) \\ F  *\mu &amp;= f * \epsilon \\ F * \mu &amp;= f \\ f(x) &amp;= \sum\limits_{d | n} \mu(d)F(\frac{n}{d})<br>\end{align}<br>$$<br>&emsp;&emsp;证毕。</p>
-<h4 id="另一个式子"><a href="#另一个式子" class="headerlink" title="另一个式子"></a>另一个式子</h4><p>若 $F(n) = \sum\limits_{n\mid d} f(x)$，那么 $f(x) = \sum\limits_{n\mid d} \mu(\frac{d}{n})F(d)$</p>
-<p>证明：</p>
-<p>&emsp;&emsp;</p>
+<h4 id="另一个式子"><a href="#另一个式子" class="headerlink" title="另一个式子"></a>另一个式子</h4><p>若 $F(n) = \sum\limits_{n\mid d} f(d)$，那么 $f(n) = \sum\limits_{n\mid d} \mu(\frac{d}{n})F(d)$。</p>
+<p>这个不好证 <del>(其实是我不会)</del>，记住就行，解题很常用。</p>
 <h4 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h4><p>与 $[\gcd(i, j) = 1]$ 有关式子的处理。</p>
 <h5 id="推导过程-5"><a href="#推导过程-5" class="headerlink" title="推导过程"></a>推导过程</h5><p>利用狄利克雷卷积。<br>$$<br>\begin{align}<br>[\gcd(i, j) = 1] &amp;= \epsilon(\gcd(i, j)) \\ &amp;= (\mu * I)(\gcd(i, j))\\ &amp;= \sum\limits_{d|\gcd(i, j)} \mu(d)<br>\end{align}<br>$$</p>
 <h5 id="处理一般问题"><a href="#处理一般问题" class="headerlink" title="处理一般问题"></a>处理一般问题</h5><p>例如 $\sum\limits_{i = 1} ^n \sum\limits_{j = 1} ^ m [\gcd(i, j) = k]$</p>
 <p>设 $g = \min(n, m)$。</p>
 <p>我们来推式子：<br>$$<br>\begin{align}<br>\sum\limits_{i = 1} ^ n\sum\limits_{j = 1} ^ m[\gcd(i,j) = k] &amp;= \sum\limits_{i = 1}^{\lfloor\frac{n}{k}\rfloor}\sum\limits_{j = 1}^{\lfloor\frac{m}{k}\rfloor}[\gcd(i, j) = 1] \\ &amp;= \sum\limits_{i = 1}^{\lfloor\frac{n}{k}\rfloor}\sum\limits_{j = 1}^{\lfloor\frac{m}{k}\rfloor}\sum\limits_{d|\gcd(i, j)}\mu(d) \\ &amp;=\sum\limits_{i = 1}^{\lfloor\frac{n}{k}\rfloor}\sum\limits_{j = 1}^{\lfloor\frac{m}{k}\rfloor}\sum\limits_{d | i\text{ and } d | j} \mu(d) \\ &amp;= \sum\limits_{d = 1}^{\lfloor\frac{g}{k}\rfloor}\mu(d)\sum\limits_{d|i}^{\lfloor\frac{n}{k}\rfloor}\sum\limits_{d|j}^{\lfloor\frac{m}{k}\rfloor}1 \\ &amp;= \sum\limits_{d = 1} ^ {\lfloor\frac{g}{k}\rfloor}\lfloor\frac{n}{dk}\rfloor\lfloor\frac{m}{dk}\rfloor\mu(d)<br>\end{align}<br>$$<br>配合数论分块，可以 $O(\sqrt n)$ 解决。</p>
-<h5 id="用莫比乌斯反演解决"><a href="#用莫比乌斯反演解决" class="headerlink" title="用莫比乌斯反演解决"></a>用莫比乌斯反演解决</h5><p>设：<br>$$<br>\begin{align}<br>f(x) &amp;= \sum\limits_{i = 1} ^ n\sum\limits_{j = 1} ^ m[\gcd(i, j) = x]\<br>F(x) &amp;= \sum\limits_{d|n}<br>\end{align}<br>$$</p>
-<h3 id="二项式反演"><a href="#二项式反演" class="headerlink" title="二项式反演"></a>二项式反演</h3><h3 id="拉格朗日反演"><a href="#拉格朗日反演" class="headerlink" title="拉格朗日反演"></a>拉格朗日反演</h3><h3 id="斯特林反演"><a href="#斯特林反演" class="headerlink" title="斯特林反演"></a>斯特林反演</h3><h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]: <a href="https://www.cnblogs.com/henry-1202/p/10246196.html" target="_blank" rel="noopener">(henry_y) 欧拉函数的几个性质及证明</a></p>
+<h5 id="用莫比乌斯反演解决"><a href="#用莫比乌斯反演解决" class="headerlink" title="用莫比乌斯反演解决"></a>用莫比乌斯反演解决</h5><p>设：<br>$$<br>\begin{align}<br>g &amp;= \min(n, m) \\<br>f(k) &amp;= \sum\limits_{i = 1} ^ n\sum\limits_{j = 1} ^ m[\gcd(i, j) = k] \<br>F(x) &amp;= \sum\limits_{x|k}f(k) \\ &amp;= \lfloor\frac{n}{x}\rfloor\lfloor\frac{m}{x}\rfloor<br>\end{align}<br>$$</p>
+<p>直接用第二个式子反演：<br>$$<br>\begin{align}<br>f(x) &amp;= \sum\limits_{x|d}\mu(\frac{d}{x})F(d) \\ &amp;=\sum\limits_{x|d}\mu(\frac{d}{x})\lfloor\frac{n}{d}\rfloor\lfloor\frac{m}{d}\rfloor \\ &amp;= \sum\limits_{d = 1}^{\lfloor\frac{g}{k}\rfloor}\lfloor\frac{n}{dx}\rfloor\lfloor\frac{m}{dx}\rfloor\mu(d)<br>\end{align}<br>$$<br>得到的结果是一样的，但是推导过程简 $({n\acute an)}$ 单 $(d\check{o}ng)$ 多了2333。</p>
+<h3 id="二项式反演"><a href="#二项式反演" class="headerlink" title="二项式反演"></a>二项式反演</h3><h3 id="拉格朗日反演"><a href="#拉格朗日反演" class="headerlink" title="拉格朗日反演"></a>拉格朗日反演</h3><h3 id="斯特林反演"><a href="#斯特林反演" class="headerlink" title="斯特林反演"></a>斯特林反演</h3><h3 id="子集反演"><a href="#子集反演" class="headerlink" title="子集反演"></a>子集反演</h3><h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]: <a href="https://www.cnblogs.com/henry-1202/p/10246196.html" target="_blank" rel="noopener">(henry_y) 欧拉函数的几个性质及证明</a></p>
 <p>[2]: <a href="https://www.cnblogs.com/zhoushuyu/p/8275530.html" target="_blank" rel="noopener">(租酥雨) 积性函数与线性筛</a></p>
 <p>[3]: <a href="https://www.cnblogs.com/zhoushuyu/p/8275530.html" target="_blank" rel="noopener">(peng-ym) 积性函数与线性筛</a></p>
 <p>[4]: <a href="https://blog.masterliu.net/algorithm/sieve/" target="_blank" rel="noopener">(Alfred) 数论线性筛总结</a></p>
@@ -374,10 +374,12 @@
 <p>[6]: <a href="https://www.luogu.org/blog/lx-2003/mobius-inversion" target="_blank" rel="noopener">(_rqy) 铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演</a></p>
 <p>[7]: <a href="https://oi-wiki.org/math/mobius/" target="_blank" rel="noopener">(24OI) OI-Wiki 莫比乌斯反演</a></p>
 <p>[8]: <a href="https://blog.csdn.net/hhaannyyii/article/details/79335883" target="_blank" rel="noopener">(Hany01) 莫比乌斯函数、二项式、斯特林数以及它们的反演</a></p>
-<p>[9]:<a href="https://www.luogu.org/blog/siyuan/solution-p3327" target="_blank" rel="noopener">(Siyuan) 题解 P3327 [SDOI2015]约数个数和</a></p>
+<p>[9]: <a href="https://www.luogu.org/blog/siyuan/solution-p3327" target="_blank" rel="noopener">(Siyuan) 题解 P3327 [SDOI2015]约数个数和</a></p>
+<p>[10]: <a href="http://vfleaking.blog.uoj.ac/blog/87#/3" target="_blank" rel="noopener">(Vfleaking) 炫酷反演魔术</a></p>
 <p>感谢上述文章的作者，排名不分先后。</p>
 <p>感谢 vuq 的 dalao 们热心地回答问题。</p>
-<p>感谢 peng-ym 帮我找了一篇写的很好的博客</p>
+<p>感谢 peng-ym 帮助我找了一篇写的很好的博客。</p>
+<p>感谢 mrsrz 帮助我问了一个问题。</p>
 
         </div>
         
@@ -620,6 +622,10 @@
         <a class="is-flex" href="#斯特林反演">
         <span class="has-mr-6">3.2.4</span>
         <span>斯特林反演</span>
+        </a></li><li>
+        <a class="is-flex" href="#子集反演">
+        <span class="has-mr-6">3.2.5</span>
+        <span>子集反演</span>
         </a></li></ul></li></ul></li><li>
         <a class="is-flex" href="#感谢">
         <span class="has-mr-6">4</span>
