@@ -158,7 +158,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    39 分钟 读完 (大约 5904 个字)
+                    39 分钟 读完 (大约 5868 个字)
                 </span>
                 
                 
@@ -347,8 +347,7 @@
 <h4 id="四个典例"><a href="#四个典例" class="headerlink" title="四个典例"></a>四个典例</h4><h5 id="sum-limits-i-1-n-lfloor-frac-n-i-rfloor"><a href="#sum-limits-i-1-n-lfloor-frac-n-i-rfloor" class="headerlink" title="$\sum\limits_{i = 1} ^n \lfloor\frac{n}{i}\rfloor$"></a>$\sum\limits_{i = 1} ^n \lfloor\frac{n}{i}\rfloor$</h5><h6 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a><strong>解决方法</strong></h6><p>按照刚才的讲解直接做即可。</p>
 <h6 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a><strong>代码实现</strong></h6><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> l = <span class="hljs-number">1</span>, r; l &lt;= n; l = r + <span class="hljs-number">1</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> a = n / l;</span><br><span class="line">    r = n / a;</span><br><span class="line">    ans += a * (r - l + <span class="hljs-number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="sum-limits-i-1-n-n-bmod-i"><a href="#sum-limits-i-1-n-n-bmod-i" class="headerlink" title="$\sum\limits_{i = 1} ^ n n \bmod i$"></a>$\sum\limits_{i = 1} ^ n n \bmod i$</h5><h6 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a><strong>解决方法</strong></h6><p>尝试把取模还原为除法。</p>
-<p>可以得到：<br>$$<br>\begin{align}<br>\sum\limits_{i = 1} ^ n n \bmod i &amp;= \sum\limits_{i = 1} ^ n \lfloor\frac{n}{i}\rfloor \times i<br>\end{align}<br>$$<br>对于取值相同的段，我们可以将 $\lfloor\frac{n}{i}\rfloor$ 看作常数，然后乘法分配律将后面的式子合并，其实就变成了等差数列求和。</p>
+<h5 id="sum-limits-i-1-n-lfloor-frac-n-i-rfloor-times-i"><a href="#sum-limits-i-1-n-lfloor-frac-n-i-rfloor-times-i" class="headerlink" title="$\sum\limits_{i = 1} ^ n  \lfloor\frac{n}{i}\rfloor\times i$"></a>$\sum\limits_{i = 1} ^ n  \lfloor\frac{n}{i}\rfloor\times i$</h5><h6 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a><strong>解决方法</strong></h6><p>对于取值相同的段，我们可以将 $\lfloor\frac{n}{i}\rfloor$ 看作常数，然后乘法分配律将后面的式子合并，其实就变成了等差数列求和。</p>
 <h6 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a><strong>代码实现</strong></h6><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> l = <span class="hljs-number">1</span>, r; l &lt;= n; l = r + <span class="hljs-number">1</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> a = n / l;</span><br><span class="line">    r = n / a;</span><br><span class="line">    ans += a * (l + r) * (r - l + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h5 id="sum-limits-i-1-n-lfloor-frac-n-i-rfloor-2"><a href="#sum-limits-i-1-n-lfloor-frac-n-i-rfloor-2" class="headerlink" title="$\sum\limits_{i = 1} ^ n (\lfloor\frac{n}{i}\rfloor) ^ 2$"></a>$\sum\limits_{i = 1} ^ n (\lfloor\frac{n}{i}\rfloor) ^ 2$</h5><h5 id="解决方法-2"><a href="#解决方法-2" class="headerlink" title="解决方法"></a><strong>解决方法</strong></h5><p>对于取值相同的一段，取值的平方也是相同的，所以在加的时候直接加上平方就行了。</p>
@@ -413,9 +412,8 @@
 <p>感谢上述文章的作者，排名不分先后。</p>
 <p>感谢 vuq 的 dalao 们热心地回答问题。</p>
 <p>感谢 peng-ym 帮助我找了一篇写的很好的博客。</p>
-<p>感谢 mrsrz 帮助我问了一个问题。</p>
+<p>感谢审稿人 mrsrz 帮助我问了一个问题，并提出了很多宝贵的意见。</p>
 <p>感谢 ucw 帮我对拍文中代码。</p>
-<p>感谢审稿人 mrsrz 提出了很多宝贵的意见。</p>
 
         </div>
         
