@@ -158,7 +158,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    39 分钟 读完 (大约 5797 个字)
+                    39 分钟 读完 (大约 5883 个字)
                 </span>
                 
                 
@@ -175,8 +175,8 @@
 <a id="more"></a>
 
 <p><strong>本文中所有 $x = \prod\limits_{i = 1} ^ k p_i^{a_i}$ 均表示将 $x$ 唯一分解，文中不再赘述。</strong></p>
-<h1 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h1><p>若定义在 $N ^ {\star}$ 的函数 $f(x)$ 满足 $\forall x, y\in N^{\star}$ 且 $\gcd(x,y) = 1$ 都有 $f(x\times y) = f(x) \times f(y)$ ，则 $f(x)$ 为<strong>积性函数</strong>。</p>
-<p><strong>定义：（完全积性函数）$\forall x, y \le N^{\star}, f(x \times y) = f(x) \times f(y)$</strong></p>
+<h1 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h1><p>若定义在 $\mathrm N ^ {\star}$ 的函数 $f(x)$ 满足 $\forall x, y\in \mathrm N^{\star}$ 且 $\gcd(x,y) = 1$ 都有 $f(x\times y) = f(x) \times f(y)$ ，则 $f(x)$ 为<strong>积性函数</strong>。</p>
+<p><strong>定义：（完全积性函数）$\forall x, y \in \mathrm N^{\star}, f(x \times y) = f(x) \times f(y)$</strong></p>
 <h2 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>对于两个积性函数 $f(x), g(x)$ ，其<strong>狄利克雷卷积</strong> $h(x) = (f * g)(x) = \sum\limits_{d|x} f(d)g(\frac{x}{d})$ 也是积性函数。</p>
 <p>简写为 $h = f * g$ 。</p>
 <h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ul>
@@ -355,6 +355,8 @@
 <h6 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a><strong>代码实现</strong></h6><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> l = <span class="hljs-number">1</span>, r; l &lt;= n; l = r + <span class="hljs-number">1</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> a = n / l;</span><br><span class="line">    r = n / a;</span><br><span class="line">    ans += a * a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h5 id="sum-limits-i-1-n-lfloor-frac-n-i-rfloor-lfloor-frac-m-i-rfloor"><a href="#sum-limits-i-1-n-lfloor-frac-n-i-rfloor-lfloor-frac-m-i-rfloor" class="headerlink" title="$\sum\limits_{i = 1} ^ n \lfloor \frac{n}{i}\rfloor\lfloor \frac{m}{i}\rfloor$"></a>$\sum\limits_{i = 1} ^ n \lfloor \frac{n}{i}\rfloor\lfloor \frac{m}{i}\rfloor$</h5><h6 id="解决方法-3"><a href="#解决方法-3" class="headerlink" title="解决方法"></a><strong>解决方法</strong></h6><p>对于多个上界的，我们要保证算法的正确性，因此每次贡献的仅能是所有相同取值段的并，这个直接将 $r$ 取 $\min$ 就行了。</p>
+<p>对于 $n$ 来说，一共有 $\sqrt n$ 个取值不同的段，那么就有 $n$ 个转折点。对于 $m$ 同理。所以一共就有 $\sqrt n + \sqrt m $ 个取值不同的段。</p>
+<p>即总复杂度为 $O(\sqrt n +\sqrt m)$。</p>
 <h6 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a><strong>代码实现</strong></h6><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> l = <span class="hljs-number">1</span>, r; l &lt;= n; l = r + <span class="hljs-number">1</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> a1 = n / l, a2 = m / l;</span><br><span class="line">    <span class="hljs-keyword">int</span> r1 = n / a1, r2 = m / a2;</span><br><span class="line">    r = min(r1, r2);</span><br><span class="line">    ans += (r - l + <span class="hljs-number">1</span>) * (a1 * a2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="级数反演"><a href="#级数反演" class="headerlink" title="级数反演"></a>级数反演</h2><p>试想一种情况，我们得到了函数 $f(x),g(x)$ ，并且知道 $f(x) = h(g(x))$，那么我们通过 $f(x)$ 推出 $g(x)$ 的方式，便是反演。</p>
@@ -411,7 +413,8 @@
 <p>感谢 vuq 的 dalao 们热心地回答问题。</p>
 <p>感谢 peng-ym 帮助我找了一篇写的很好的博客。</p>
 <p>感谢 mrsrz 帮助我问了一个问题。</p>
-<p>感谢 ucw 帮我对拍文中代码</p>
+<p>感谢 ucw 帮我对拍文中代码。</p>
+<p>感谢审稿人 mrsrz 提出了很多宝贵的意见。</p>
 
         </div>
         
