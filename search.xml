@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Luogu P2264 情书 解题报告]]></title>
+    <url>%2F2019%2F09%2F05%2FLuogu-P2264-%E6%83%85%E4%B9%A6-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[模拟太好玩了。 题目链接P2264 情书 题意简述给你 $n$ 个单词，让你从一篇文章中找出这些单词总出现次数，每句话中一个单词出现多次只贡献一次次数。不区分大小写。 解题思想直接模拟即可。 说一下我写的过程中遇到的一些 sb 问题。 首先是要注意非句点和字母的垃圾字符，这些字符会对一堆字符是否构成单词造成影响，需要判一下。 给定的单词也要转换大小写，建议都换为小写。 一个句点不一定代表全文结束，此时需要初始化维护单词是否出现过的数组。 顺带一提，当代码中有 while(scanf(&quot;%xxx&quot;, xxx) != EOF) 语句时，使用控制台测样例的方法是：在输入结束后，按下 Ctrl + z ，然后再按回车。 参考代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;string&gt;using namespace std;const int N = 110;string a[N];bool v[N];int n, ans = 0;int main() &#123; scanf("%d", &amp;n); for(register int i = 1; i &lt;= n; i++) &#123; cin &gt;&gt; a[i]; int len = a[i].length(); for(register int j = 0; j &lt; len; j++) &#123; if(a[i][j] &gt;= 'A' &amp;&amp; a[i][j] &lt;= 'Z') a[i][j] = a[i][j] - 'A' + 'a'; &#125; // cout &lt;&lt; a[i] &lt;&lt; endl &lt;&lt; endl; &#125; string now; char ch; while(scanf("%c", &amp;ch) != EOF) &#123; if(ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') &#123; ch = ch - 'A' + 'a'; &#125; if(ch &lt; 'a' || ch &gt; 'z') &#123; if(now[0] &lt; 'a' || now[0] &gt; 'z') continue; // cout &lt;&lt; "String is:" &lt;&lt; now &lt;&lt; endl; for(register int i = 1; i &lt;= n; i++) &#123; if(now == a[i] &amp;&amp; !v[i]) &#123; // cout &lt;&lt; "Find(" &lt;&lt; a[i] &lt;&lt; ")" &lt;&lt; endl &lt;&lt; endl; v[i] = 1; ans++; break; &#125; // if(i == n) cout &lt;&lt; "Not Found" &lt;&lt; endl &lt;&lt; endl; &#125; if(ch == '.') &#123; memset(v, 0, sizeof v); &#125; now.clear(); &#125; else now += ch; &#125; printf("%d", ans); return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+        <tag>字符串处理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Luogu P2585 [ZJOI2006]三色二叉树 解题报告]]></title>
     <url>%2F2019%2F09%2F05%2FLuogu-P2585-ZJOI2006-%E4%B8%89%E8%89%B2%E4%BA%8C%E5%8F%89%E6%A0%91-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[$3kb$ 写着玩的，没想到1A了… $24$ 行转移方程（大雾 题目链接P2585 [ZJOI2006]三色二叉树 题意简述读入一颗二叉树，将其所有节点染成三种颜色，其中一个点左儿子右儿子和它自己的颜色都不能相同。求某种颜色最大和最小存在数量。 解题思想裸的树形 $\mathrm {DP}$，我们设 dp[x][i] 表示已经染完了 $x$ 的子树，并将 $x$ 染成颜色 $i$ 时问题的解，然后讨论左儿子与右儿子的颜色转移。 建树的话，可以一个 dfs 完成，有儿子再建节点，可以省空间。 参考代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;const int N = 5e5 + 6;inline int max(int a, int b) &#123;return a &gt; b ? a : b;&#125;inline int min(int a, int b) &#123;return a &lt; b ? a : b;&#125;int ch[N][2], tot = 1, rt = 1, ans1 = 0xcfcfcfcf, ans2 = 0x7fffffff;int maxx[N][3], minn[N][3];void readin(int x) &#123; int son = getchar() - '0'; if(son == 0) return; if(son == 1) &#123; ch[x][0] = ++tot; readin(ch[x][0]); &#125; else &#123; ch[x][0] = ++tot; ch[x][1] = ++tot; readin(ch[x][0]); readin(ch[x][1]); &#125;&#125;void dfs(int x) &#123; if(!ch[x][0]) &#123; maxx[x][0] = 1, maxx[x][1] = maxx[x][2] = 0; minn[x][0] = 1, minn[x][1] = minn[x][2] = 0; &#125; else if(!ch[x][1]) &#123; dfs(ch[x][0]); maxx[x][0] = max(maxx[x][0], maxx[ch[x][0]][1] + 1); maxx[x][0] = max(maxx[x][0], maxx[ch[x][0]][2] + 1); maxx[x][1] = max(maxx[x][1], maxx[ch[x][0]][0]); maxx[x][1] = max(maxx[x][1], maxx[ch[x][0]][2]); maxx[x][2] = max(maxx[x][2], maxx[ch[x][0]][0]); maxx[x][2] = max(maxx[x][2], maxx[ch[x][0]][1]); minn[x][0] = min(minn[x][0], minn[ch[x][0]][1] + 1); minn[x][0] = min(minn[x][0], minn[ch[x][0]][2] + 1); minn[x][1] = min(minn[x][1], minn[ch[x][0]][0]); minn[x][1] = min(minn[x][1], minn[ch[x][0]][2]); minn[x][2] = min(minn[x][2], minn[ch[x][0]][0]); minn[x][2] = min(minn[x][2], minn[ch[x][0]][1]); &#125; else &#123; dfs(ch[x][0]); dfs(ch[x][1]); maxx[x][0] = max(maxx[x][0], maxx[ch[x][0]][1] + maxx[ch[x][1]][2] + 1); maxx[x][0] = max(maxx[x][0], maxx[ch[x][0]][2] + maxx[ch[x][1]][1] + 1); maxx[x][1] = max(maxx[x][1], maxx[ch[x][0]][0] + maxx[ch[x][1]][2]); maxx[x][1] = max(maxx[x][1], maxx[ch[x][0]][2] + maxx[ch[x][1]][0]); maxx[x][2] = max(maxx[x][2], maxx[ch[x][0]][0] + maxx[ch[x][1]][1]); maxx[x][2] = max(maxx[x][2], maxx[ch[x][0]][1] + maxx[ch[x][1]][0]); minn[x][0] = min(minn[x][0], minn[ch[x][0]][1] + minn[ch[x][1]][2] + 1); minn[x][0] = min(minn[x][0], minn[ch[x][0]][2] + minn[ch[x][1]][1] + 1); minn[x][1] = min(minn[x][1], minn[ch[x][0]][0] + minn[ch[x][1]][2]); minn[x][1] = min(minn[x][1], minn[ch[x][0]][2] + minn[ch[x][1]][0]); minn[x][2] = min(minn[x][2], minn[ch[x][0]][0] + minn[ch[x][1]][1]); minn[x][2] = min(minn[x][2], minn[ch[x][0]][1] + minn[ch[x][1]][0]); &#125;&#125;int main() &#123; readin(rt); memset(maxx, 0xcf, sizeof maxx); memset(minn, 0x3f, sizeof minn); dfs(rt); for(register int i = 0; i &lt; 3; i++) &#123; ans1 = max(ans1, maxx[rt][i]); ans2 = min(ans2, minn[rt][i]); &#125; printf("%d %d", ans1, ans2); return 0;&#125;]]></content>
@@ -76,10 +88,10 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
-        <tag>图论</tag>
         <tag>树上问题</tag>
         <tag>根号分治</tag>
+        <tag>贪心</tag>
+        <tag>图论</tag>
       </tags>
   </entry>
   <entry>
@@ -179,8 +191,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>Floyd</tag>
         <tag>图论</tag>
+        <tag>Floyd</tag>
         <tag>Tarjan</tag>
         <tag>强连通分量</tag>
         <tag>传递闭包</tag>
@@ -354,8 +366,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>树上问题</tag>
+        <tag>贪心</tag>
         <tag>树的直径</tag>
       </tags>
   </entry>
@@ -391,8 +403,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>Floyd</tag>
         <tag>图论</tag>
+        <tag>Floyd</tag>
         <tag>矩阵快速幂</tag>
       </tags>
   </entry>
