@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Luogu P3959 宝藏 解题报告]]></title>
+    <url>%2F2019%2F09%2F06%2FLuogu-P3959-%E5%AE%9D%E8%97%8F-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[重边卡了 $60$ 分，这出题人⑧太行。 题目链接P3959 宝藏 题意简述求给定图的最小代价生成树。 其中代价定义为：$w = \mathrm L \times \mathrm K$ 其中 $L$ 为路径长度， $K$ 为已知生成树中该路径起点的深度。 解题思想首先 $n$ 非常小，我们不难想到把整个图中已经构造出的生成树包含哪些点作为状态压进去。 然后可以基于搜索，枚举一下每次加的边的起点，更新新点的深度，记得要回溯。 最小化就是状压 $\mathrm {DP}$ 的基本操作了，不详细说明。 还有一个坑点就是，读入是要判重边的，不加会少 $60$ 分。出题人卡这个真的是闲的蛋疼。 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;const int N = 15;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;inline int min(int a, int b) &#123;return a &lt; b ? a : b;&#125;int n, m, ans = 0x7fffffff;int dp[1 &lt;&lt; N], dis[N][N], d[N];bool cnt[N][N];inline void add(int x, int y, int z) &#123; dis[x][y] = dis[y][x] = z; cnt[x][y] = cnt[y][x] = 1;&#125;void dfs(int s) &#123; for(register int x = 1; x &lt;= n; x++) &#123; if((1 &lt;&lt; (x - 1)) &amp; s) &#123; for(register int y = 1; y &lt;= n; y++) &#123; if(cnt[x][y] &amp;&amp; !((1 &lt;&lt; (y - 1)) &amp; s)) &#123; if(dp[s | (1 &lt;&lt; (y - 1))] &gt; dp[s] + dis[x][y] * d[x]) &#123; int tmp = d[y]; d[y] = d[x] + 1; dp[s | (1 &lt;&lt; (y - 1))] = dp[s] + dis[x][y] * d[x]; dfs(s | (1 &lt;&lt; (y - 1))); d[y] = tmp; &#125; &#125; &#125; &#125; &#125;&#125;int main() &#123; n = read(), m = read(); memset(dis, 0x3f, sizeof dis); for(register int i = 1; i &lt;= m; i++) &#123; int x = read(), y = read(), z = read(); if(z &lt; dis[x][y]) add(x, y, z); &#125; for(register int rt = 1; rt &lt;= n; rt++) &#123; memset(d, 0x3f, sizeof d); for(register int i = 1; i &lt;= (1 &lt;&lt; n) - 1; i++) dp[i] = 0x7fffffff; dp[1 &lt;&lt; (rt - 1)] = 0; d[rt] = 1; dfs(1 &lt;&lt; (rt - 1)); ans = min(ans, dp[(1 &lt;&lt; n) - 1]); &#125; printf("%d\n", ans); return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+        <tag>DP</tag>
+        <tag>状压DP</tag>
+        <tag>搜索</tag>
+        <tag>DFS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Luogu P2264 情书 解题报告]]></title>
     <url>%2F2019%2F09%2F05%2FLuogu-P2264-%E6%83%85%E4%B9%A6-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[模拟太好玩了。 题目链接P2264 情书 题意简述给你 $n$ 个单词，让你从一篇文章中找出这些单词总出现次数，每句话中一个单词出现多次只贡献一次次数。不区分大小写。 解题思想直接模拟即可。 说一下我写的过程中遇到的一些 sb 问题。 首先是要注意非句点和字母的垃圾字符，这些字符会对一堆字符是否构成单词造成影响，需要判一下。 给定的单词也要转换大小写，建议都换为小写。 一个句点不一定代表全文结束，此时需要初始化维护单词是否出现过的数组。 顺带一提，当代码中有 while(scanf(&quot;%xxx&quot;, xxx) != EOF) 语句时，使用控制台测样例的方法是：在输入结束后，按下 Ctrl + z ，然后再按回车。 参考代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;string&gt;using namespace std;const int N = 110;string a[N], now;char ch;bool v[N];int n, ans = 0;int main() &#123; scanf("%d", &amp;n); for(register int i = 1; i &lt;= n; i++) &#123; cin &gt;&gt; a[i]; int len = a[i].length(); for(register int j = 0; j &lt; len; j++) &#123; if(a[i][j] &gt;= 'A' &amp;&amp; a[i][j] &lt;= 'Z') a[i][j] = a[i][j] - 'A' + 'a'; &#125; &#125; while(scanf("%c", &amp;ch) != EOF) &#123; if(ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') &#123; ch = ch - 'A' + 'a'; &#125; if(ch &lt; 'a' || ch &gt; 'z') &#123; if(now[0] &lt; 'a' || now[0] &gt; 'z') continue; for(register int i = 1; i &lt;= n; i++) &#123; if(now == a[i] &amp;&amp; !v[i]) &#123; v[i] = 1; ans++; break; &#125; &#125; if(ch == '.') &#123; memset(v, 0, sizeof v); &#125; now.clear(); &#125; else now += ch; &#125; printf("%d", ans); return 0;&#125;]]></content>
@@ -88,10 +103,10 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>树上问题</tag>
-        <tag>根号分治</tag>
         <tag>贪心</tag>
         <tag>图论</tag>
+        <tag>树上问题</tag>
+        <tag>根号分治</tag>
       </tags>
   </entry>
   <entry>
@@ -191,8 +206,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>Floyd</tag>
+        <tag>图论</tag>
         <tag>Tarjan</tag>
         <tag>强连通分量</tag>
         <tag>传递闭包</tag>
@@ -259,8 +274,8 @@
       </categories>
       <tags>
         <tag>图论</tag>
-        <tag>实域二分</tag>
         <tag>dfs</tag>
+        <tag>实域二分</tag>
       </tags>
   </entry>
   <entry>
@@ -353,8 +368,8 @@
       <tags>
         <tag>树上问题</tag>
         <tag>分类讨论</tag>
-        <tag>dfs</tag>
         <tag>树的直径</tag>
+        <tag>dfs</tag>
         <tag>树上dp</tag>
       </tags>
   </entry>
@@ -366,8 +381,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>树上问题</tag>
         <tag>贪心</tag>
+        <tag>树上问题</tag>
         <tag>树的直径</tag>
       </tags>
   </entry>
@@ -403,8 +418,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>Floyd</tag>
+        <tag>图论</tag>
         <tag>矩阵快速幂</tag>
       </tags>
   </entry>
