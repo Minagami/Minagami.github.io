@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Luogu P3436 [POI2006]PRO-Professor Szu 解题报告]]></title>
+    <url>%2F2019%2F09%2F07%2FLuogu-P3436-POI2006-PRO-Professor-Szu-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[输出不规范，彩笔两行泪。 题目链接P3436 [POI2006]PRO-Professor Szu 题意简述给你一张图，多源一汇，求源点到汇点的最大路径方案数，并找出满足这些方案数的源点。 解题思想多源一汇，先考虑建反图。 考虑缩点，当原图存在包含点数大于 $1$ 的强连通分量时，方案有无数个。 当存在自环时，方案也有无数个。 其他情况原图是一个或多个 $DAG$ 。可以找出包含汇点的那个 $DAG$，然后拓扑时计数，输出答案即可。 注意题目中给出的点数是源点的点数。 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 1e6 + 6;const int M = N &lt;&lt; 2;const int INF = 36501;int n, m, ans;int head[N], nxt[M], ver[M], dp[N], cnt;int Head[N], Nxt[M], Ver[M], in[N], Cnt;int dfn[N], low[N], scc[N], num[N], idx, tot;int s[N], stop;int q[N &lt;&lt; 1], l, r;bool v[N];inline int min(int a, int b) &#123;return a &lt; b ? a : b;&#125;inline int max(int a, int b) &#123;return a &gt; b ? a : b;&#125;inline void add(int x, int y) &#123; ver[++cnt] = y, nxt[cnt] = head[x], head[x] = cnt;&#125;inline void Add(int x, int y) &#123; Ver[++Cnt] = y, Nxt[Cnt] = Head[x], Head[x] = Cnt; in[y]++;&#125;void tarjan(int x) &#123; dfn[x] = low[x] = ++idx; v[x] = 1; s[++stop] = x; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i]; if(!dfn[y]) &#123; tarjan(y); low[x] = min(low[x], low[y]); &#125; else if(v[y]) &#123; low[x] = min(low[x], dfn[y]); &#125; &#125; if(dfn[x] == low[x]) &#123; tot++; while(stop) &#123; int y = s[stop--]; v[y] = 0; scc[y] = tot; num[tot]++; if(x == y) break; &#125; &#125;&#125;inline void rebuild() &#123; memset(v, 0, sizeof(v)); cnt = 0; for(register int x = 1; x &lt;= n; x++) &#123; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i]; if(x == y) dp[scc[x]] = INF; if(scc[x] != scc[y]) Add(scc[x], scc[y]); &#125; &#125;&#125;inline void TopSort() &#123; dp[scc[n]] = 1; v[scc[n]] = 1; for(register int i = 1; i &lt;= tot; i++) &#123; if(!in[i]) q[++r] = i; &#125; while(l &lt; r) &#123; int x = q[++l]; for(register int i = Head[x]; i; i = Nxt[i]) &#123; int y = Ver[i]; if(v[x]) v[y] = 1; in[y]--; if(!in[y]) q[++r] = y; if(num[y] &gt; 1 &amp;&amp; v[y]) dp[y] = INF; dp[y] = min(dp[y] + dp[x], INF); &#125; &#125;&#125;int main() &#123; n = read() + 1, m = read(); for(register int i = 1; i &lt;= m; i++) &#123; int x = read(), y = read(); add(y, x); &#125; for(register int i = 1; i &lt;= n; i++) &#123; if(!dfn[i]) tarjan(i); &#125; rebuild(); TopSort(); for(register int i = 1; i &lt;= n; i++) &#123; ans = max(ans, dp[scc[i]]); &#125; printf(ans == INF ? "zawsze\n" : "%d\n", ans); for(register int i = 1; i &lt;= n; i++) &#123; if(v[scc[i]] &amp;&amp; dp[scc[i]] == ans) cnt++; &#125; printf("%d\n", cnt); for(register int i = 1; i &lt; n; i++) &#123; if(v[scc[i]] &amp;&amp; dp[scc[i]] == ans) printf("%d ", i); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Luogu P3959 宝藏 解题报告]]></title>
     <url>%2F2019%2F09%2F06%2FLuogu-P3959-%E5%AE%9D%E8%97%8F-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[重边卡了 $60$ 分，这出题人⑧太行。 题目链接P3959 宝藏 题意简述求给定图的最小代价生成树。 其中代价定义为：$w = \mathrm L \times \mathrm K$ 其中 $L$ 为路径长度， $K$ 为已知生成树中该路径起点的深度。 解题思想首先 $n$ 非常小，我们不难想到把整个图中已经构造出的生成树包含哪些点作为状态压进去。 然后可以基于搜索，枚举一下每次加的边的起点，更新新点的深度，记得要回溯。 最小化就是状压 $\mathrm {DP}$ 的基本操作了，不详细说明。 还有一个坑点就是，读入是要判重边的，不加会少 $60$ 分。出题人卡这个真的是闲的蛋疼。 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;const int N = 15;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;inline int min(int a, int b) &#123;return a &lt; b ? a : b;&#125;int n, m, ans = 0x7fffffff;int dp[1 &lt;&lt; N], dis[N][N], d[N];bool cnt[N][N];inline void add(int x, int y, int z) &#123; dis[x][y] = dis[y][x] = z; cnt[x][y] = cnt[y][x] = 1;&#125;void dfs(int s) &#123; for(register int x = 1; x &lt;= n; x++) &#123; if((1 &lt;&lt; (x - 1)) &amp; s) &#123; for(register int y = 1; y &lt;= n; y++) &#123; if(cnt[x][y] &amp;&amp; !((1 &lt;&lt; (y - 1)) &amp; s)) &#123; if(dp[s | (1 &lt;&lt; (y - 1))] &gt; dp[s] + dis[x][y] * d[x]) &#123; int tmp = d[y]; d[y] = d[x] + 1; dp[s | (1 &lt;&lt; (y - 1))] = dp[s] + dis[x][y] * d[x]; dfs(s | (1 &lt;&lt; (y - 1))); d[y] = tmp; &#125; &#125; &#125; &#125; &#125;&#125;int main() &#123; n = read(), m = read(); memset(dis, 0x3f, sizeof dis); for(register int i = 1; i &lt;= m; i++) &#123; int x = read(), y = read(), z = read(); if(z &lt; dis[x][y]) add(x, y, z); &#125; for(register int rt = 1; rt &lt;= n; rt++) &#123; memset(d, 0x3f, sizeof d); for(register int i = 1; i &lt;= (1 &lt;&lt; n) - 1; i++) dp[i] = 0x7fffffff; dp[1 &lt;&lt; (rt - 1)] = 0; d[rt] = 1; dfs(1 &lt;&lt; (rt - 1)); ans = min(ans, dp[(1 &lt;&lt; n) - 1]); &#125; printf("%d\n", ans); return 0;&#125;]]></content>
@@ -103,8 +111,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>图论</tag>
+        <tag>贪心</tag>
         <tag>树上问题</tag>
         <tag>根号分治</tag>
       </tags>
@@ -165,8 +173,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>图论</tag>
+        <tag>贪心</tag>
         <tag>MST</tag>
       </tags>
   </entry>
@@ -274,8 +282,8 @@
       </categories>
       <tags>
         <tag>图论</tag>
-        <tag>dfs</tag>
         <tag>实域二分</tag>
+        <tag>dfs</tag>
       </tags>
   </entry>
   <entry>
@@ -368,8 +376,8 @@
       <tags>
         <tag>树上问题</tag>
         <tag>分类讨论</tag>
-        <tag>树的直径</tag>
         <tag>dfs</tag>
+        <tag>树的直径</tag>
         <tag>树上dp</tag>
       </tags>
   </entry>
