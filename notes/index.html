@@ -149,6 +149,10 @@
 <p>感谢原作者<a href="https://www.luogu.org/space/show?uid=60181" target="_blank" rel="noopener">Iowa_BattleShip</a></p>
 <hr>
 <ol>
+<li><p>数据结构题读判断符用 <code>scanf(&quot; %c&quot;, &amp;op);</code> <code>%c</code> 前要带空格。</p>
+</li>
+<li><p><code>set&lt;Node&gt; s</code> 中，<code>Node</code> 结构体不能重载<code>==</code>号，但是可以通过重载<code>&lt;</code>来实现重载<code>&gt;</code>和<code>==</code>。</p>
+</li>
 <li><p>调试不要直接写输出代码，要 <code>#ifdef DEBUG</code> 并添加编译选项 <code>-D DEBUG</code>。</p>
 </li>
 <li><p><strong>写线段树开 <code>long long</code> 不要 <code>#define ll long long</code>，会跟 <code>query(o, l, r, ll, rr)</code> 冲突！！！</strong></p>
