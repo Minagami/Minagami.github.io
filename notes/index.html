@@ -146,9 +146,13 @@
 <p>最近更新的会放在最上面</p>
 <hr>
 <p><a href="https://www.luogu.org/blog/IowaBattleship/latex-gong-shi-tai-quan" target="_blank" rel="noopener">$\LaTeX$公式大全</a></p>
-<p><strong>感谢原作者<a href="https://www.luogu.org/space/show?uid=60181" target="_blank" rel="noopener">Iowa_BattleShip</a></strong></p>
+<p>感谢原作者<a href="https://www.luogu.org/space/show?uid=60181" target="_blank" rel="noopener">Iowa_BattleShip</a></p>
 <hr>
 <ol>
+<li><p>调试不要直接写输出代码，要 <code>#ifdef DEBUG</code> 并添加编译选项 <code>-D DEBUG</code>。</p>
+</li>
+<li><p><strong>写线段树开 <code>long long</code> 不要 <code>#define ll long long</code>，会跟 <code>query(o, l, r, ll, rr)</code> 冲突！！！</strong></p>
+</li>
 <li><p>$\sum\limits_{d|\gcd(i, j)}\mu(d) = [\gcd(i, j) = 1]$</p>
 <p> 证明：</p>
 <p> 莫比乌斯函数性质得：$\sum\limits_{d|n}{\mu(d)} = [n = 1]$</p>
