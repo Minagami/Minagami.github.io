@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Luogu P1972 [SDOI2009]HH的项链 解题报告]]></title>
+    <url>%2F2019%2F09%2F09%2FLuogu-P1972-SDOI2009-HH%E7%9A%84%E9%A1%B9%E9%93%BE-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[面向数据编程 题目链接P1972 [SDOI2009]HH的项链 题意简述多次询问序列中某区间不同元素的个数。 解题思想答案可以理解为仅被区间后面的几个元素贡献，前面的重复元素可以全部替换为 $0$。 考虑离线，为了消除询问间的影响，我们将询问按右端点排序，然后依次考虑每个询问，使用树状数组维护一个区间内不同元素的个数，即出现一个不同元素时，直接在序列位置 $+1$，同时维护每一个元素上次出现的位置，若出现相同元素，先在上次出现的位置 $-1$，消除相同元素重复贡献，然后再在该位置 $+1$，同时更新这个元素上次出现的位置为当前位置。 在读入询问时要记录询问的顺序，因为排序会导致其改变。 输出时按读入顺序输出答案。 注意，树状数组操作的一定是位置而不是元素！！ 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;algorithm&gt;#define int long longinline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 1000010;int n, m;int a[N], t[N], last[N], ans[N];inline int lowbit(int x) &#123;return x &amp; -x;&#125;inline void add(int x, int k) &#123;for(; x &lt;= n; x += lowbit(x)) t[x] += k;&#125;inline int query(int x) &#123;int ans = 0; for(; x; x -= lowbit(x)) ans += t[x]; return ans;&#125;struct que &#123; int l, r, id;&#125; q[N];inline bool cmp(que a, que b) &#123;return a.r &lt; b.r;&#125;signed main() &#123; n = read(); for(register int i = 1; i &lt;= n; i++) &#123; a[i] = read(); &#125; m = read(); for(register int i = 1; i &lt;= m; i++) &#123; q[i].l = read(), q[i].r = read(), q[i].id = i; &#125; std::sort(q + 1, q + m + 1, cmp); int l = 1; for(register int i = 1; i &lt;= m; i++) &#123; for(register int j = l; j &lt;= q[i].r; j++) &#123; if(last[a[j]]) add(last[a[j]], -1); add(j, 1); last[a[j]] = j; &#125; l = q[i].r + 1; ans[q[i].id] = query(q[i].r) - query(q[i].l - 1); &#125; for(register int i = 1; i &lt;= m; i++) &#123; printf("%lld\n", ans[i]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>离线</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Luogu P3436 [POI2006]PRO-Professor Szu 解题报告]]></title>
     <url>%2F2019%2F09%2F07%2FLuogu-P3436-POI2006-PRO-Professor-Szu-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[输出不规范，彩笔两行泪。 题目链接P3436 [POI2006]PRO-Professor Szu 题意简述给你一张图，多源一汇，求源点到汇点的最大路径方案数，并找出满足这些方案数的源点。 解题思想多源一汇，先考虑建反图。 考虑缩点，当原图存在包含点数大于 $1$ 的强连通分量时，方案有无数个。 当存在自环时，方案也有无数个。 其他情况原图是一个或多个 $DAG$ 。可以找出包含汇点的那个 $DAG$，然后拓扑时计数，输出答案即可。 注意题目中给出的点数是源点的点数。 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 1e6 + 6;const int M = N &lt;&lt; 2;const int INF = 36501;int n, m, ans;int head[N], nxt[M], ver[M], dp[N], cnt;int Head[N], Nxt[M], Ver[M], in[N], Cnt;int dfn[N], low[N], scc[N], num[N], idx, tot;int s[N], stop;int q[N &lt;&lt; 1], l, r;bool v[N];inline int min(int a, int b) &#123;return a &lt; b ? a : b;&#125;inline int max(int a, int b) &#123;return a &gt; b ? a : b;&#125;inline void add(int x, int y) &#123; ver[++cnt] = y, nxt[cnt] = head[x], head[x] = cnt;&#125;inline void Add(int x, int y) &#123; Ver[++Cnt] = y, Nxt[Cnt] = Head[x], Head[x] = Cnt; in[y]++;&#125;void tarjan(int x) &#123; dfn[x] = low[x] = ++idx; v[x] = 1; s[++stop] = x; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i]; if(!dfn[y]) &#123; tarjan(y); low[x] = min(low[x], low[y]); &#125; else if(v[y]) &#123; low[x] = min(low[x], dfn[y]); &#125; &#125; if(dfn[x] == low[x]) &#123; tot++; while(stop) &#123; int y = s[stop--]; v[y] = 0; scc[y] = tot; num[tot]++; if(x == y) break; &#125; &#125;&#125;inline void rebuild() &#123; memset(v, 0, sizeof(v)); cnt = 0; for(register int x = 1; x &lt;= n; x++) &#123; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i]; if(x == y) dp[scc[x]] = INF; if(scc[x] != scc[y]) Add(scc[x], scc[y]); &#125; &#125;&#125;inline void TopSort() &#123; dp[scc[n]] = 1; v[scc[n]] = 1; for(register int i = 1; i &lt;= tot; i++) &#123; if(!in[i]) q[++r] = i; &#125; while(l &lt; r) &#123; int x = q[++l]; for(register int i = Head[x]; i; i = Nxt[i]) &#123; int y = Ver[i]; if(v[x]) v[y] = 1; in[y]--; if(!in[y]) q[++r] = y; if(num[y] &gt; 1 &amp;&amp; v[y]) dp[y] = INF; dp[y] = min(dp[y] + dp[x], INF); &#125; &#125;&#125;int main() &#123; n = read() + 1, m = read(); for(register int i = 1; i &lt;= m; i++) &#123; int x = read(), y = read(); add(y, x); &#125; for(register int i = 1; i &lt;= n; i++) &#123; if(!dfn[i]) tarjan(i); &#125; rebuild(); TopSort(); for(register int i = 1; i &lt;= n; i++) &#123; ans = max(ans, dp[scc[i]]); &#125; printf(ans == INF ? "zawsze\n" : "%d\n", ans); for(register int i = 1; i &lt;= n; i++) &#123; if(v[scc[i]] &amp;&amp; dp[scc[i]] == ans) cnt++; &#125; printf("%d\n", cnt); for(register int i = 1; i &lt; n; i++) &#123; if(v[scc[i]] &amp;&amp; dp[scc[i]] == ans) printf("%d ", i); &#125; return 0;&#125;]]></content>
@@ -111,10 +123,10 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
-        <tag>贪心</tag>
         <tag>树上问题</tag>
         <tag>根号分治</tag>
+        <tag>贪心</tag>
+        <tag>图论</tag>
       </tags>
   </entry>
   <entry>
@@ -173,8 +185,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>贪心</tag>
+        <tag>图论</tag>
         <tag>MST</tag>
       </tags>
   </entry>
@@ -214,8 +226,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>Floyd</tag>
         <tag>图论</tag>
+        <tag>Floyd</tag>
         <tag>Tarjan</tag>
         <tag>强连通分量</tag>
         <tag>传递闭包</tag>
@@ -305,8 +317,8 @@
         <category>学习报告</category>
       </categories>
       <tags>
-        <tag>时间复杂度分析</tag>
         <tag>数据结构</tag>
+        <tag>时间复杂度分析</tag>
       </tags>
   </entry>
   <entry>
@@ -389,8 +401,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>树上问题</tag>
+        <tag>贪心</tag>
         <tag>树的直径</tag>
       </tags>
   </entry>
@@ -426,8 +438,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>Floyd</tag>
         <tag>图论</tag>
+        <tag>Floyd</tag>
         <tag>矩阵快速幂</tag>
       </tags>
   </entry>
