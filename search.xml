@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Luogu P2325 [SCOI2005]王室联邦 解题报告]]></title>
+    <url>%2F2019%2F09%2F17%2FLuogu-P2325-SCOI2005-%E7%8E%8B%E5%AE%A4%E8%81%94%E9%82%A6-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[感觉一万年没更博客了来水一篇题解。 题目链接P2325 [SCOI2005]王室联邦 题意简述 给你一颗树，将其分成大小 $\in[B, 3B]$ 的块。 解题思想$\text{dfs}$ 根节点，建立一个栈，对于每个子树递归分块，并在回溯时将节点入栈。若当前新增节点数大于 $B$，就把新增节点分为一个块。 题目中的 “省会” 即为最后一个被分入当前块的点。 块大小大于 $B$ 是显然的。 分类讨论一下未分块节点数量可以得到块大小的上界是 $2B - 1$。 参考代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;cstdio&gt;#include &lt;cctype&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 1010;const int M = N &lt;&lt; 1;int n;int fa[N], head[N], ver[M], nxt[M], key[N], pos[N], cnt;int stk[N], top, tot, b;inline void add(int x, int y) &#123; ver[++cnt] = y, nxt[cnt] = head[x], head[x] = cnt; ver[++cnt] = x, nxt[cnt] = head[y], head[y] = cnt;&#125;void dfs(int x) &#123; int now = top; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i]; if(y == fa[x]) continue; fa[y] = x; dfs(y); if(top - now &gt;= b) &#123; key[++tot] = x; while(top &gt; now) pos[stk[top--]] = tot; &#125; &#125; stk[++top] = x;&#125;int main() &#123; n = read(), b = read(); for(register int i = 1; i &lt; n; i++) add(read(), read()); dfs(1); if(!tot) tot++; key[tot] = 1; while(top) pos[stk[top--]] = tot; printf("%d\n", tot); for(register int i = 1; i &lt;= n; i++) printf("%d ", pos[i]); puts(""); for(register int i = 1; i &lt;= tot; i++) printf("%d ", key[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+      <tags>
+        <tag>树上问题</tag>
+        <tag>图论</tag>
+        <tag>数据结构</tag>
+        <tag>分块</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Luogu P4113 [HEOI2012]采花 解题报告]]></title>
     <url>%2F2019%2F09%2F09%2FLuogu-P4113-HEOI2012-%E9%87%87%E8%8A%B1-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[几乎一样的题想不出来解法我太难了。 题目链接P4113 [HEOI2012]采花 题意简述多次询问一个序列的某个子区间内哪些元素出现了两次以上。 解题思想考虑离线。。。 我们考虑对答案有贡献的区间，对于某个点的元素 $x$，钦定它已出现过两次以上，那么，如果记它上一次出现的位置为 $last[x]$，上上一次出现的位置为 $llast[x]$，不难得到 $(llast[x],last[x]]$ 这个区间对答案是有贡献的。 然后原序列按位考虑，对每一位枚举右端点为当前位的询问，并处理。 答案输出要按原序。 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;algorithm&gt;#include &lt;iostream&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 2e6 + 5;int a[N], t[N], last[N], llast[N], ans[N], n, m, c, now = 1;struct que &#123;int l, r, id;&#125; q[N];inline int lowbit(int x) &#123;return x &amp; -x;&#125;inline void modify(int x, int k) &#123;for(; x &lt;= n; x += lowbit(x)) t[x] += k;&#125;inline int query(int x) &#123;int ans = 0; for(; x; x -= lowbit(x)) ans += t[x]; return ans;&#125;inline bool cmp(que a, que b) &#123;return a.r &lt; b.r;&#125;int main() &#123; n = read(), c = read(), m = read(); for(register int i = 1; i &lt;= n; i++) &#123; a[i] = read(); &#125; for(register int i = 1; i &lt;= m; i++) &#123; q[i].l = read(), q[i].r = read(), q[i].id = i; &#125; std::sort(q + 1, q + m + 1, cmp); for(register int i = 1; i &lt;= n; i++) &#123; if(last[a[i]] != llast[a[i]]) &#123; if(llast[a[i]]) modify(llast[a[i]], -1); if(last[a[i]]) modify(last[a[i]], 1); &#125; for(; now &lt;= m &amp;&amp; q[now].r == i; now++) ans[q[now].id] = query(q[now].r) - query(q[now].l - 1); llast[a[i]] = last[a[i]]; last[a[i]] = i; &#125; for(register int i = 1; i &lt;= m; i++) &#123; printf("%d\n", ans[i]); &#125; return 0;&#125;]]></content>
