@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Luogu P3919 【模板】可持久化数组 解题报告]]></title>
+    <url>%2F2019%2F09%2F19%2FLuogu-P3919-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E7%BB%84-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[题目链接P3919 【模板】可持久化数组（可持久化线段树/平衡树） 题意简述给你一个序列，进行如下操作： 修改某位置元素 查询第 i 次操作后的某位置元素 解题思想可持久化线段树板子题。 就是在查询的时候也新建版本就行了。 注意每次 modify 和 query 的是 rt[old] 而不是 old。 数组要开大…以后无脑 $50$ 倍吧… 参考代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;cstdio&gt;#include &lt;cctype&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 2e6 + 6;int n, m, tot;int a[N], ls[N * 20], rs[N * 20], rt[N * 20], t[N * 20], idx;#define mid ((l + r) &gt;&gt; 1)void build(int &amp;o, int l, int r) &#123; o = ++idx; if(l == r) &#123;t[o] = a[l]; return;&#125; build(ls[o], l, mid); build(rs[o], mid + 1, r);&#125;void modify(int old, int &amp;o, int l, int r, int x, int k) &#123; o = ++idx; ls[o] = ls[old], rs[o] = rs[old], t[o] = t[old]; if(l == r) &#123;t[o] = k; return;&#125; if(x &lt;= mid) modify(ls[old], ls[o], l, mid, x, k); else modify(rs[old], rs[o], mid + 1, r, x, k);&#125;int query(int old, int &amp;o, int l, int r, int x) &#123; o = ++idx; ls[o] = ls[old], rs[o] = rs[old], t[o] = t[old]; if(l == r) return t[o]; if(x &lt;= mid) return query(ls[old], ls[o], l, mid, x); else return query(rs[old], rs[o], mid + 1, r, x);&#125;int main() &#123; n = read(), m = read(); for(register int i = 1; i &lt;= n; i++) a[i] = read(); build(rt[tot++], 1, n); while(m--) &#123; int old = read(), op = read(); if(op == 1) &#123; int x = read(), k = read(); modify(rt[old], rt[tot++], 1, n, x, k); &#125; else &#123; printf("%d\n", query(rt[old], rt[tot++], 1, n, read())); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+      <tags>
+        <tag>可持久化数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Luogu P3953 逛公园 解题报告]]></title>
     <url>%2F2019%2F09%2F19%2FLuogu-P3953-%E9%80%9B%E5%85%AC%E5%9B%AD-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[交题不删 fprintf(stderr) 的我事屑。 题目链接P3953 逛公园 题意简述给你一张图，记两点间最短路为 $dis(i, j)$ ，求点 $1$ 到点 $n$ 长度不超过 $dis(1, n) + k$ 的路径的数量。 解题思想先反图跑 Dijkstra，求出点 $n$ 到各点的最短路的长度，记为 $dis(n, i)$。 考虑 DP，对于点 $x$，我们记 $dp[x][k]$ 为在点 $x$ ，且可用冗余长度还剩下 $k$ 时的方案数。 那么显然有 $dp[x][flow] = \sum\limits_{&lt;x, y&gt;\in E}dp[y][rest]$ ，其中 $rest = dis(y, n) + len(x, y) - dis (x, n) \in[0, k]$。 记忆化搜索实现即可。 但是有一种特殊的情况需要考虑：若被计数路径上出现 $0$ 环，那么可行路径有无数条，记搜的时候特判输出 $-1$ 即可。 有点 Dinic 内味儿了。 fprintf() 是真的慢。 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990#pragma GCC optimize(2)#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;cstring&gt;#include &lt;queue&gt;#define getchar() (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, 1 &lt;&lt; 21, stdin), p1 == p2) ? EOF : *p1++)char buf[1 &lt;&lt; 21], *p1 = buf, *p2 = buf;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 100010;const int M = N &lt;&lt; 2;const int K = 50 + 6;int n, m, k, p, ans;int head[2][N], ver[2][M], nxt[2][M], edge[2][M], cnt;int dp[N][K], d[N];bool v[N][K], flg;inline void add(int x, int y, int z) &#123; ver[0][++cnt] = y, edge[0][cnt] = z, nxt[0][cnt] = head[0][x], head[0][x] = cnt; ver[1][cnt] = x, edge[1][cnt] = z, nxt[1][cnt] = head[1][y], head[1][y] = cnt;&#125;struct data &#123; int pos, dis; data(int pos, int dis) &#123;this -&gt; pos = pos, this -&gt; dis = dis;&#125; bool operator &lt; (const data &amp;a) const &#123; return dis &gt; a.dis; &#125;&#125;;std::priority_queue &lt;data&gt; heap;inline void dijkstra(int s) &#123; memset(d, 0x3f, sizeof d); heap.push(data(s, d[s] = 0)); while(!heap.empty()) &#123; data tmp = heap.top(); heap.pop(); if(tmp.dis != d[tmp.pos]) continue; for(register int i = head[1][tmp.pos]; i; i = nxt[1][i]) if(d[ver[1][i]] &gt; d[tmp.pos] + edge[1][i]) heap.push(data(ver[1][i], d[ver[1][i]] = tmp.dis + edge[1][i])); &#125;&#125;inline void init() &#123;memset(head, 0, sizeof head); memset(dp, 0, sizeof dp); cnt = ans = flg = 0;&#125;int dfs(int x, int flow) &#123; if(v[x][flow]) return flg = 1, 0; if(dp[x][flow] &gt; 0) return dp[x][flow]; v[x][flow] = 1; int sum = 0; for(register int i = head[0][x]; i; i = nxt[0][i]) &#123; int y = ver[0][i], z = edge[0][i]; int rest = flow - (d[y] + z - d[x]); if(rest &lt; 0 || rest &gt; k) continue; sum = (sum + dfs(y, rest)) % p; if(flg) return 0; &#125; if(x == n &amp;&amp; flow == 0) sum = 1; v[x][flow] = 0; return dp[x][flow] = sum;&#125;int main() &#123; int t = read(); while(t--) &#123; init(); n = read(), m = read(), k = read(), p = read(); for(register int i = 1; i &lt;= m; i++) &#123; int x = read(), y = read(), z = read(); add(x, y, z); &#125; dijkstra(n); for(register int i = 0; i &lt;= k; i++) &#123; memset(v, 0, sizeof v); ans = (ans + dfs(1, i)) % p; &#125; printf("%d\n", flg ? -1 : ans); &#125; return 0;&#125;]]></content>
@@ -22,8 +33,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>树上问题</tag>
+        <tag>图论</tag>
         <tag>数据结构</tag>
         <tag>分块</tag>
       </tags>
@@ -165,10 +176,10 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
-        <tag>贪心</tag>
         <tag>树上问题</tag>
         <tag>根号分治</tag>
+        <tag>贪心</tag>
+        <tag>图论</tag>
       </tags>
   </entry>
   <entry>
@@ -227,9 +238,9 @@
         <category>解题报告</category>
       </categories>
       <tags>
+        <tag>贪心</tag>
         <tag>图论</tag>
         <tag>MST</tag>
-        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -268,8 +279,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>Floyd</tag>
         <tag>图论</tag>
+        <tag>Floyd</tag>
         <tag>Tarjan</tag>
         <tag>强连通分量</tag>
         <tag>传递闭包</tag>
@@ -443,8 +454,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>树上问题</tag>
+        <tag>贪心</tag>
         <tag>树的直径</tag>
       </tags>
   </entry>
@@ -480,8 +491,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>Floyd</tag>
         <tag>图论</tag>
+        <tag>Floyd</tag>
         <tag>矩阵快速幂</tag>
       </tags>
   </entry>
