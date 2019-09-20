@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Luogu P1168 中位数 解题报告]]></title>
+    <url>%2F2019%2F09%2F20%2FLuogu-P1168-%E4%B8%AD%E4%BD%8D%E6%95%B0-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[水了道绿题，美滋滋。 题目链接P1168 中位数 题意简述给你一个序列，求前奇数项的中位数。 解题思想前 $k$ 项的中位数（$k$ 为奇数）== 前 $k$ 个数中第 $(k + 1) /2$ 大的值。 静态区间第 $k$ 大，可以用主席树写。 序列中的数字不是连续的，所以需要离散化一下。 做完了。 参考代码1234567891011121314151617181920212223242526272829303132#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;algorithm&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 1e5 + 6;int n, sz, a[N], b[N];int t[N &lt;&lt; 5], ls[N &lt;&lt; 5], rs[N &lt;&lt; 5], rt[N &lt;&lt; 5], idx;#define mid ((l + r) &gt;&gt; 1)void copy(int old, int o) &#123;t[o] = t[old], ls[o] = ls[old], rs[o] = rs[old];&#125;void upd(int o) &#123;t[o] = t[ls[o]] + t[rs[o]];&#125;void build(int &amp;o, int l, int r) &#123;o = ++idx; if(l == r) return; build(ls[o], l, mid); build(rs[o], mid + 1, r);&#125;void modify(int old, int &amp;o, int l, int r, int k) &#123;o = ++idx; copy(old, o); if(l == r) &#123;t[o]++; return;&#125; if(k &lt;= mid) modify(ls[old], ls[o], l, mid, k); else modify(rs[old], rs[o], mid + 1, r, k); upd(o);&#125;int query(int o, int l, int r, int k) &#123;if(l == r) return l; if(k &lt;= t[ls[o]]) return query(ls[o], l, mid, k); else return query(rs[o], mid + 1, r, k - t[ls[o]]);&#125;int main() &#123; n = read(); for(register int i = 1; i &lt;= n; i++) a[i] = b[i] = read(); std::sort(b + 1, b + n + 1); sz = std::unique(b + 1, b + n + 1) - b - 1; build(rt[0], 1, sz); for(register int i = 1; i &lt;= n; i++) modify(rt[i - 1], rt[i], 1, sz, std::lower_bound(b + 1, b + sz + 1, a[i]) - b); for(register int i = 1; i &lt;= n; i += 2) printf("%d\n", b[query(rt[i], 1, sz, (i + 1) / 2)]); return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+      <tags>
+        <tag>可持久化数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Luogu P3919 【模板】可持久化数组 解题报告]]></title>
     <url>%2F2019%2F09%2F19%2FLuogu-P3919-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E7%BB%84-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[题目链接P3919 【模板】可持久化数组（可持久化线段树/平衡树） 题意简述给你一个序列，进行如下操作： 修改某位置元素 查询第 i 次操作后的某位置元素 解题思想可持久化线段树板子题。 就是在查询的时候也新建版本就行了。 注意每次 modify 和 query 的是 rt[old] 而不是 old。 数组要开大…以后无脑 $50$ 倍吧… 参考代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;cstdio&gt;#include &lt;cctype&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 2e6 + 6;int n, m, tot;int a[N], ls[N * 20], rs[N * 20], rt[N * 20], t[N * 20], idx;#define mid ((l + r) &gt;&gt; 1)void build(int &amp;o, int l, int r) &#123; o = ++idx; if(l == r) &#123;t[o] = a[l]; return;&#125; build(ls[o], l, mid); build(rs[o], mid + 1, r);&#125;void modify(int old, int &amp;o, int l, int r, int x, int k) &#123; o = ++idx; ls[o] = ls[old], rs[o] = rs[old], t[o] = t[old]; if(l == r) &#123;t[o] = k; return;&#125; if(x &lt;= mid) modify(ls[old], ls[o], l, mid, x, k); else modify(rs[old], rs[o], mid + 1, r, x, k);&#125;int query(int old, int &amp;o, int l, int r, int x) &#123; o = ++idx; ls[o] = ls[old], rs[o] = rs[old], t[o] = t[old]; if(l == r) return t[o]; if(x &lt;= mid) return query(ls[old], ls[o], l, mid, x); else return query(rs[old], rs[o], mid + 1, r, x);&#125;int main() &#123; n = read(), m = read(); for(register int i = 1; i &lt;= n; i++) a[i] = read(); build(rt[tot++], 1, n); while(m--) &#123; int old = read(), op = read(); if(op == 1) &#123; int x = read(), k = read(); modify(rt[old], rt[tot++], 1, n, x, k); &#125; else &#123; printf("%d\n", query(rt[old], rt[tot++], 1, n, read())); &#125; &#125; return 0;&#125;]]></content>
@@ -33,8 +44,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>树上问题</tag>
         <tag>图论</tag>
+        <tag>树上问题</tag>
         <tag>数据结构</tag>
         <tag>分块</tag>
       </tags>
@@ -176,10 +187,10 @@
         <category>解题报告</category>
       </categories>
       <tags>
+        <tag>图论</tag>
+        <tag>贪心</tag>
         <tag>树上问题</tag>
         <tag>根号分治</tag>
-        <tag>贪心</tag>
-        <tag>图论</tag>
       </tags>
   </entry>
   <entry>
@@ -238,8 +249,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>图论</tag>
+        <tag>贪心</tag>
         <tag>MST</tag>
       </tags>
   </entry>
@@ -279,8 +290,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>Floyd</tag>
+        <tag>图论</tag>
         <tag>Tarjan</tag>
         <tag>强连通分量</tag>
         <tag>传递闭包</tag>
@@ -454,8 +465,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>树上问题</tag>
         <tag>贪心</tag>
+        <tag>树上问题</tag>
         <tag>树的直径</tag>
       </tags>
   </entry>
@@ -491,8 +502,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>Floyd</tag>
+        <tag>图论</tag>
         <tag>矩阵快速幂</tag>
       </tags>
   </entry>
