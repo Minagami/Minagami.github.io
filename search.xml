@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Luogu P1337 [JSOI2004]平衡点 解题报告]]></title>
+    <url>%2F2019%2F09%2F24%2FLuogu-P1337-JSOI2004-%E5%B9%B3%E8%A1%A1%E7%82%B9-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[物理⑧太好，不会正解，写了模拟退火 。 题目链接P1337 [JSOI2004]平衡点 / 吊打XXX 题意简述并不会概括.. 有n个重物，每个重物系在一条足够长的绳子上。每条绳子自上而下穿过桌面上的洞，然后系在一起。图中X处就是公共的绳结。假设绳子是完全弹性的（不会造成能量损失），桌子足够高（因而重物不会垂到地上），且忽略所有的摩擦。 问绳结X最终平衡于何处。 注意：桌面上的洞都比绳结X小得多，所以即使某个重物特别重，绳结X也不可能穿过桌面上的洞掉下来，最多是卡在某个洞口处。 解题思想考虑将绳结系在点 $A(x, y)$ 时的 “势能”： $E = \sum\limits_{i = 1} ^ n \mathrm {dis}(A, A_i)\times m_i$ 。 其中 $A_i$ 指重物 $i$ 所在点，$m_i$ 指重物 $i$ 的重量。 有了这个东西，我们就可以很好地决定一个解的优劣程度。显然，当一个解的 $E$ 越小，答案就越优。 剩下的按退火来就行了。 rp太好了没调参就过了qwq。 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;cstdlib&gt;#include &lt;cmath&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 1010;const double eps = 1e-15;const double k = 0.999;struct data &#123; double x, y, m;&#125; a[N];int n;double ansx, ansy;double dis(double x1, double y1, double x2, double y2) &#123; return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));&#125;double res(double x, double y) &#123; double ans = 0; for(register int i = 1; i &lt;= n; i++) ans += dis(x, y, a[i].x, a[i].y) * a[i].m; return ans;&#125;double rdm() &#123; return (rand() * 2 - RAND_MAX);&#125;void SA() &#123; double T = 200; while(T &gt; eps) &#123; double nowx = ansx + rdm() * T; double nowy = ansy + rdm() * T; double delta = res(nowx, nowy) - res(ansx, ansy); if(delta &lt; 0) ansx = nowx, ansy = nowy; else if(exp(-delta / T) * RAND_MAX &gt; rand()) ansx = nowx, ansy = nowy; T *= k; &#125;&#125;int main() &#123; n = read(); for(register int i = 1; i &lt;= n; i++) &#123; scanf("%lf%lf%lf", &amp;a[i].x, &amp;a[i].y, &amp;a[i].m); ansx += a[i].x, ansy += a[i].y; &#125; ansx /= n, ansy /= n; SA(); printf("%.3lf %.3lf\n", ansx, ansy); return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Luogu P2634 [国家集训队]聪聪可可 解题报告]]></title>
     <url>%2F2019%2F09%2F23%2FLuogu-P2634-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E8%81%AA%E8%81%AA%E5%8F%AF%E5%8F%AF-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[算是入门淀粉质了吧。 题目链接P2634 [国家集训队]聪聪可可 题意简述问树上简单路径长度为 $3$ 的倍数的概率。 解题思想先把路径长度对 $3$ 取模，在点分治的过程中算出所有到当前根距离 “模 $3$ 余 $0$”，”模 $3$ 余 $1$”，”模 $3$ 余 $2$” 的简单路径数，分别记为 $dis_1, dis_2, dis_3$ ，那么当前根的贡献就是 $dis_1^2 + 2\times dis_2\times dis_3$。剩下的按点分正常做。 总的方案数为 $n^2$（随便选两个点），最后约分输出就行了。 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687#include &lt;cstdio&gt;#include &lt;cctype&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;template &lt;typename T&gt; inline T min(T a, T b) &#123;return a &lt; b ? a : b;&#125;template &lt;typename T&gt; inline T max(T a, T b) &#123;return a &gt; b ? a : b;&#125;template &lt;typename T&gt; inline void chkmin(T &amp;a, T b) &#123;a = min(a, b);&#125;template &lt;typename T&gt; inline void chkmax(T &amp;a, T b) &#123;a = max(a, b);&#125;const int N = 20010;const int M = N &lt;&lt; 1;int n, m, rt, S, ans;int head[N], ver[M], nxt[M], edge[M], cnt;int a[N], dis[3];int sz[N], mx[N];bool v[N];int gcd(int x, int y) &#123;return y ? gcd(y, x % y) : x;&#125;inline void add(int x, int y, int z) &#123; ver[++cnt] = y, edge[cnt] = z, nxt[cnt] = head[x], head[x] = cnt;&#125;void find(int x, int fa) &#123; sz[x] = 1, mx[x] = 0; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i]; if(v[y] || y == fa) continue; find(y, x); sz[x] += sz[y]; chkmax(mx[x], sz[y]); &#125; chkmax(mx[x], S - sz[x]); if(mx[x] &lt; mx[rt]) rt = x;&#125;void dfs(int x, int fa) &#123; dis[a[x] % 3]++; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i], z = edge[i]; if(y == fa || v[y]) continue; a[y] = a[x] + z; dfs(y, x); &#125;&#125;int solve(int s, int len) &#123; a[s] = len; dis[0] = dis[1] = dis[2] = 0; dfs(s, 0); return dis[0] * dis[0] + dis[1] * dis[2] * 2;&#125;void divide(int x) &#123; ans += solve(x, 0); v[x] = 1; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i], z = edge[i]; if(v[y]) continue; ans -= solve(y, z); S = sz[y], rt = 0; find(y, x); divide(rt); &#125;&#125;int main() &#123; n = read(); for(register int i = 1; i &lt; n; i++) &#123; int x = read(), y = read(), z = read() % 3; add(x, y, z); add(y, x, z); &#125; S = n, rt = 0, mx[0] = n; find(1, 0); divide(rt); int up = gcd(ans, n * n); printf("%d/%d\n", ans / up, n * n / up); return 0;&#125;]]></content>
@@ -213,8 +221,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>图论</tag>
+        <tag>贪心</tag>
         <tag>树上问题</tag>
         <tag>根号分治</tag>
       </tags>
@@ -275,8 +283,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>图论</tag>
+        <tag>贪心</tag>
         <tag>MST</tag>
       </tags>
   </entry>

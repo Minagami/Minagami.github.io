@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Luogu P1373 小a和uim之大逃离 解题报告 - Yuki&#39;s Blog</title>
+<title>Luogu P1337 [JSOI2004]平衡点 解题报告 - Yuki&#39;s Blog</title>
 
 
 
@@ -79,7 +79,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://i.loli.net/2019/08/27/SIME7XTfzmn8N4h.png" alt="Luogu P1373 小a和uim之大逃离 解题报告" height="28">
+                <img src="https://i.loli.net/2019/08/27/SIME7XTfzmn8N4h.png" alt="Luogu P1337 [JSOI2004]平衡点 解题报告" height="28">
             
             </a>
         </div>
@@ -138,11 +138,17 @@
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/09/24/xpsDWnvRgy5JCte.jpg" alt="Luogu P1337 [JSOI2004]平衡点 解题报告">
+        </span>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-11T08:12:36.000Z">2019-06-11</time>
+                <time class="level-item has-text-grey" datetime="2019-09-24T00:28:34.000Z">2019-09-24</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/解题报告/">解题报告</a>
@@ -152,7 +158,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 501 个字)
+                    4 分钟 读完 (大约 561 个字)
                 </span>
                 
                 
@@ -161,32 +167,26 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Luogu P1373 小a和uim之大逃离 解题报告
+                Luogu P1337 [JSOI2004]平衡点 解题报告
             
         </h1>
         <div class="content">
-            <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://www.luogu.org/problemnew/show/P1373" target="_blank" rel="noopener"><strong>P1373</strong> 小a和uim之大逃离</a></p>
-<h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p><del>感觉题目描述挺清楚的</del></p>
-<p>给定矩阵，两个人以任意点为起点，每次可以向下走或向右走，同时两人的得分<strong>交替</strong>加上当前格的值并对$k + 1$取模，可以在任意点由<strong>后者</strong>结束。求两人得分一致的方法数。</p>
+            <p>物理⑧太好，不会正解，写了模拟退火 <img src="https://i.loli.net/2019/09/24/wIYgVPRM8aXnrZ4.gif" alt="呲牙.gif">。</p>
+<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://www.luogu.org/problem/P1337" target="_blank" rel="noopener">P1337 [JSOI2004]平衡点 / 吊打XXX</a></p>
+<h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>并不会概括..</p>
+<p>有n个重物，每个重物系在一条足够长的绳子上。每条绳子自上而下穿过桌面上的洞，然后系在一起。图中X处就是公共的绳结。假设绳子是完全弹性的（不会造成能量损失），桌子足够高（因而重物不会垂到地上），且忽略所有的摩擦。</p>
+<p>问绳结X最终平衡于何处。</p>
+<p>注意：桌面上的洞都比绳结X小得多，所以即使某个重物特别重，绳结X也不可能穿过桌面上的洞掉下来，最多是卡在某个洞口处。</p>
 <a id="more"></a>
 
-<h1 id="解题思想"><a href="#解题思想" class="headerlink" title="解题思想"></a>解题思想</h1><p>题目中的方案数与两人的<strong>具体得分</strong>无关，故我们考虑将每一步<strong>两人的差值</strong>作为状态。剩下的状态显而易见：当前位置和取数人。即$dp[x][y][\Delta][op]$表示在坐标为$(x, y)$的方格上由$op$取数，<strong>取完后</strong>两人的差值为$\Delta$</p>
-<p>因为由后者结束，所以我们只统计$op = 0$时的答案，并累加。再加上题目中给出的移动方式，我们不难得出状态转移方程：</p>
-<p>$$dp[x][y][\Delta][0] = dp[x - 1][y][\Delta - a[x][y]][1] + dp[x][y - 1][\Delta - a[x][y]][1]$$</p>
-<p>$$dp[x][y][\Delta][1] = dp[x - 1][y][\Delta + a[x][y]][0] + dp[x][y - 1][\Delta + a[x][y]][0]$$</p>
-<p>需要考虑差值小于0的情况，这时将插值替代为模$k + 1$意义下的等价元就行了。</p>
-<h1 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h1><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">801</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MOD = <span class="hljs-number">1000000007</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, m, k, ans;</span><br><span class="line"><span class="hljs-keyword">int</span> a[N][N];</span><br><span class="line"><span class="hljs-keyword">int</span> dp[N][N][<span class="hljs-number">17</span>][<span class="hljs-number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d%d"</span>, &amp;n, &amp;m, &amp;k);</span><br><span class="line">    k++;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;a[i][j]);</span><br><span class="line">            dp[i][j][a[i][j] % k][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> del = <span class="hljs-number">0</span>; del &lt;= k; del++) &#123;</span><br><span class="line">                dp[i][j][del][<span class="hljs-number">0</span>] = (dp[i][j][del][<span class="hljs-number">0</span>] + dp[i - <span class="hljs-number">1</span>][j][(del - a[i][j] + k) % k][<span class="hljs-number">1</span>]) % MOD;</span><br><span class="line">                dp[i][j][del][<span class="hljs-number">0</span>] = (dp[i][j][del][<span class="hljs-number">0</span>] + dp[i][j - <span class="hljs-number">1</span>][(del - a[i][j] + k) % k][<span class="hljs-number">1</span>]) % MOD;</span><br><span class="line">                dp[i][j][del][<span class="hljs-number">1</span>] = (dp[i][j][del][<span class="hljs-number">1</span>] + dp[i - <span class="hljs-number">1</span>][j][(del + a[i][j] + k) % k][<span class="hljs-number">0</span>]) % MOD;</span><br><span class="line">                dp[i][j][del][<span class="hljs-number">1</span>] = (dp[i][j][del][<span class="hljs-number">1</span>] + dp[i][j - <span class="hljs-number">1</span>][(del + a[i][j] + k) % k][<span class="hljs-number">0</span>]) % MOD;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">            ans = (ans + dp[i][j][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]) % MOD;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>, ans);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="解题思想"><a href="#解题思想" class="headerlink" title="解题思想"></a>解题思想</h1><p>考虑将绳结系在点 $A(x, y)$ 时的 “势能”： $E = \sum\limits_{i = 1} ^ n \mathrm {dis}(A, A_i)\times m_i$ 。</p>
+<p>其中 $A_i$ 指重物 $i$ 所在点，$m_i$ 指重物 $i$ 的重量。</p>
+<p>有了这个东西，我们就可以很好地决定一个解的优劣程度。显然，当一个解的 $E$ 越小，答案就越优。</p>
+<p>剩下的按退火来就行了。</p>
+<p>rp太好了没调参就过了qwq。</p>
+<h1 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h1><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">char</span> ch = getchar(); <span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>, w = <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch)) &#123;<span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'-'</span>) w = <span class="hljs-number">-1</span>; ch = getchar();&#125;</span><br><span class="line">    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch)) &#123;r = r * <span class="hljs-number">10</span> + ch - <span class="hljs-string">'0'</span>, ch = getchar();&#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> r * w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1010</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> eps = <span class="hljs-number">1e-15</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> k = <span class="hljs-number">0.999</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">data</span> &#123;</span></span><br><span class="line">    <span class="hljs-keyword">double</span> x, y, m;</span><br><span class="line">&#125; a[N];</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n;</span><br><span class="line"><span class="hljs-keyword">double</span> ansx, ansy;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">dis</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x1, <span class="hljs-keyword">double</span> y1, <span class="hljs-keyword">double</span> x2, <span class="hljs-keyword">double</span> y2)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">res</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">double</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">double</span> ans = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) ans += dis(x, y, a[i].x, a[i].y) * a[i].m;</span><br><span class="line">    <span class="hljs-keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">rdm</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (rand() * <span class="hljs-number">2</span> - RAND_MAX);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SA</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">double</span> T = <span class="hljs-number">200</span>;</span><br><span class="line">    <span class="hljs-keyword">while</span>(T &gt; eps) &#123;</span><br><span class="line">        <span class="hljs-keyword">double</span> nowx = ansx + rdm() * T;</span><br><span class="line">        <span class="hljs-keyword">double</span> nowy = ansy + rdm() * T;</span><br><span class="line">        <span class="hljs-keyword">double</span> delta = res(nowx, nowy) - res(ansx, ansy);</span><br><span class="line">        <span class="hljs-keyword">if</span>(delta &lt; <span class="hljs-number">0</span>) ansx = nowx, ansy = nowy;</span><br><span class="line">        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">exp</span>(-delta / T) * RAND_MAX &gt; rand()) ansx = nowx, ansy = nowy;</span><br><span class="line">        T *= k;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    n = read();</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lf%lf%lf"</span>, &amp;a[i].x, &amp;a[i].y, &amp;a[i].m);</span><br><span class="line">        ansx += a[i].x, ansy += a[i].y;</span><br><span class="line">    &#125;</span><br><span class="line">    ansx /= n, ansy /= n;</span><br><span class="line">    SA();</span><br><span class="line">    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%.3lf %.3lf\n"</span>, ansx, ansy);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/DP/">DP</a>, <a class="has-link-grey -link" href="/tags/递推/">递推</a>
-                </div>
-            </div>
         </div>
         
         
@@ -201,17 +201,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/15/树链剖分-学习报告/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">树链剖分 学习报告</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/07/UVA1482-Playing-With-Stones-解题报告/">
-                <span class="level-item">UVA1482 Playing With Stones 解题报告</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/23/Luogu-P2634-国家集训队-聪聪可可-解题报告/">
+                <span class="level-item">Luogu P2634 [国家集训队]聪聪可可 解题报告</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -357,7 +350,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://i.loli.net/2019/08/27/SIME7XTfzmn8N4h.png" alt="Luogu P1373 小a和uim之大逃离 解题报告" height="28">
+                    <img src="https://i.loli.net/2019/08/27/SIME7XTfzmn8N4h.png" alt="Luogu P1337 [JSOI2004]平衡点 解题报告" height="28">
                 
                 </a>
                 <p class="is-size-7">
