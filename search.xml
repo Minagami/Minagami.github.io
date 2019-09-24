@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Luogu P2503 [HAOI2006]均分数据 解题报告]]></title>
+    <url>%2F2019%2F09%2F24%2FLuogu-P2503-HAOI2006-%E5%9D%87%E5%88%86%E6%95%B0%E6%8D%AE-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[卡时黑科技 $get√$ 题目链接P2503 [HAOI2006]均分数据 题意简述把 $n$ 个元素分成 $m$ 组，求每组元素和的最小均方差。 解题思想这种给出贡献的题直接 $SA$。 对于单组分配方案最小均方差的计算，考虑 $DP$，设 $dp[i][j]$ 表示前 $i$ 个元素分成 $j$ 组的最小均方差，枚举最后一组的断点转移就行了。 剩下的交给 $SA$。 黑科技：卡时 我们知道，$SA$ 的次数越多，答案精准的概率越大。所以而退火又是一个很高效的算法，所以我们考虑利用 “未被利用的时限”，而不是循环固定次数退火。 首先需要一个查询当前运行时间的函数 Time()。 1double Time() &#123;return (double)clock() / CLOCKS_PER_SEC;&#125; 该函数返回当前程序运行了多少秒。 在实际退火时，我们仅需要对着时间卡退火次数就行了。 比如 while(Time() &lt; 0.8) SA();。 注意给后面的语句留一定的时间。 参考代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;ctime&gt;#include &lt;cmath&gt;#include &lt;algorithm&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;const double eps = 1e-3;const double k = 0.99;const int N = 21;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;double a[N], s[N];double f[N][N];int n, m;double ans, ave;double dp() &#123; for(register int i = 1; i &lt;= n; i++) s[i] = s[i - 1] + a[i]; memset(f, 127, sizeof f); f[0][0] = 0; for(register int i = 1; i &lt;= n; i++) for(register int j = 1; j &lt;= i; j++) for(register int k = 0; k &lt;= i - 1; k++) f[i][j] = std::min(f[i][j], f[k][j - 1] + (s[i] - s[k] - ave) * (s[i] - s[k] - ave)); ans = std::min(ans, f[n][m]); return f[n][m];&#125;void SA() &#123; double T = 10000; while(T &gt; eps) &#123; int x = 0, y = 0; while(x == y) &#123; x = rand() % n + 1; y = rand() % n + 1; &#125; std::swap(a[x], a[y]); double now = dp(); double delta = now - ans; if(delta &lt; 0) ans = now; else if(exp(-delta / T) * RAND_MAX &lt; rand()) std::swap(a[x], a[y]); T *= k; &#125;&#125;double Time() &#123;return (double)clock() / CLOCKS_PER_SEC;&#125;int main() &#123; srand(time(NULL)); n = read(), m = read(); for(register int i = 1; i &lt;= n; i++) scanf("%lf", a + i); for(register int i = 1; i &lt;= n; i++) ave += a[i] / m; ans = dp(); while(Time() &lt; 0.75) SA(); printf("%.2lf\n", sqrt(ans / m)); return 0;&#125;]]></content>
+      <categories>
+        <category>解题报告</category>
+      </categories>
+      <tags>
+        <tag>DP</tag>
+        <tag>模拟退火</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Luogu P1337 [JSOI2004]平衡点 解题报告]]></title>
     <url>%2F2019%2F09%2F24%2FLuogu-P1337-JSOI2004-%E5%B9%B3%E8%A1%A1%E7%82%B9-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[物理⑧太好，不会正解，写了模拟退火 。 题目链接P1337 [JSOI2004]平衡点 / 吊打XXX 题意简述并不会概括.. 有n个重物，每个重物系在一条足够长的绳子上。每条绳子自上而下穿过桌面上的洞，然后系在一起。图中X处就是公共的绳结。假设绳子是完全弹性的（不会造成能量损失），桌子足够高（因而重物不会垂到地上），且忽略所有的摩擦。 问绳结X最终平衡于何处。 注意：桌面上的洞都比绳结X小得多，所以即使某个重物特别重，绳结X也不可能穿过桌面上的洞掉下来，最多是卡在某个洞口处。 解题思想考虑将绳结系在点 $A(x, y)$ 时的 “势能”： $E = \sum\limits_{i = 1} ^ n \mathrm {dis}(A, A_i)\times m_i$ 。 其中 $A_i$ 指重物 $i$ 所在点，$m_i$ 指重物 $i$ 的重量。 有了这个东西，我们就可以很好地决定一个解的优劣程度。显然，当一个解的 $E$ 越小，答案就越优。 剩下的按退火来就行了。 rp太好了没调参就过了qwq。 参考代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;cstdlib&gt;#include &lt;cmath&gt;#include &lt;ctime&gt;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 1010;const double eps = 1e-15;const double k = 0.999;struct data &#123; double x, y, m;&#125; a[N];int n;double ansx, ansy;double dis(double x1, double y1, double x2, double y2) &#123; return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));&#125;double res(double x, double y) &#123; double ans = 0; for(register int i = 1; i &lt;= n; i++) ans += dis(x, y, a[i].x, a[i].y) * a[i].m; return ans;&#125;double rdm() &#123; return (rand() * 2 - RAND_MAX);&#125;void SA() &#123; double T = 200; while(T &gt; eps) &#123; double nowx = ansx + rdm() * T; double nowy = ansy + rdm() * T; double delta = res(nowx, nowy) - res(ansx, ansy); if(delta &lt; 0) ansx = nowx, ansy = nowy; else if(exp(-delta / T) * RAND_MAX &gt; rand()) ansx = nowx, ansy = nowy; T *= k; &#125;&#125;int main() &#123; srand(time(NULL)); n = read(); for(register int i = 1; i &lt;= n; i++) &#123; scanf("%lf%lf%lf", &amp;a[i].x, &amp;a[i].y, &amp;a[i].m); ansx += a[i].x, ansy += a[i].y; &#125; ansx /= n, ansy /= n; SA(); printf("%.3lf %.3lf\n", ansx, ansy); return 0;&#125;]]></content>
       <categories>
         <category>解题报告</category>
       </categories>
+      <tags>
+        <tag>模拟退火</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Luogu P2634 [国家集训队]聪聪可可 解题报告]]></title>
@@ -221,8 +236,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>贪心</tag>
+        <tag>图论</tag>
         <tag>树上问题</tag>
         <tag>根号分治</tag>
       </tags>
@@ -283,8 +298,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>贪心</tag>
+        <tag>图论</tag>
         <tag>MST</tag>
       </tags>
   </entry>
@@ -392,8 +407,8 @@
       </categories>
       <tags>
         <tag>图论</tag>
-        <tag>实域二分</tag>
         <tag>dfs</tag>
+        <tag>实域二分</tag>
       </tags>
   </entry>
   <entry>
@@ -486,8 +501,8 @@
       <tags>
         <tag>树上问题</tag>
         <tag>分类讨论</tag>
-        <tag>dfs</tag>
         <tag>树的直径</tag>
+        <tag>dfs</tag>
         <tag>树上dp</tag>
       </tags>
   </entry>
