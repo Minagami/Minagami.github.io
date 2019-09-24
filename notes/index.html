@@ -149,6 +149,8 @@
 <p>感谢原作者<a href="https://www.luogu.org/space/show?uid=60181" target="_blank" rel="noopener">Iowa_BattleShip</a></p>
 <hr>
 <ol>
+<li><p>SA 卡时防 TLE 应该把设定时限开到时限的 $\frac{1}{2}$，这样不会因为第二次 <code>SA()</code> 而超时。写法：<code>while(Time() &lt; LIMIT / 2) SA();</code></p>
+</li>
 <li><p>对数组 <code>double a[N]</code> 赋初值不能用 <code>memset(a, 0x3f, sizeof a)</code> ，而应该用 <code>memset(a, 127, sizeof a)</code>。</p>
 </li>
 <li><p>分块题用均值不等式算出的块的大小，把 $n$ 的上界带进去，对于所有数据块都开一样大的就行了。</p>
@@ -171,20 +173,20 @@
 <p> 拆开后合并同类项。</p>
 </li>
 <li><p>数列 $&lt;1,  \dbinom{c}{1},  \dbinom{c + 1}{2},  \dbinom{c + 2}{3}, \cdots&gt;$ 的生成函数为 $G(z) = \frac{1}{(1-z) ^ c}$</p>
-<p> 证明：<br> 从右边考虑：</p>
-<p> $\frac{1}{(1-z) ^ c} = (1 - z) ^ {-c}$</p>
-<p> 广义二项式定理展开：<br> 原式<br> $= \sum\limits_{k\geq 0}^{\infty}\dbinom{-c}{k}\times (-z) ^ k$</p>
-<p> $= {\sum\limits_{k\geq 0}^{\infty} \frac{(-c)^{\underline{k}}}{k!}\times (-1) ^ k \times z ^ k} ^ {[1]}$</p>
-<p> 其中：<br> ${(-c)} ^ {\underline{k}} $</p>
-<p> $= (-c) \times (-c - 1) \times (-c - 2) \times\cdots\times (-c - k + 1)$</p>
-<p> $= (-1) ^ k \times c\times (c + 1) \times (c + 2) \times \cdots \times (c + k - 1)$</p>
-<p> $= (-1) ^ k \times (c + k - 1) ^ {\underline{k}}$</p>
-<p> 代回原式：<br> 原式<br> $=\sum\limits_{k \geq 0} ^ {\infty}\frac{(-1)^k\times (c + k - 1) ^{\underline{k}}}{k!} \times (-1) ^ k \times z ^ k$</p>
-<p> $= \sum\limits_{k \geq 0} ^ {\infty}\frac{(-1) ^ {2k} \times (c + k - 1) ^ {\underline{k}}}{k!} \times z^k$</p>
-<p> 又因为：<br> $(-1)^{2k} = 1$</p>
-<p> 所以：<br> 原式 $=\sum\limits_{k\geq 0}^{\infty}\frac{(c + k - 1) ^ {\underline{k}}}{k!}\times z^k$</p>
-<p> 由组合数推广定义：<br> 原式 $=\sum\limits_{k\ge 0} ^ {\infty} \dbinom{c + k - 1}{k} \times z ^ k$</p>
-<p> 是由定义得到的原数列的生成函数。</p>
+<p>证明：<br>从右边考虑：</p>
+<p>$\frac{1}{(1-z) ^ c} = (1 - z) ^ {-c}$</p>
+<p>广义二项式定理展开：<br>原式<br>$= \sum\limits_{k\geq 0}^{\infty}\dbinom{-c}{k}\times (-z) ^ k$</p>
+<p>$= {\sum\limits_{k\geq 0}^{\infty} \frac{(-c)^{\underline{k}}}{k!}\times (-1) ^ k \times z ^ k} ^ {[1]}$</p>
+<p>其中：<br>${(-c)} ^ {\underline{k}} $</p>
+<p>$= (-c) \times (-c - 1) \times (-c - 2) \times\cdots\times (-c - k + 1)$</p>
+<p>$= (-1) ^ k \times c\times (c + 1) \times (c + 2) \times \cdots \times (c + k - 1)$</p>
+<p>$= (-1) ^ k \times (c + k - 1) ^ {\underline{k}}$</p>
+<p>代回原式：<br>原式<br>$=\sum\limits_{k \geq 0} ^ {\infty}\frac{(-1)^k\times (c + k - 1) ^{\underline{k}}}{k!} \times (-1) ^ k \times z ^ k$</p>
+<p>$= \sum\limits_{k \geq 0} ^ {\infty}\frac{(-1) ^ {2k} \times (c + k - 1) ^ {\underline{k}}}{k!} \times z^k$</p>
+<p>又因为：<br>$(-1)^{2k} = 1$</p>
+<p>所以：<br>原式 $=\sum\limits_{k\geq 0}^{\infty}\frac{(c + k - 1) ^ {\underline{k}}}{k!}\times z^k$</p>
+<p>由组合数推广定义：<br>原式 $=\sum\limits_{k\ge 0} ^ {\infty} \dbinom{c + k - 1}{k} \times z ^ k$</p>
+<p>是由定义得到的原数列的生成函数。</p>
 </li>
 </ol>
 <p>${}^1a ^ {\underline{k}} = \prod\limits_{i = 1} ^ {k} (a - i + 1)$</p>
