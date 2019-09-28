@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>POJ 2631 Roads in the North 解题报告 - Yuki&#39;s Blog</title>
+<title>Luogu P3379 【模板】最近公共祖先(LCA) 解题报告 - Yuki&#39;s Blog</title>
 
 
 
@@ -79,7 +79,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://i.loli.net/2019/08/27/SIME7XTfzmn8N4h.png" alt="POJ 2631 Roads in the North 解题报告" height="28">
+                <img src="https://i.loli.net/2019/08/27/SIME7XTfzmn8N4h.png" alt="Luogu P3379 【模板】最近公共祖先(LCA) 解题报告" height="28">
             
             </a>
         </div>
@@ -138,11 +138,17 @@
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://img.pixivic.com:23334/get/https://i.pximg.net/c/600x1200_90/img-master/img/2015/09/19/01/26/12/52594136_p0_master1200.jpg" alt="Luogu P3379 【模板】最近公共祖先(LCA) 解题报告">
+        </span>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-04T09:41:35.000Z">2019-06-04</time>
+                <time class="level-item has-text-grey" datetime="2019-09-28T09:30:41.000Z">2019-09-28</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/解题报告/">解题报告</a>
@@ -152,7 +158,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 415 个字)
+                    3 分钟 读完 (大约 444 个字)
                 </span>
                 
                 
@@ -161,30 +167,21 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                POJ 2631 Roads in the North 解题报告
+                Luogu P3379 【模板】最近公共祖先(LCA) 解题报告
             
         </h1>
         <div class="content">
-            <p><del>我没测，一次过了，有什么好说的。</del></p>
-<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="http://poj.org/problem?id=2631" target="_blank" rel="noopener">POJ 2631 Roads in the North</a></p>
-<h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>给你一棵树，求距离最长的两个点。</p>
+            <p>$20$ 行的 $\mathrm{LCT}$ 了解一下$\sim$。</p>
+<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://www.luogu.org/problem/P3379" target="_blank" rel="noopener">P3379 【模板】最近公共祖先（LCA）</a></p>
+<h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>求 $\mathrm{LCA}$。</p>
 <a id="more"></a>
 
-<h1 id="解题思想"><a href="#解题思想" class="headerlink" title="解题思想"></a>解题思想</h1><p>首先要<del>一眼</del>看出题目中的图是<strong>一棵树</strong>。然后距离最长的两个点就是<strong>树的直径</strong>。</p>
-<p>可以先<strong>任意节点为源</strong><code>bfs</code>一次，求出到该点<strong>距离最长</strong>的一个点。再以它为源<code>bfs</code>一次，求出<strong>到该点距离最长</strong>的一个点。那么这<strong>两个点之间的距离</strong>就是<strong>这棵树的直径</strong>。</p>
-<p>读入的时候需要记录一下<strong>最小点数</strong>和<strong>最大点数</strong>。</p>
-<h1 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h1><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//Junk POJ Doesn't Allow me to use &lt;bits/stdc++.h&gt;</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">10010</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> M = N &lt;&lt; <span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> head[N], nxt[M], edge[M], ver[M], cnt = <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> n, m, s = N, t, l, r;</span><br><span class="line"><span class="hljs-keyword">int</span> d[N], v[N];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">    ver[++cnt] = y, edge[cnt] = z, nxt[cnt] = head[x], head[x] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> x, y, z;</span><br><span class="line">    <span class="hljs-keyword">while</span>(~<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d %d"</span>, &amp;x, &amp;y, &amp;z)) &#123;</span><br><span class="line">        add(x, y, z);</span><br><span class="line">        add(y, x, z);</span><br><span class="line">        s = min(s, x);</span><br><span class="line">        s = min(s, y);</span><br><span class="line">        t = max(t, x);</span><br><span class="line">        t = max(t, y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">queue</span> &lt;<span class="hljs-keyword">int</span>&gt; q;</span><br><span class="line">    q.push(s);</span><br><span class="line">    <span class="hljs-keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> x = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        v[x] = <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = head[x]; i; i = nxt[i]) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> y = ver[i], z = edge[i];</span><br><span class="line">            <span class="hljs-keyword">if</span>(v[y]) <span class="hljs-keyword">continue</span>;</span><br><span class="line">            d[y] = d[x] + z;</span><br><span class="line">            q.push(y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = s; i &lt;= t; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(d[i] &gt; d[r]) r = i;</span><br><span class="line">    &#125;</span><br><span class="line">    q.push(r);</span><br><span class="line">    <span class="hljs-built_in">memset</span>(v, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(v));</span><br><span class="line">    <span class="hljs-built_in">memset</span>(d, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(d));</span><br><span class="line">    <span class="hljs-keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> x = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        v[x] = <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = head[x]; i; i = nxt[i]) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> y = ver[i], z = edge[i];</span><br><span class="line">            <span class="hljs-keyword">if</span>(v[y]) <span class="hljs-keyword">continue</span>;</span><br><span class="line">            d[y] = d[x] + z;</span><br><span class="line">            q.push(y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = s; i &lt;= t; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(d[i] &gt; d[l]) l = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>, d[l]);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="解题思想"><a href="#解题思想" class="headerlink" title="解题思想"></a>解题思想</h1><p>考虑 $\mathrm{LCT}$ 维护。</p>
+<p>具体做法就是，在 <code>access</code> 的时候，如果我们返回最后一次虚实链变换时虚边父节点的值，那么接连两次 <code>access</code> 的后一次的返回值就是两个节点的 $\mathrm{LCA}$。</p>
+<p>由于只需要维护 $\mathrm{LCA}$，所以我们只需要维护一下翻转tag，别的信息不用维护，这样既减少了码量，常数也能适当小一点<del>虽然还是那么大。</del></p>
+<h1 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h1><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">char</span> ch = getchar(); <span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>, w = <span class="hljs-number">1</span>; <span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch)) &#123;<span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'-'</span>) w = <span class="hljs-number">-1</span>; ch = getchar();&#125; <span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch)) &#123;r = r * <span class="hljs-number">10</span> + ch - <span class="hljs-string">'0'</span>, ch = getchar();&#125; <span class="hljs-keyword">return</span> r * w;&#125;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">5e5</span> + <span class="hljs-number">6</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> n, m, S, x, y, ch[N][<span class="hljs-number">2</span>], fa[N], tag[N], s[N];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> o)</span> </span>&#123;<span class="hljs-keyword">if</span>(tag[o]) tag[o] ^= <span class="hljs-number">1</span>, tag[ch[o][<span class="hljs-number">0</span>]] ^= <span class="hljs-number">1</span>, tag[ch[o][<span class="hljs-number">1</span>]] ^= <span class="hljs-number">1</span>, <span class="hljs-built_in">std</span>::swap(ch[o][<span class="hljs-number">0</span>], ch[o][<span class="hljs-number">1</span>]);&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> o)</span> </span>&#123;<span class="hljs-keyword">return</span> ch[fa[o]][<span class="hljs-number">1</span>] == o;&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> o)</span> </span>&#123;<span class="hljs-keyword">return</span> ch[fa[o]][<span class="hljs-number">0</span>] != o &amp;&amp; ch[fa[o]][<span class="hljs-number">1</span>] != o;&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<span class="hljs-keyword">int</span> y = fa[x], z = fa[y], chk = get(x); <span class="hljs-keyword">if</span>(!isrt(y)) ch[z][ch[z][<span class="hljs-number">1</span>] == y] = x; ch[y][chk] = ch[x][chk ^ <span class="hljs-number">1</span>], fa[ch[x][chk ^ <span class="hljs-number">1</span>]] = y, ch[x][chk ^ <span class="hljs-number">1</span>] = y, fa[y] = x, fa[x] = z;&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">splay</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<span class="hljs-keyword">int</span> top; s[top = <span class="hljs-number">1</span>] = x; <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = x; !isrt(i); i = fa[i]) s[++top] = fa[i]; <span class="hljs-keyword">while</span>(top) pushdown(s[top--]); <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> f; f = fa[x], !isrt(x); rotate(x)) &#123;<span class="hljs-keyword">if</span>(!isrt(f)) rotate(get(f) == get(x) ? f : x);&#125;&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">access</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<span class="hljs-keyword">int</span> o; <span class="hljs-keyword">for</span>(o = <span class="hljs-number">0</span>; x; o = x, x = fa[x]) splay(x), ch[x][<span class="hljs-number">1</span>] = o; <span class="hljs-keyword">return</span> o;&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mkrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;access(x); splay(x); tag[x] ^= <span class="hljs-number">1</span>;&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">link</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;mkrt(x); fa[x] = y;&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    n = read(), m = read(), S = read();</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) x = read(), y = read(), link(x, y);</span><br><span class="line">    mkrt(S);</span><br><span class="line">    <span class="hljs-keyword">while</span>(m--) x = read(), y = read(), access(x), <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, access(y));</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/树上问题/">树上问题</a>, <a class="has-link-grey -link" href="/tags/树的直径/">树的直径</a>
-                </div>
-            </div>
         </div>
         
         
@@ -199,17 +196,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/05/Luogu-P4408-NOI2003-逃学的小孩-解题报告/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Luogu P4408 [NOI2003]逃学的小孩 解题报告</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/18/UVA12879-Golf-Bot-解题报告/">
-                <span class="level-item">UVA12879 Golf Bot 解题报告</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/26/动态DP-学习报告/">
+                <span class="level-item">动态DP 学习报告</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -355,7 +345,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://i.loli.net/2019/08/27/SIME7XTfzmn8N4h.png" alt="POJ 2631 Roads in the North 解题报告" height="28">
+                    <img src="https://i.loli.net/2019/08/27/SIME7XTfzmn8N4h.png" alt="Luogu P3379 【模板】最近公共祖先(LCA) 解题报告" height="28">
                 
                 </a>
                 <p class="is-size-7">
