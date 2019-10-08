@@ -7,6 +7,11 @@
       <categories>
         <category>解题报告</category>
       </categories>
+      <tags>
+        <tag>图论</tag>
+        <tag>最短路</tag>
+        <tag>数论</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Luogu P3379 【模板】最近公共祖先(LCA) 解题报告]]></title>
