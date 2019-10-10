@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[武汉二中云考试 记录]]></title>
+    <url>%2F2019%2F10%2F09%2F%E6%AD%A6%E6%B1%89%E4%BA%8C%E4%B8%AD%E4%BA%91%E8%80%83%E8%AF%95-%E9%A2%98%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[补锅ing… 概览 场次 出题人 题目 完成情况 题解情况 题面 2019-08-26【高二组】模拟赛 1 xht37 图 探险 高速公路 110 100 1 2019-09-03【高二组】模拟赛 2 xht37 计算题1 计算题2 构造题1 构造题2 数学题1 数学题2 111111 000 0 2019-09-10【高二组】模拟赛 3 xht37 酒店 商店 创业 111 000 0 2019-09-17【高二组】模拟赛 4 xht37 奇怪的计算机 函数 gcd环 不愉快的期末考试 1100 000 0 CSP-S 2019 互测 day1 demon_s 数字识别 猜猜看 保卫铁路线 000 000 0 2019-09-24【高二组】模拟赛 5 xht37 绝对值 岛屿 矩阵 101 000 0 CSP-S 2019 互测 day2 zgjjj CSGO 矩阵操作 k次离线莫队 111 111 1 国庆集训 day1 xht37 Tom Jerry Speike 000 000 0 国庆集训 day2 xht37 相遇 相知 相爱 100 000 0 CSP-S 2019 互测 day1 xht37 异或 图 序列 110 000 1 赛题题解2019-08-26【高二组】模拟赛 1图题意找到给定无向图的一个子图，使度数最小的点的度数尽可能大。 题解答案仅与当前图中度数最小的点有关，所以考虑每次删去当前度数最小的点，并更新答案。 代码123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;bits/stdc++.h&gt;using namespace std;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 2e5 + 6;const int M = N &lt;&lt; 5;int n, m, ans;int head[N], ver[M], nxt[M], in[N], cnt;bool v[N];priority_queue &lt; pair &lt;int, int&gt; &gt; q;inline void add(int x, int y) &#123; ver[++cnt] = y, nxt[cnt] = head[x], head[x] = cnt, in[y]++; ver[++cnt] = x, nxt[cnt] = head[y], head[y] = cnt, in[x]++;&#125;int main() &#123; n = read(), m = read(); for(register int i = 1; i &lt;= m; i++) add(read(), read()); for(register int i = 1; i &lt;= n; i++) q.push(make_pair(-in[i], i)); while(!q.empty()) &#123; int x = q.top().second; q.pop(); ans = max(ans, in[x]); if(!v[x]) &#123; v[x] = 1; for(register int i = head[x]; i; i = nxt[i]) &#123; int y = ver[i]; q.push(make_pair(-(--in[y]), y)); &#125; &#125; &#125; printf("%d\n", ans); return 0;&#125; 探险高速公路2019-09-03【高二组】模拟赛 2###计算题1 ###计算题2 ###构造题1 ###构造题2 ###数学题1 ###数学题2 2019-09-10【高二组】模拟赛 3酒店商店创业2019-09-17【高二组】模拟赛 4奇怪的计算机函数gcd环不愉快的期末考试CSP-S 2019 互测 day1数字识别猜猜看保卫铁路线2019-09-24【高二组】模拟赛 5绝对值岛屿矩阵CSP-S 2019 互测 day2CSGO矩阵操作k次离线莫队国庆集训 day1TomJerrySpeike国庆集训 day2相遇相知相爱CSP-S 2019 互测 day1异或图序列]]></content>
+      <categories>
+        <category>置顶</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[背包问题 解题报告]]></title>
     <url>%2F2019%2F10%2F08%2F%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%2F</url>
     <content type="text"><![CDATA[题目描述共有 $n$ 种物品，每种物品的体积为 $a_i$ ，每种物品有无限个，共有 $q$ 次询问，每次询问是否能通过这 $n$ 种物品装满容量为 $b_i$ 的背包。 解题思想通过观察可以发现，题目等价于求多元一次方程 $\sum\limits_{i = 1} ^ n a_ix_i = b$ 的一组非负整数解 ${x_1, x_2,…,x_n}$ 的存在性。 可以发现，若 $b$ 有解，则 $b + a_i$ 也有解。所以可以在模意义下处理该问题。 不妨设 $\min{a_1, a_2,…,a_n} = a_1$，那么可以处理出模 $a_1$ 意义下所有解被取到的最小值 $c_i$。 这个值可以通过从 $x$ 向 $x + a_i$ 连边后跑最短路得到。不需要建图，Dijkstra 扫描当前点出边时遍历 $a_2 \sim a_n$ 相加取模即可。 回答询问时查询 $c_{b\pmod {a_1}}$ 是否小于等于 $b$ 即可。 参考代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#include &lt;cstdio&gt;#include &lt;cctype&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;inline int read() &#123; char ch = getchar(); int r = 0, w = 1; while(!isdigit(ch)) &#123;if(ch == '-') w = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;r = r * 10 + ch - '0', ch = getchar();&#125; return r * w;&#125;const int N = 5e4 + 6;struct data &#123; int pos, dis; data(int pos, int dis) &#123;this -&gt; pos = pos, this -&gt; dis = dis;&#125; bool operator &lt; (const data &amp;a) const &#123; return dis &gt; a.dis; &#125;&#125;;int n, m, a[N], mod;int dis[N];priority_queue &lt;data&gt; heap;void Dijkstra() &#123; memset(dis, 0x3f, sizeof dis); dis[0] = 0; heap.push(data(0, 0)); while(!heap.empty()) &#123; int x = heap.top().pos, d = heap.top().dis; heap.pop(); if(dis[x] != d) continue; for(register int i = 2; i &lt;= n; i++) &#123; int y = (x + a[i]) % mod; if(dis[y] &gt; dis[x] + a[i]) &#123; dis[y] = dis[x] + a[i]; heap.push(data(y, dis[y])); &#125; &#125; &#125;&#125;int main() &#123; n = read(); for(register int i = 1; i &lt;= n; i++) a[i] = read(); sort(a + 1, a + n + 1); mod = a[1]; Dijkstra(); m = read(); while(m--) &#123; int x = read(); if(dis[x % mod] &lt;= x) puts("Yes"); else puts("No"); &#125; return 0;&#125;]]></content>
@@ -280,8 +288,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>贪心</tag>
+        <tag>图论</tag>
         <tag>树上问题</tag>
         <tag>根号分治</tag>
       </tags>
@@ -342,8 +350,8 @@
         <category>解题报告</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>贪心</tag>
+        <tag>图论</tag>
         <tag>MST</tag>
       </tags>
   </entry>
