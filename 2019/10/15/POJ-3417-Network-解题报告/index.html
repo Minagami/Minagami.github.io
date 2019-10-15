@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>ToDoList - Yuki&#39;s Blog</title>
+<title>POJ 3417 Network 解题报告 - Yuki&#39;s Blog</title>
 
 
 
@@ -79,7 +79,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="https://i.loli.net/2019/10/10/y9zYaVHLsNt1Cek.png" alt="ToDoList" height="28">
+                <img src="https://i.loli.net/2019/10/10/y9zYaVHLsNt1Cek.png" alt="POJ 3417 Network 解题报告" height="28">
             
             </a>
         </div>
@@ -138,21 +138,27 @@
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/10/15/yFC64qJfOdTom2N.jpg" alt="POJ 3417 Network 解题报告">
+        </span>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-02T03:16:14.000Z">2019-05-02</time>
+                <time class="level-item has-text-grey" datetime="2019-10-15T07:30:50.000Z">2019-10-15</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/置顶/">置顶</a>
+                <a class="has-link-grey -link" href="/categories/解题报告/">解题报告</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 445 个字)
+                    4 分钟 读完 (大约 558 个字)
                 </span>
                 
                 
@@ -161,118 +167,24 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                ToDoList
+                POJ 3417 Network 解题报告
             
         </h1>
         <div class="content">
-            <blockquote>
-<p> 犹豫，就会败北；果断，也是白给。 放弃，亦无宽慰；坚持，终于崩溃。</p>
-</blockquote>
+            <p>树上差分恶补计划 on</p>
+<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="http://poj.org/problem?id=3417" target="_blank" rel="noopener">Network</a></p>
+<h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>给你一颗树和 $m$ 条附加边，要求删去一条树边，删去一条附加边，使原树不连通。求方案数。</p>
 <a id="more"></a>
 
-<p>吨吨吨往下灌。</p>
-<h1 id="要学的芝士"><a href="#要学的芝士" class="headerlink" title="要学的芝士"></a>要学的芝士</h1><h2 id="OI"><a href="#OI" class="headerlink" title="OI"></a>OI</h2><p>您可以下载<strong><a href="https://Minagami.github.io/OI.xmind" target="_blank" rel="noopener">OI知识树（Made By Yuki With Xmind）</a></strong>，但是您需要先安装<strong>Xmind</strong>。</p>
+<h1 id="解题思想"><a href="#解题思想" class="headerlink" title="解题思想"></a>解题思想</h1><p>注意到添加附加边相当于在两端点的简单路径上再覆盖一遍，不妨对每条树边被附加边覆盖的次数分类讨论：</p>
 <ul>
-<li><p>字符串</p>
-<ul>
-<li><del>KMP（拖了多久了qaq）</del></li>
-<li><del>AC自动机</del></li>
-<li>后缀数组</li>
-<li>后缀自动机</li>
+<li>若一条树边未被覆盖过，则将其删去可导致原树直接不连通，贡献了 $m$ 种方案。</li>
+<li>若一条树边被覆盖了一次，则将原树边和覆盖它的这条附加边同时删去可导致原树不连通，贡献了 $1$ 种方案。</li>
+<li>若一条树边被覆盖了超过一次，则无论如何都无法使原树不连通，无贡献。</li>
 </ul>
-</li>
-<li><p>DP</p>
-<ul>
-<li>树上背包优化</li>
-<li><del>状压DP</del></li>
-<li><del>斜率优化</del></li>
-<li><del>数据结构优化</del></li>
-<li><del>数位统计DP</del></li>
-<li><del>计数DP</del></li>
-<li><del>DDP</del>（大概会了）</li>
-</ul>
-</li>
-<li><p>图论</p>
-<ul>
-<li><del>2-SAT</del></li>
-<li>基环树</li>
-<li>差分约束</li>
-<li>二分图<ul>
-<li>带权匹配</li>
-<li>最小点覆盖</li>
-<li>最大独立集</li>
-<li>DAG最小点覆盖</li>
-</ul>
-</li>
-<li>网络流<ul>
-<li><del>Dinic</del></li>
-<li>ISAP</li>
-<li>HLPP</li>
-<li>上下界网络流</li>
-<li>最大权闭合子图</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>离线分治</p>
-<ul>
-<li>整体二分</li>
-<li>带权二分</li>
-<li><del>CDQ分治</del></li>
-</ul>
-</li>
-<li><p>数学</p>
-<ul>
-<li><del>Pollard’s Rho</del></li>
-<li>Polya定理</li>
-<li><del>Miller-Rabin素数鉴定</del></li>
-<li><del>高斯消元</del>博弈</li>
-<li><del>博弈</del></li>
-<li><del>莫比乌斯反演</del></li>
-<li>01分规</li>
-<li>群论</li>
-</ul>
-</li>
-<li><p>搜索</p>
-<ul>
-<li><del>啥都不会，啥都要学</del></li>
-</ul>
-</li>
-<li><p>数据结构</p>
-<ul>
-<li><del>Splay</del></li>
-<li><del>LCT</del></li>
-<li>fhq Treap</li>
-<li><del>莫队</del></li>
-<li>可持久化Trie</li>
-<li><del>可持久化线段树</del></li>
-<li>动态图</li>
-<li><del>树套树</del></li>
-</ul>
-</li>
-</ul>
-<h2 id="休闲"><a href="#休闲" class="headerlink" title="休闲"></a><del>休闲</del></h2><ul>
-<li>CSS</li>
-<li>Node.js</li>
-<li>搭OJ</li>
-</ul>
-<h1 id="咕掉的事情"><a href="#咕掉的事情" class="headerlink" title="咕掉的事情"></a>咕掉的事情</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://www.luogu.org/problemnew/show/P1432" target="_blank" rel="noopener"><strong>P1432</strong> 倒水问题</a>（弃了，不想写）</p>
-<p><del><a href="https://www.luogu.org/problemnew/show/P3803" target="_blank" rel="noopener"><strong>P3803</strong> 【模板】多项式乘法（FFT）</a></del></p>
-<p><a href="https://www.luogu.org/problemnew/show/P2713" target="_blank" rel="noopener"><strong>P2713</strong> 罗马游戏</a>（咕咕咕）</p>
-<p><del><a href="https://www.luogu.org/problemnew/show/P2774" target="_blank" rel="noopener"><strong>P2774</strong> 方格取数问题</a></del></p>
-<p><a href="https://www.luogu.org/problemnew/show/P4593" target="_blank" rel="noopener"><strong>P4593</strong>教科书般的亵渎</a></p>
-<p><del><a href="https://www.luogu.org/problemnew/show/P3834" target="_blank" rel="noopener"><strong>P3834</strong> 【模板】可持久化线段树 1（主席树）</a></del></p>
-<p><a href="https://www.luogu.org/fe/problem/P1099" target="_blank" rel="noopener"><strong>P1099</strong> 树网的核</a> </p>
-<h2 id="Things"><a href="#Things" class="headerlink" title="Things"></a>Things</h2><ul>
-<li><p>多项式学习报告补锅</p>
-</li>
-<li><p><del><a href="https://www.luogu.org/problemnew/show/P3119" target="_blank" rel="noopener"><strong>P3119</strong> 草鉴定Grass Cownoisseur</a>写题解</del>（完成啦！）</p>
-</li>
-<li><p>LCT学习报告</p>
-</li>
-<li><p>DarkBZOJ3583 杰杰的女性朋友</p>
-</li>
-</ul>
+<p>树上差分后按边统计即可。</p>
+<h1 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h1><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">char</span> ch = getchar(); <span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>, w = <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch)) &#123;<span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'-'</span>) w = <span class="hljs-number">-1</span>; ch = getchar();&#125;</span><br><span class="line">    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch)) &#123;r = r * <span class="hljs-number">10</span> + ch - <span class="hljs-string">'0'</span>, ch = getchar();&#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> r * w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e5</span> + <span class="hljs-number">6</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> M = N &lt;&lt; <span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, m, ans;</span><br><span class="line"><span class="hljs-keyword">int</span> head[N], ver[M], nxt[M], cnt;</span><br><span class="line"><span class="hljs-keyword">int</span> f[N], d[N], fa[N], sz[N], tp[N], son[N];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    ver[++cnt] = y, nxt[cnt] = head[x], head[x] = cnt;</span><br><span class="line">    ver[++cnt] = x, nxt[cnt] = head[y], head[y] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    sz[x] = <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = head[x]; i; i = nxt[i]) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> y = ver[i];</span><br><span class="line">        <span class="hljs-keyword">if</span>(y == fa[x]) <span class="hljs-keyword">continue</span>;</span><br><span class="line">        fa[y] = x;</span><br><span class="line">        d[y] = d[x] + <span class="hljs-number">1</span>;</span><br><span class="line">        dfs1(y);</span><br><span class="line">        sz[x] += sz[y];</span><br><span class="line">        <span class="hljs-keyword">if</span>(sz[y] &gt; sz[son[x]]) son[x] = y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> top)</span> </span>&#123;</span><br><span class="line">    tp[x] = top;</span><br><span class="line">    <span class="hljs-keyword">if</span>(son[x]) dfs2(son[x], top);</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = head[x]; i; i = nxt[i]) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> y = ver[i];</span><br><span class="line">        <span class="hljs-keyword">if</span>(y == fa[x] || y == son[x]) <span class="hljs-keyword">continue</span>;</span><br><span class="line">        dfs2(y, y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">lca</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">while</span>(tp[x] != tp[y]) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(d[tp[x]] &gt; d[tp[y]]) <span class="hljs-built_in">std</span>::swap(x, y);</span><br><span class="line">        y = fa[tp[y]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> d[x] &lt; d[y] ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = head[x]; i; i = nxt[i])</span><br><span class="line">        <span class="hljs-keyword">if</span>(fa[x] == ver[i]) <span class="hljs-keyword">continue</span>;</span><br><span class="line">        <span class="hljs-keyword">else</span> dfs(ver[i]), f[x] += f[ver[i]];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    n = read(), m = read();</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> x = read(), y = read();</span><br><span class="line">        add(x, y);</span><br><span class="line">    &#125;</span><br><span class="line">    dfs1(<span class="hljs-number">1</span>);</span><br><span class="line">    dfs2(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> x = read(), y = read(), z = lca(x, y);</span><br><span class="line">        f[x]++, f[y]++, f[z] -= <span class="hljs-number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(<span class="hljs-number">1</span>);</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) <span class="hljs-keyword">if</span>(f[i] == <span class="hljs-number">0</span>) ans += m; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(f[i] == <span class="hljs-number">1</span>) ans++;</span><br><span class="line">    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, ans);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -280,7 +192,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/ToDoList/">ToDoList</a>
+                    <a class="has-link-grey -link" href="/tags/分类讨论/">分类讨论</a>, <a class="has-link-grey -link" href="/tags/图论/">图论</a>, <a class="has-link-grey -link" href="/tags/树上差分/">树上差分</a>, <a class="has-link-grey -link" href="/tags/计数/">计数</a>
                 </div>
             </div>
         </div>
@@ -297,17 +209,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/02/Luogu-P1726-上白泽慧音-解题报告/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Luogu P1726 上白泽慧音 解题报告</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/04/30/Luogu-P2746-USACO5-3-校园网Network-of-Schools-解题报告/">
-                <span class="level-item">Luogu P2746 [USACO5.3]校园网Network of Schools 解题报告</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/14/Luogu-P2680-运输计划-解题报告/">
+                <span class="level-item">Luogu P2680 运输计划 解题报告</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -415,30 +320,22 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#要学的芝士">
+        <a class="is-flex" href="#题目链接">
         <span class="has-mr-6">1</span>
-        <span>要学的芝士</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#OI">
-        <span class="has-mr-6">1.1</span>
-        <span>OI</span>
+        <span>题目链接</span>
         </a></li><li>
-        <a class="is-flex" href="#休闲">
-        <span class="has-mr-6">1.2</span>
-        <span>休闲</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#咕掉的事情">
+        <a class="is-flex" href="#题意简述">
         <span class="has-mr-6">2</span>
-        <span>咕掉的事情</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#题目">
-        <span class="has-mr-6">2.1</span>
-        <span>题目</span>
+        <span>题意简述</span>
         </a></li><li>
-        <a class="is-flex" href="#Things">
-        <span class="has-mr-6">2.2</span>
-        <span>Things</span>
-        </a></li></ul></li></ul>
+        <a class="is-flex" href="#解题思想">
+        <span class="has-mr-6">3</span>
+        <span>解题思想</span>
+        </a></li><li>
+        <a class="is-flex" href="#参考代码">
+        <span class="has-mr-6">4</span>
+        <span>参考代码</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
@@ -461,7 +358,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://i.loli.net/2019/10/10/y9zYaVHLsNt1Cek.png" alt="ToDoList" height="28">
+                    <img src="https://i.loli.net/2019/10/10/y9zYaVHLsNt1Cek.png" alt="POJ 3417 Network 解题报告" height="28">
                 
                 </a>
                 <p class="is-size-7">
